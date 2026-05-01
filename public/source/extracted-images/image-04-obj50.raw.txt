@@ -1,1 +1,0 @@
-/BitsPerComponent 8/ColorSpace/DeviceGray/DecodeParms<</BitsPerComponent 8/Colors 1/Columns 507>>/Filter/FlateDecode/Height 419/Intent/RelativeColorimetric/Length 792/Name/X/Subtype/Image/Type/XObject/Width 507

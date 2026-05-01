@@ -1,1 +1,0 @@
-/BitsPerComponent 8/ColorSpace 4946 0 R/Filter/DCTDecode/Height 288/Intent/RelativeColorimetric/Length 8412/Metadata 41 0 R/Name/X/SMask 43 0 R/Subtype/Image/Type/XObject/Width 343

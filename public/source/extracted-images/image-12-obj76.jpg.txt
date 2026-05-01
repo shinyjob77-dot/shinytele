@@ -1,1 +1,0 @@
-/BitsPerComponent 8/ColorSpace/DeviceGray/Filter/DCTDecode/Height 400/Intent/RelativeColorimetric/Length 1178/Metadata 75 0 R/Name/X/Subtype/Image/Type/XObject/Width 434
