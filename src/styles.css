@@ -834,7 +834,7 @@ p {
 
 .charm-calendar-embed {
   overflow: hidden;
-  border: 1px solid rgba(16, 32, 31, 0.16);
+  border: 0;
   border-radius: 8px;
   background: #ffffff;
 }
