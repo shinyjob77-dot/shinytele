@@ -128,9 +128,7 @@ a {
   padding: 42px 0 72px;
 }
 
-.hero-content,
-.process-copy,
-.booking-copy {
+.hero-content {
   display: grid;
   gap: 22px;
 }
@@ -288,46 +286,12 @@ p {
   box-shadow: 0 30px 90px rgba(24, 45, 43, 0.18);
 }
 
-.visit-card {
-  position: absolute;
-  right: 22px;
-  bottom: 22px;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  max-width: calc(100% - 44px);
-  padding: 14px 16px;
-  border: 1px solid rgba(16, 32, 31, 0.1);
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.94);
-  box-shadow: 0 18px 44px rgba(24, 45, 43, 0.16);
-}
-
-.visit-card svg {
-  color: #ef7c5b;
-}
-
-.visit-card div {
-  display: grid;
-  gap: 2px;
-}
-
-.visit-card strong {
-  color: #10201f;
-}
-
-.visit-card span {
-  color: #53615f;
-  font-size: 0.92rem;
-}
-
 .services-band,
-.process-section,
 .section-switcher,
 .weight-loss-page,
 .booking-section,
-.portal-section,
 .intake-section,
+.disclaimer-section,
 .consent-section,
 .seo-section,
 .footer {
@@ -352,8 +316,9 @@ p {
   gap: 12px;
 }
 
-.section-switcher h2 {
-  font-size: clamp(1.8rem, 4vw, 3rem);
+.section-switcher h3 {
+  font-size: 1.6rem;
+  line-height: 1.2;
 }
 
 .section-switcher-actions {
@@ -391,23 +356,6 @@ p {
   margin-bottom: 26px;
 }
 
-.service-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 18px;
-}
-
-.service-card {
-  display: grid;
-  gap: 16px;
-  min-height: 250px;
-  padding: 26px;
-  border: 1px solid rgba(16, 32, 31, 0.1);
-  border-radius: 8px;
-  background: #ffffff;
-  box-shadow: 0 16px 42px rgba(24, 45, 43, 0.07);
-}
-
 .service-icon {
   width: 52px;
   height: 52px;
@@ -418,50 +366,88 @@ p {
   background: #e8f4f2;
 }
 
-.service-card p {
+.care-detail-panel,
+.quick-sick-panel {
+  display: grid;
+  gap: 18px;
+  margin-top: 24px;
+  padding: 26px;
+  border: 1px solid rgba(16, 32, 31, 0.1);
+  border-radius: 8px;
+  background: #ffffff;
+  box-shadow: 0 16px 42px rgba(24, 45, 43, 0.07);
+}
+
+.care-detail-heading,
+.quick-sick-heading {
+  display: grid;
+  gap: 10px;
+}
+
+.care-detail-grid,
+.quick-sick-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.care-detail-grid {
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+}
+
+.chronic-care-grid {
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+}
+
+.womens-health-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.care-detail-card,
+.quick-sick-card {
+  display: grid;
+  gap: 12px;
+  padding: 16px;
+  border-radius: 8px;
+  background: #f7faf8;
+}
+
+.care-symbol {
+  width: 38px;
+  height: 38px;
+  display: grid;
+  place-items: center;
+  border-radius: 8px;
+  color: #26736c;
+  background: #e8f4f2;
+}
+
+.care-detail-card h3,
+.quick-sick-card h3 {
   font-size: 1rem;
 }
 
-.process-section,
+.care-detail-card p {
+  font-size: 0.95rem;
+  line-height: 1.55;
+}
+
+.quick-sick-card ul {
+  display: grid;
+  gap: 7px;
+  margin: 0;
+  padding-left: 18px;
+  color: #53615f;
+  font-size: 0.95rem;
+  line-height: 1.45;
+}
+
 .booking-section {
   display: grid;
   grid-template-columns: minmax(0, 0.95fr) minmax(320px, 1fr);
   gap: 44px;
   align-items: center;
   padding: 80px 0;
-}
-
-.steps-list {
-  display: grid;
-  gap: 14px;
-}
-
-.step-row {
-  display: grid;
-  grid-template-columns: 52px minmax(0, 1fr);
-  align-items: center;
-  gap: 16px;
-  min-height: 82px;
-  padding: 16px;
-  border: 1px solid rgba(16, 32, 31, 0.1);
-  border-radius: 8px;
-  background: #ffffff;
-}
-
-.step-row span {
-  width: 52px;
-  height: 52px;
-  display: grid;
-  place-items: center;
-  border-radius: 8px;
-  color: #ffffff;
-  background: #ef7c5b;
-  font-weight: 900;
-}
-
-.step-row strong {
-  color: #10201f;
-  font-size: 1.15rem;
 }
 
 .weight-loss-page {
@@ -546,6 +532,45 @@ p {
 
 .program-note svg {
   color: #26736c;
+}
+
+.medical-weight-options {
+  display: grid;
+  gap: 22px;
+  padding: 28px;
+  border: 1px solid rgba(16, 32, 31, 0.1);
+  border-radius: 8px;
+  background: #ffffff;
+  box-shadow: 0 18px 48px rgba(24, 45, 43, 0.08);
+}
+
+.medical-weight-heading {
+  display: grid;
+  gap: 12px;
+}
+
+.medical-weight-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.medical-weight-card {
+  display: grid;
+  gap: 12px;
+  padding: 18px;
+  border-radius: 8px;
+  background: #f7faf8;
+}
+
+.medical-weight-card h3 {
+  font-size: 1rem;
+  line-height: 1.35;
+}
+
+.medical-weight-card p {
+  font-size: 0.94rem;
+  line-height: 1.55;
 }
 
 .bmi-panel {
@@ -760,20 +785,34 @@ p {
 }
 
 .booking-section {
+  display: grid;
+  grid-template-columns: minmax(260px, 0.62fr) minmax(420px, 1.38fr);
+  gap: 24px;
+  align-items: start;
   margin-bottom: 60px;
   padding: 42px;
   border-radius: 8px;
   background: #10201f;
 }
 
-.booking-section h2,
-.booking-section .section-kicker {
-  color: #ffffff;
+.booking-visual {
+  margin: 0;
+  overflow: hidden;
+  border-radius: 8px;
+  background: #ffffff;
 }
 
-.booking-section p,
-.booking-section .feature-list {
-  color: #cbd8d5;
+.booking-visual img {
+  width: 100%;
+  max-height: 420px;
+  display: block;
+  object-fit: contain;
+}
+
+.booking-visual .booking-provider-logo {
+  width: min(280px, 72%);
+  max-height: 360px;
+  margin: 18px auto 24px;
 }
 
 .feature-list {
@@ -829,7 +868,9 @@ p {
 
 .booking-form .form-button {
   min-height: 50px;
-  width: 100%;
+  width: fit-content;
+  justify-self: start;
+  padding: 0 16px;
 }
 
 .charm-calendar-embed {
@@ -928,92 +969,6 @@ p {
   display: grid;
   gap: 26px;
   padding: 80px 0;
-}
-
-.portal-section {
-  display: grid;
-  gap: 26px;
-  padding: 80px 0;
-}
-
-.portal-intro {
-  display: grid;
-  gap: 14px;
-}
-
-.portal-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 18px;
-}
-
-.portal-card {
-  display: grid;
-  gap: 16px;
-  min-height: 280px;
-  padding: 26px;
-  border: 1px solid rgba(16, 32, 31, 0.1);
-  border-radius: 8px;
-  background: #ffffff;
-  box-shadow: 0 16px 42px rgba(24, 45, 43, 0.07);
-}
-
-.portal-icon {
-  width: 52px;
-  height: 52px;
-  display: grid;
-  place-items: center;
-  border-radius: 8px;
-  color: #ffffff;
-  background: #26736c;
-}
-
-.portal-card p {
-  font-size: 1rem;
-}
-
-.portal-card a {
-  width: fit-content;
-  min-height: 42px;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  margin-top: auto;
-  color: #26736c;
-  font-weight: 900;
-}
-
-.portal-panel {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 24px;
-  padding: 28px;
-  border-radius: 8px;
-  color: #ffffff;
-  background: #10201f;
-}
-
-.portal-panel > div {
-  display: grid;
-  gap: 10px;
-}
-
-.portal-panel h3 {
-  color: #ffffff;
-}
-
-.portal-panel p {
-  color: #cbd8d5;
-}
-
-.portal-panel svg {
-  color: #ef7c5b;
-}
-
-.portal-panel .secondary-button {
-  flex: 0 0 auto;
-  border-color: rgba(255, 255, 255, 0.18);
 }
 
 .intake-heading {
@@ -1444,6 +1399,46 @@ p {
   touch-action: none;
 }
 
+.disclaimer-section {
+  display: grid;
+  gap: 24px;
+  padding: 80px 0 24px;
+}
+
+.disclaimer-heading {
+  display: grid;
+  gap: 14px;
+}
+
+.disclaimer-card {
+  display: grid;
+  gap: 16px;
+  padding: 28px;
+  border: 1px solid rgba(16, 32, 31, 0.1);
+  border-radius: 8px;
+  background: #ffffff;
+  box-shadow: 0 18px 48px rgba(24, 45, 43, 0.08);
+}
+
+.disclaimer-card p,
+.disclaimer-card li {
+  max-width: none;
+  font-size: 1rem;
+  line-height: 1.65;
+}
+
+.disclaimer-card h3 {
+  margin-bottom: 10px;
+}
+
+.disclaimer-card ul {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding-left: 20px;
+  color: #53615f;
+}
+
 .seo-section {
   display: grid;
   gap: 26px;
@@ -1513,7 +1508,6 @@ p {
   }
 
   .hero-section,
-  .process-section,
   .section-switcher,
   .weight-loss-hero,
   .program-details,
@@ -1535,12 +1529,13 @@ p {
     min-height: 360px;
   }
 
-  .service-grid {
+  .care-detail-grid,
+  .quick-sick-grid {
     grid-template-columns: 1fr;
   }
 
   .weight-loss-grid,
-  .portal-grid,
+  .medical-weight-grid,
   .waist-grid,
   .medication-row,
   .condition-row,
@@ -1566,11 +1561,6 @@ p {
     width: 100%;
   }
 
-  .portal-panel {
-    align-items: flex-start;
-    flex-direction: column;
-  }
-
   .score-row {
     grid-template-columns: 1fr;
   }
@@ -1584,12 +1574,11 @@ p {
   .topbar,
   .hero-section,
   .services-band,
-  .process-section,
   .section-switcher,
   .weight-loss-page,
   .booking-section,
-  .portal-section,
   .intake-section,
+  .disclaimer-section,
   .consent-section,
   .seo-section,
   .footer {
@@ -1611,7 +1600,6 @@ p {
   .hero-actions a,
   .weight-loss-hero .primary-button,
   .weight-consent-form button,
-  .portal-panel .secondary-button,
   .secure-payment-panel .primary-button,
   .intake-form button,
   .consent-form button,
@@ -1642,13 +1630,6 @@ p {
 
   .weight-loss-hero {
     padding: 28px;
-  }
-
-  .visit-card {
-    left: 14px;
-    right: 14px;
-    bottom: 14px;
-    max-width: none;
   }
 
   .footer {
