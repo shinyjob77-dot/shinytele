@@ -1235,6 +1235,16 @@ function App() {
             Open CharmTracker Booking
             <ChevronRight size={18} aria-hidden="true" />
           </a>
+          <div className="charm-calendar-embed full-width">
+            <iframe
+              title="TeleDNP Now CharmHealth appointment calendar"
+              width="100%"
+              height="1000"
+              src="https://ehr.charmtracker.com/publicCal.sas?method=getCal&digest=8e0b9864de414b6e13f96d8257763cf5a8c456c327218389c9641f027c2ac896ef59d40e1bb127afa7c934a1881fa51ad95fcbc3b76e32a2"
+              style={{ overflow: "hidden" }}
+              frameBorder="0"
+            />
+          </div>
           <a
             className="secondary-button form-button"
             href={charmHealthLinks.payment}
