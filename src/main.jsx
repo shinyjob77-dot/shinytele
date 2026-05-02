@@ -7,6 +7,7 @@ import {
   ChevronRight,
   Clock3,
   ClipboardList,
+  CreditCard,
   FileText,
   HeartPulse,
   Laptop,
@@ -247,6 +248,14 @@ const portalActions = [
     text: "Enter the secure Doxy.me waiting room when it is time for your video appointment.",
     action: "Open Doxy.me",
     href: "https://doxy.me/telednpnow",
+    external: true,
+  },
+  {
+    icon: CreditCard,
+    title: "Pay Invoice",
+    text: "Open the secure CharmHealth/Bluefin payment portal after your invoice or payment link is ready.",
+    action: "Pay by Card",
+    href: charmHealthLinks.payment,
     external: true,
   },
 ];
@@ -1232,12 +1241,12 @@ function App() {
             target="_blank"
             rel="noreferrer"
           >
-            Open CharmTracker Booking
+            Open CharmHealth Booking
             <ChevronRight size={18} aria-hidden="true" />
           </a>
           <div className="charm-calendar-embed full-width">
             <iframe
-              title="TeleDNP Now CharmHealth appointment calendar"
+              title="TeleDNPNow appointment calendar"
               width="100%"
               height="1000"
               src="https://ehr.charmtracker.com/publicCal.sas?method=getCal&digest=8e0b9864de414b6e13f96d8257763cf5a8c456c327218389c9641f027c2ac896ef59d40e1bb127afa7c934a1881fa51ad95fcbc3b76e32a2"
@@ -1245,19 +1254,25 @@ function App() {
               frameBorder="0"
             />
           </div>
-          <a
-            className="secondary-button form-button"
-            href={charmHealthLinks.payment}
-            target="_blank"
-            rel="noreferrer"
-          >
-            Pay Self-Pay by Card
-            <ChevronRight size={18} aria-hidden="true" />
-          </a>
-          <p className="secure-payment-note">
-            Card payments open in a secure payment portal. Card numbers are not
-            stored on this website.
-          </p>
+          <div className="secure-payment-panel full-width">
+            <div>
+              <h3>Pay by card through CharmHealth/Bluefin</h3>
+              <p>
+                After an invoice or payment link is created in CharmHealth,
+                patients can pay securely by card through Bluefin. Card numbers
+                are not collected or stored on this website.
+              </p>
+            </div>
+            <a
+              className="secondary-button"
+              href={charmHealthLinks.payment}
+              target="_blank"
+              rel="noreferrer"
+            >
+              Pay Self-Pay by Card
+              <ChevronRight size={18} aria-hidden="true" />
+            </a>
+          </div>
         </form>
       </section>
 
