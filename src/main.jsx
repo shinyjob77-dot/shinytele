@@ -5,13 +5,10 @@ import {
   CalendarCheck,
   CheckCircle2,
   ChevronRight,
-  Clock3,
   ClipboardList,
-  CreditCard,
   FileText,
   HeartPulse,
   Laptop,
-  LockKeyhole,
   MessageCircle,
   Phone,
   ShieldCheck,
@@ -30,28 +27,126 @@ const charmHealthLinks = {
   payment: "https://phr.charmtracker.com/",
 };
 
-const services = [
+const primaryCareSections = [
   {
-    icon: Stethoscope,
-    title: "Primary Care",
-    text: "Everyday visits, medication refills, lab review, and preventive care from home.",
+    icon: CalendarCheck,
+    title: "Annual Wellness Visits",
+    text: "Limited but possible by telehealth when clinically appropriate.",
   },
   {
-    icon: HeartPulse,
-    title: "Chronic Care",
-    text: "Support for blood pressure, diabetes, asthma, thyroid care, and ongoing wellness goals.",
+    icon: FileText,
+    title: "Lab Review & Follow-up",
+    text: "Review recent lab results and discuss follow-up care plans.",
   },
   {
-    icon: MessageCircle,
-    title: "Quick Sick Visits",
-    text: "Care for allergies, sinus symptoms, rashes, UTIs, mild infections, and common concerns.",
+    icon: ClipboardList,
+    title: "Medication Refills",
+    text: "Review current medications and refill needs when safe and appropriate.",
+  },
+  {
+    icon: ShieldCheck,
+    title: "Smoking Cessation",
+    text: "Support, counseling, and medication options to help patients quit.",
+  },
+  {
+    icon: UserRound,
+    title: "Birth Control Counseling",
+    text: "Discuss contraceptive options, risks, benefits, and next steps.",
+  },
+  {
+    icon: Target,
+    title: "Weight Loss Management",
+    text: "GLP-1 discussion, lifestyle planning, and ongoing weight management support.",
+  },
+  {
+    icon: ShieldCheck,
+    title: "STI Testing and Treatment",
+    text: "Chlamydia, gonorrhea evaluation, herpes outbreaks, trichomoniasis, STI testing, and counseling. Lab testing can be ordered locally, and prescriptions sent to your pharmacy when appropriate.",
   },
 ];
 
-const steps = [
-  "Choose a visit time",
-  "Meet securely by video",
-  "Receive your care plan",
+const chronicCareSections = [
+  {
+    icon: HeartPulse,
+    title: "Hypertension",
+    text: "Blood pressure follow-up, medication review, and home reading discussion.",
+  },
+  {
+    icon: Activity,
+    title: "Type 2 Diabetes",
+    text: "Glucose trends, lab review, medication follow-up, and lifestyle support.",
+  },
+  {
+    icon: FileText,
+    title: "Hyperlipidemia",
+    text: "Cholesterol review, risk discussion, and medication follow-up.",
+  },
+  {
+    icon: ClipboardList,
+    title: "Hypothyroidism",
+    text: "Thyroid lab review, symptom follow-up, and medication refill support.",
+  },
+  {
+    icon: Stethoscope,
+    title: "Asthma / COPD (Stable)",
+    text: "Stable respiratory follow-up, inhaler review, and care plan discussion.",
+  },
+  {
+    icon: ShieldCheck,
+    title: "GERD",
+    text: "Reflux symptom follow-up, medication review, and lifestyle counseling.",
+  },
+];
+
+const womensHealthSections = [
+  {
+    icon: UserRound,
+    title: "Birth Control Management",
+    text: "Review contraceptive choices, refills, side effects, and follow-up needs.",
+  },
+  {
+    icon: ShieldCheck,
+    title: "Vaginal Infections",
+    text: "Evaluate common symptoms and discuss appropriate next steps for care.",
+  },
+  {
+    icon: CalendarCheck,
+    title: "Menstrual Concerns",
+    text: "Discuss irregular, painful, heavy, or missed periods when appropriate.",
+  },
+  {
+    icon: HeartPulse,
+    title: "Perimenopause / Menopause Counseling",
+    text: "Support for symptoms, health changes, and treatment option discussion.",
+  },
+];
+
+const quickSickVisitSections = [
+  {
+    icon: MessageCircle,
+    title: "Respiratory / Cold & Flu Symptoms",
+    items: ["Cough", "Congestion", "Sore throat", "Sinus symptoms", "Flu-like symptoms"],
+  },
+  {
+    icon: ShieldCheck,
+    title: "Infections (Uncomplicated)",
+    items: ["UTI symptoms", "Pink eye", "Mild ear symptoms", "Yeast infection concerns"],
+  },
+  {
+    icon: Stethoscope,
+    title: "Minor Skin / Dermatology",
+    items: ["Rashes", "Acne concerns", "Eczema flare", "Bug bites", "Minor skin irritation"],
+  },
+  {
+    icon: Activity,
+    title: "Pain / Minor Injury",
+    items: ["Back pain", "Muscle strain", "Minor sprain", "Headache", "Joint pain"],
+  },
+  {
+    icon: ClipboardList,
+    title: "GI & General Symptoms",
+    items: ["Nausea / vomiting (mild)", "Diarrhea", "Constipation"],
+  },
 ];
 
 const weightLossFeatures = [
@@ -69,6 +164,29 @@ const weightLossFeatures = [
     icon: Activity,
     title: "Ongoing Support",
     text: "Track progress with follow-up visits and plan adjustments that keep your care realistic.",
+  },
+];
+
+const medicalWeightLossOptions = [
+  {
+    title: "Lifestyle and nutrition counseling",
+    details:
+      "Includes practical support for meal planning, activity goals, sleep habits, behavior change, and long-term weight maintenance.",
+  },
+  {
+    title: "GLP-1 weight-loss medications",
+    details:
+      "Common options may include semaglutide, tirzepatide, and liraglutide when clinically appropriate.",
+  },
+  {
+    title: "Topiramate therapy",
+    details:
+      "May be considered to help reduce appetite and cravings as part of a monitored weight-loss plan when clinically appropriate.",
+  },
+  {
+    title: "Bupropion + Naltrexone therapy",
+    details:
+      "May help with appetite control and cravings as part of a supervised weight-loss plan after review of medical history and medication safety.",
   },
 ];
 
@@ -218,46 +336,6 @@ const pharmacyAddressOptions = [
   "Rio Rancho, NM 87124",
   "Roswell, NM 88201",
   "Farmington, NM 87401",
-];
-
-const portalActions = [
-  {
-    icon: CalendarCheck,
-    title: "Book a Visit",
-    text: "Request a telemedicine appointment for primary care, sick visits, follow-ups, or weight loss care.",
-    action: "Start Booking",
-    href: "#book",
-  },
-  {
-    icon: FileText,
-    title: "Complete Intake",
-    text: "Share your visit reason, medication list, allergies, and medical history before your appointment.",
-    action: "Open Intake",
-    href: "#intake",
-  },
-  {
-    icon: MessageCircle,
-    title: "Patient Portal",
-    text: "Access visit preparation steps, messages, forms, and follow-up instructions from one place.",
-    action: "Portal Access",
-    href: "#portal",
-  },
-  {
-    icon: Video,
-    title: "Start Telehealth Visit",
-    text: "Enter the secure Doxy.me waiting room when it is time for your video appointment.",
-    action: "Open Doxy.me",
-    href: "https://doxy.me/telednpnow",
-    external: true,
-  },
-  {
-    icon: CreditCard,
-    title: "Pay Invoice",
-    text: "Open the secure CharmHealth/Bluefin payment portal after your invoice or payment link is ready.",
-    action: "Pay by Card",
-    href: charmHealthLinks.payment,
-    external: true,
-  },
 ];
 
 const faqs = [
@@ -744,11 +822,8 @@ function App() {
         </a>
         <nav className="nav-links" aria-label="Main navigation">
           <a href="#services">Services</a>
-          <a href="#weight-loss" onClick={() => showCareSection("weight-loss")}>
+          <a href="#medical-weight-loss">
             Weight Loss
-          </a>
-          <a href="#portal" onClick={() => showCareSection("portal")}>
-            Portal
           </a>
           <a href="#intake" onClick={() => showCareSection("intake")}>
             Intake
@@ -756,7 +831,7 @@ function App() {
           <a href="#consent" onClick={() => showCareSection("consent")}>
             Consent
           </a>
-          <a href="#process">How it works</a>
+          <a href="#telemedicine-disclaimer">Telemedicine Disclaimer</a>
           <a href="#contact">Contact</a>
         </nav>
         <button
@@ -795,7 +870,7 @@ function App() {
               Schedule a Visit
               <ChevronRight size={18} aria-hidden="true" />
             </button>
-            <a className="secondary-button" href="tel:+11234567890">
+            <a className="secondary-button" href="tel:+14802006897">
               <Phone size={18} aria-hidden="true" />
               Call Now
             </a>
@@ -807,6 +882,10 @@ function App() {
             >
               <Video size={18} aria-hidden="true" />
               Start Telehealth Visit
+            </a>
+            <a className="secondary-button" href="#telemedicine-disclaimer">
+              <ShieldCheck size={18} aria-hidden="true" />
+              Telemedicine Disclaimer
             </a>
           </div>
           <div className="trust-row" aria-label="Care highlights">
@@ -826,13 +905,6 @@ function App() {
             src={heroImage}
             alt="Patient having a telemedicine video visit from home"
           />
-          <div className="visit-card" aria-label="Next available visit">
-            <Clock3 size={20} aria-hidden="true" />
-            <div>
-              <strong>Next opening</strong>
-              <span>Today at 3:30 PM</span>
-            </div>
-          </div>
         </div>
       </section>
 
@@ -841,87 +913,91 @@ function App() {
           <span className="section-kicker">Care options</span>
           <h2>Virtual visits for real-life health needs.</h2>
         </div>
-        <div className="service-grid">
-          {services.map((service) => {
-            const Icon = service.icon;
-            return (
-              <article className="service-card" key={service.title}>
-                <span className="service-icon">
-                  <Icon size={24} aria-hidden="true" />
-                </span>
-                <h3>{service.title}</h3>
-                <p>{service.text}</p>
-              </article>
-            );
-          })}
+        <div className="quick-sick-panel">
+          <div className="quick-sick-heading">
+            <span className="section-kicker">Quick sick visits</span>
+            <h3>Common concerns that may fit a virtual visit.</h3>
+          </div>
+          <div className="quick-sick-grid">
+            {quickSickVisitSections.map((section) => {
+              const Icon = section.icon;
+              return (
+                <article className="quick-sick-card" key={section.title}>
+                  <span className="care-symbol">
+                    <Icon size={20} aria-hidden="true" />
+                  </span>
+                  <h3>{section.title}</h3>
+                  <ul>
+                    {section.items.map((item) => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
+                </article>
+              );
+            })}
+          </div>
         </div>
-      </section>
-
-      <section className="process-section" id="process">
-        <div className="process-copy">
-          <span className="section-kicker">Simple process</span>
-          <h2>Start care in three easy steps.</h2>
-          <p>
-            Book online, join your secure video visit, and leave with a clear
-            plan for prescriptions, labs, follow-up, or next steps.
-          </p>
+        <div className="care-detail-panel">
+          <div className="care-detail-heading">
+            <span className="section-kicker">Primary care</span>
+            <h3>Routine care and follow-up by telemedicine.</h3>
+          </div>
+          <div className="care-detail-grid">
+            {primaryCareSections.map((section) => {
+              const Icon = section.icon;
+              return (
+                <article className="care-detail-card" key={section.title}>
+                  <span className="care-symbol">
+                    <Icon size={20} aria-hidden="true" />
+                  </span>
+                  <h3>{section.title}</h3>
+                  <p>{section.text}</p>
+                </article>
+              );
+            })}
+          </div>
         </div>
-        <div className="steps-list">
-          {steps.map((step, index) => (
-            <div className="step-row" key={step}>
-              <span>{index + 1}</span>
-              <strong>{step}</strong>
-            </div>
-          ))}
+        <div className="care-detail-panel">
+          <div className="care-detail-heading">
+            <span className="section-kicker">Women&apos;s health</span>
+            <h3>Focused virtual care for common women&apos;s health concerns.</h3>
+          </div>
+          <div className="care-detail-grid womens-health-grid">
+            {womensHealthSections.map((section) => {
+              const Icon = section.icon;
+              return (
+                <article className="care-detail-card" key={section.title}>
+                  <span className="care-symbol">
+                    <Icon size={20} aria-hidden="true" />
+                  </span>
+                  <h3>{section.title}</h3>
+                  <p>{section.text}</p>
+                </article>
+              );
+            })}
+          </div>
         </div>
-      </section>
-
-      <div className="section-switcher" id="care-sections">
-        <div>
-          <span className="section-kicker">Choose next step</span>
-          <h2>Open the section you need.</h2>
+        <div className="care-detail-panel">
+          <div className="care-detail-heading">
+            <span className="section-kicker">Chronic care</span>
+            <h3>Ongoing support for stable health conditions.</h3>
+          </div>
+          <div className="care-detail-grid chronic-care-grid">
+            {chronicCareSections.map((section) => {
+              const Icon = section.icon;
+              return (
+                <article className="care-detail-card" key={section.title}>
+                  <span className="care-symbol">
+                    <Icon size={20} aria-hidden="true" />
+                  </span>
+                  <h3>{section.title}</h3>
+                  <p>{section.text}</p>
+                </article>
+              );
+            })}
+          </div>
         </div>
-        <div className="section-switcher-actions" role="group" aria-label="Care sections">
-          <button
-            type="button"
-            className={activeSection === "book" ? "is-active" : ""}
-            onClick={() => showCareSection("book")}
-          >
-            Book Visit
-          </button>
-          <button
-            type="button"
-            className={activeSection === "weight-loss" ? "is-active" : ""}
-            onClick={() => showCareSection("weight-loss")}
-          >
-            Weight Loss
-          </button>
-          <button
-            type="button"
-            className={activeSection === "intake" ? "is-active" : ""}
-            onClick={() => showCareSection("intake")}
-          >
-            Intake
-          </button>
-          <button
-            type="button"
-            className={activeSection === "portal" ? "is-active" : ""}
-            onClick={() => showCareSection("portal")}
-          >
-            Portal
-          </button>
-          <button
-            type="button"
-            className={activeSection === "consent" ? "is-active" : ""}
-            onClick={() => showCareSection("consent")}
-          >
-            Consent
-          </button>
-        </div>
-      </div>
-
-      <section className={careSectionClass("weight-loss", "weight-loss-page")} id="weight-loss">
-        <div className="weight-loss-hero">
+        <div className="weight-loss-hero" id="medical-weight-loss">
           <div>
             <span className="section-kicker">Weight loss program</span>
             <h2>Medical weight loss with virtual support.</h2>
@@ -933,13 +1009,12 @@ function App() {
           <button
             className="primary-button"
             type="button"
-            onClick={() => showCareSection("book")}
+            onClick={() => showCareSection("weight-loss")}
           >
-            Start Weight Loss Visit
+            Complete Prior to Televisit
             <ChevronRight size={18} aria-hidden="true" />
           </button>
         </div>
-
         <div className="weight-loss-grid">
           {weightLossFeatures.map((feature) => {
             const Icon = feature.icon;
@@ -975,6 +1050,72 @@ function App() {
           </div>
         </div>
 
+        <div className="medical-weight-options">
+          <div className="medical-weight-heading">
+            <span className="section-kicker">Medical weight loss options</span>
+            <h3>Personalized treatment plans after a virtual evaluation.</h3>
+            <p>
+              Our telehealth clinic offers personalized weight-loss treatment
+              plans based on your health history, goals, and clinical needs.
+            </p>
+          </div>
+          <div className="medical-weight-grid">
+            {medicalWeightLossOptions.map((option) => (
+              <article className="medical-weight-card" key={option.title}>
+                <span className="care-symbol">
+                  <Target size={20} aria-hidden="true" />
+                </span>
+                <h3>{option.title}</h3>
+                {option.details && <p>{option.details}</p>}
+              </article>
+            ))}
+          </div>
+          <div className="screening-note">
+            <ShieldCheck size={20} aria-hidden="true" />
+            <p>
+              Treatment plans are developed after a virtual medical evaluation.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <div className="section-switcher" id="care-sections">
+        <div>
+          <h3>Next Step</h3>
+        </div>
+        <div className="section-switcher-actions" role="group" aria-label="Care sections">
+          <button
+            type="button"
+            className={activeSection === "book" ? "is-active" : ""}
+            onClick={() => showCareSection("book")}
+          >
+            Book Visit
+          </button>
+          <button
+            type="button"
+            className={activeSection === "weight-loss" ? "is-active" : ""}
+            onClick={() => showCareSection("weight-loss")}
+          >
+            Weight Loss
+          </button>
+          <button
+            type="button"
+            className={activeSection === "intake" ? "is-active" : ""}
+            onClick={() => showCareSection("intake")}
+          >
+            Intake
+          </button>
+          <button
+            type="button"
+            className={activeSection === "consent" ? "is-active" : ""}
+            onClick={() => showCareSection("consent")}
+          >
+            Consent
+          </button>
+        </div>
+      </div>
+
+      <section className={careSectionClass("weight-loss", "weight-loss-page")} id="weight-loss">
         <div className="bmi-panel">
           <div className="bmi-heading">
             <span className="section-kicker">CDC BMI calculator</span>
@@ -1180,61 +1321,18 @@ function App() {
       </section>
 
       <section className={careSectionClass("book", "booking-section")} id="book">
-        <div className="booking-copy">
-          <span className="section-kicker">Book online</span>
-          <h2>Request a telemedicine appointment.</h2>
-          <p>
-            Book through the secure CharmHealth/CharmTracker scheduling portal.
-            Patients can choose a visit time and enter appointment information
-            directly in CharmHealth.
-          </p>
-          <div className="feature-list">
-            <span>
-              <Laptop size={18} aria-hidden="true" />
-              Phone, tablet, or computer
-            </span>
-            <span>
-              <UserRound size={18} aria-hidden="true" />
-              Personalized care plan
-            </span>
-            <span>
-              <CalendarCheck size={18} aria-hidden="true" />
-              Flexible scheduling
-            </span>
-          </div>
-        </div>
+        <figure className="booking-visual">
+          <img
+            src="/telemedicine-appointment-request.svg"
+            alt="Request a telemedicine appointment with steps to choose date and time, provide information, and join the visit"
+          />
+          <img
+            className="booking-provider-logo"
+            src="/dr-shiny-job-logo.png"
+            alt="Dr. Shiny Job, DNP, FNP-C Family Nurse Practitioner"
+          />
+        </figure>
         <form className="booking-form">
-          <label>
-            Full name
-            <input type="text" name="name" placeholder="Jane Smith" />
-          </label>
-          <label>
-            Email
-            <input type="email" name="email" placeholder="jane@example.com" />
-          </label>
-          <label>
-            Visit reason
-            <select name="reason" defaultValue="">
-              <option value="" disabled>
-                Select a service
-              </option>
-              <option>Primary care</option>
-              <option>Medication refill</option>
-              <option>Sick visit</option>
-              <option>Chronic care follow-up</option>
-            </select>
-          </label>
-          <label>
-            Payment option
-            <select name="paymentOption" defaultValue="">
-              <option value="" disabled>
-                Select payment option
-              </option>
-              <option>Insurance</option>
-              <option>Self-pay</option>
-              <option>Not sure yet</option>
-            </select>
-          </label>
           <a
             className="primary-button form-button"
             href={charmHealthLinks.booking}
@@ -1276,66 +1374,6 @@ function App() {
         </form>
       </section>
 
-      <section className={careSectionClass("portal", "portal-section")} id="portal">
-        <div className="portal-intro">
-          <span className="section-kicker">Patient portal / booking</span>
-          <h2>Your virtual care hub.</h2>
-          <p>
-            Give patients one clear place to book a visit, complete intake, and
-            prepare for secure telemedicine care with TeleDNP Now.
-          </p>
-        </div>
-
-        <div className="portal-grid">
-          {portalActions.map((item) => {
-            const Icon = item.icon;
-            return (
-              <article className="portal-card" key={item.title}>
-                <span className="portal-icon">
-                  <Icon size={24} aria-hidden="true" />
-                </span>
-                <h3>{item.title}</h3>
-                <p>{item.text}</p>
-                <a
-                  href={item.href}
-                  target={item.external ? "_blank" : undefined}
-                  rel={item.external ? "noreferrer" : undefined}
-                  onClick={(event) => {
-                    if (!item.external) {
-                      event.preventDefault();
-                      showCareSection(item.href.replace("#", ""));
-                    }
-                  }}
-                >
-                  {item.action}
-                  <ChevronRight size={18} aria-hidden="true" />
-                </a>
-              </article>
-            );
-          })}
-        </div>
-
-        <div className="portal-panel">
-          <div>
-            <LockKeyhole size={24} aria-hidden="true" />
-            <h3>Secure portal connection</h3>
-            <p>
-              This section is ready to connect to a real patient portal or
-              scheduling system when you choose your platform.
-            </p>
-          </div>
-          <a
-            className="secondary-button"
-            href={charmHealthLinks.portal}
-            target="_blank"
-            rel="noreferrer"
-          >
-            Open CharmHealth Portal
-            <ChevronRight size={18} aria-hidden="true" />
-          </a>
-        </div>
-      </section>
-
       <section className={careSectionClass("intake", "intake-section")} id="intake">
         <div className="intake-heading">
           <span className="section-kicker">Telehealth intake</span>
@@ -1363,7 +1401,7 @@ function App() {
               </label>
               <label>
                 Phone
-                <input type="tel" name="phone" placeholder="(123) 456-7890" />
+                <input type="tel" name="phone" placeholder="(480) 200-6897" />
               </label>
               <label>
                 Email
@@ -2048,6 +2086,56 @@ function App() {
         </form>
       </section>
 
+      <section className="disclaimer-section" id="telemedicine-disclaimer">
+        <div className="disclaimer-heading">
+          <span className="section-kicker">Telemedicine disclaimer</span>
+          <h2>Important information about virtual care.</h2>
+        </div>
+        <div className="disclaimer-card">
+          <p>
+            Telehealth services are provided through secure audio and/or video
+            communication technologies. By using this website and requesting a
+            telemedicine appointment, you understand and agree that medical care
+            will be delivered remotely by a licensed healthcare provider.
+          </p>
+          <p>
+            Telemedicine services are appropriate for many non-emergency medical
+            conditions; however, telemedicine does not replace in-person medical
+            care when a physical examination or diagnostic testing is required.
+          </p>
+          <p>
+            If at any time your provider determines that your condition requires
+            in-person evaluation, you may be advised to seek care at a local
+            clinic, urgent care center, or emergency department.
+          </p>
+          <p>
+            If you are experiencing a medical emergency, please call 911 or go
+            to the nearest emergency room immediately.
+          </p>
+          <p>
+            All medical information shared during telehealth visits is kept
+            confidential and protected in accordance with applicable privacy
+            laws, including the Health Insurance Portability and Accountability
+            Act (HIPAA).
+          </p>
+          <div>
+            <h3>By scheduling a telemedicine appointment, you acknowledge that:</h3>
+            <ul>
+              <li>
+                Telemedicine has limitations compared to in-person medical care.
+              </li>
+              <li>
+                Your provider may recommend in-person evaluation if necessary.
+              </li>
+              <li>
+                You consent to receive healthcare services through telemedicine
+                technology.
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
       <section className={careSectionClass("consent", "consent-section")} id="consent">
         <div className="consent-heading">
           <span className="section-kicker">Telemedicine consent</span>
@@ -2169,8 +2257,8 @@ function App() {
           <p>Care provided by Dr. Shiny Job, DNP, FNP-C.</p>
         </div>
         <div className="footer-links">
-          <a href="tel:+11234567890">(123) 456-7890</a>
-          <a href="mailto:care@telednpnow.com">care@telednpnow.com</a>
+          <a href="tel:+14802006897">(480) 200-6897</a>
+          <a href="mailto:telednpnow@gmail.com">telednpnow@gmail.com</a>
         </div>
       </footer>
     </main>
