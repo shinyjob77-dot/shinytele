@@ -1,0 +1,452 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TeleDNPnow Prescription Pad</title>
+    <style>
+      :root {
+        color: #10201f;
+        font-family:
+          Inter, Arial, Helvetica, sans-serif;
+        background: #eef5f4;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        padding: 18px;
+      }
+
+      .rx-pad {
+        width: min(8.5in, 100%);
+        min-height: auto;
+        margin: 0 auto;
+        padding: 0.32in;
+        border: 1px solid #c7d8d4;
+        background: #ffffff;
+        box-shadow: 0 18px 50px rgba(16, 32, 31, 0.12);
+      }
+
+      .header {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 24px;
+        align-items: start;
+        padding-bottom: 16px;
+        border-bottom: 4px solid #26736c;
+      }
+
+      .brand {
+        display: grid;
+        gap: 6px;
+      }
+
+      h1,
+      h2,
+      p {
+        margin: 0;
+      }
+
+      h1 {
+        color: #063873;
+        font-size: 30px;
+        line-height: 1;
+      }
+
+      h2 {
+        font-size: 17px;
+      }
+
+      .subtitle,
+      .contact,
+      .small {
+        color: #53615f;
+        font-size: 13px;
+        line-height: 1.45;
+      }
+
+      .rx-mark {
+        color: #26736c;
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: 64px;
+        font-weight: 700;
+        line-height: 0.8;
+      }
+
+      .provider-grid,
+      .patient-grid,
+      .rx-grid,
+      .footer-grid {
+        display: grid;
+        gap: 10px;
+        margin-top: 14px;
+      }
+
+      .provider-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .patient-grid {
+        grid-template-columns: 1.4fr 0.7fr 0.7fr;
+      }
+
+      .rx-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .line-field,
+      .box-field {
+        display: grid;
+        gap: 7px;
+      }
+
+      label {
+        color: #10201f;
+        font-size: 12px;
+        font-weight: 800;
+        text-transform: uppercase;
+      }
+
+      .line {
+        min-height: 28px;
+        border-bottom: 1.5px solid #10201f;
+        padding-top: 6px;
+        font-size: 17px;
+        font-weight: 700;
+      }
+
+      .line-input {
+        width: 100%;
+        min-height: 28px;
+        border: 0;
+        border-bottom: 1.5px solid #10201f;
+        padding: 4px 0 3px;
+        color: #10201f;
+        background: transparent;
+        font: inherit;
+        font-size: 17px;
+        font-weight: 700;
+      }
+
+      .line-input:focus {
+        outline: 2px solid #9bd2df;
+        outline-offset: 2px;
+      }
+
+      .box {
+        min-height: 76px;
+        border: 1.5px solid #10201f;
+        border-radius: 8px;
+        padding: 12px;
+      }
+
+      .box-input {
+        width: 100%;
+        min-height: 150px;
+        border: 1.5px solid #10201f;
+        border-radius: 8px;
+        padding: 12px;
+        color: #10201f;
+        background: transparent;
+        font: inherit;
+        font-size: 17px;
+        line-height: 1.45;
+        resize: vertical;
+      }
+
+      .box-input:focus {
+        outline: 2px solid #9bd2df;
+        outline-offset: 2px;
+      }
+
+      .rx-area {
+        min-height: 190px;
+        margin-top: 14px;
+      }
+
+      .rx-title {
+        display: flex;
+        align-items: end;
+        gap: 12px;
+      }
+
+      .rx-symbol {
+        color: #063873;
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: 48px;
+        font-weight: 800;
+        line-height: 1;
+      }
+
+      .checkbox-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 18px;
+        margin-top: 12px;
+        color: #10201f;
+        font-size: 14px;
+        font-weight: 700;
+      }
+
+      .checkbox {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .checkbox input {
+        width: 15px;
+        height: 15px;
+        accent-color: #26736c;
+      }
+
+      .footer-grid {
+        grid-template-columns: minmax(0, 1.55fr) minmax(180px, 0.45fr);
+        align-items: start;
+        margin-top: 20px;
+      }
+
+      .signature-box {
+        display: grid;
+        gap: 6px;
+      }
+
+      .signature-box canvas {
+        width: 100%;
+        height: 46px;
+        display: block;
+        border: 1.5px solid #10201f;
+        border-radius: 8px;
+        background: #ffffff;
+        cursor: crosshair;
+        touch-action: none;
+      }
+
+      .signature-tools {
+        display: flex;
+        justify-content: flex-end;
+      }
+
+      .signature-tools button {
+        min-height: 30px;
+        padding: 0 10px;
+        font-size: 12px;
+        box-shadow: none;
+      }
+
+      .notice {
+        margin-top: 18px;
+        padding: 10px;
+        border-radius: 8px;
+        color: #53615f;
+        background: #eef7f5;
+        font-size: 11px;
+        line-height: 1.5;
+      }
+
+      .actions {
+        display: flex;
+        justify-content: center;
+        margin: 20px auto 0;
+      }
+
+      button {
+        min-height: 42px;
+        border: 0;
+        border-radius: 8px;
+        padding: 0 18px;
+        color: #ffffff;
+        background: #26736c;
+        font-weight: 800;
+        cursor: pointer;
+      }
+
+      @media print {
+        @page {
+          size: letter;
+          margin: 0.25in;
+        }
+
+        body {
+          padding: 0;
+          background: #ffffff;
+        }
+
+        .rx-pad {
+          width: 100%;
+          min-height: auto;
+          padding: 0.18in;
+          border: 0;
+          box-shadow: none;
+        }
+
+        .actions {
+          display: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="rx-pad">
+      <header class="header">
+        <div class="brand">
+          <h1>TeleDNPnow</h1>
+          <h2>Dr. Shiny Job, DNP, FNP-C</h2>
+          <p class="subtitle">Family Nurse Practitioner | Telemedicine Care</p>
+          <p class="contact">
+            Phone: (480) 200-6897 | Fax: (480) 781-4981<br />
+            Email: care@telednpnow.org | Website: telednpnow.org
+          </p>
+        </div>
+        <div class="rx-mark">Rx</div>
+      </header>
+
+      <section class="provider-grid" aria-label="Provider identifiers">
+        <div class="line-field">
+          <label>NPI</label>
+          <div class="line">1831460526</div>
+        </div>
+        <div class="line-field">
+          <label>State License</label>
+          <div class="line">AP4348</div>
+        </div>
+      </section>
+
+      <section class="patient-grid" aria-label="Patient information">
+        <div class="line-field">
+          <label>Patient Name</label>
+          <input class="line-input" type="text" name="patientName" />
+        </div>
+        <div class="line-field">
+          <label>Date of Birth</label>
+          <input class="line-input" type="date" name="dateOfBirth" />
+        </div>
+        <div class="line-field">
+          <label>Date</label>
+          <input class="line-input" type="date" name="prescriptionDate" />
+        </div>
+      </section>
+
+      <section class="rx-area" aria-label="Prescription information">
+        <div class="rx-title">
+          <span class="rx-symbol">Rx</span>
+          <div class="line-field" style="width: 100%">
+            <label>Medication / Strength / Quantity / Directions</label>
+            <textarea class="box-input" name="medicationDirections"></textarea>
+          </div>
+        </div>
+      </section>
+
+      <section class="rx-grid">
+        <div class="line-field">
+          <label>Dispense Quantity</label>
+          <input class="line-input" type="text" name="dispenseQuantity" />
+        </div>
+        <div class="line-field">
+          <label>Refills</label>
+          <input class="line-input" type="text" name="refills" />
+        </div>
+        <div class="line-field">
+          <label>Diagnosis / ICD-10</label>
+          <input class="line-input" type="text" name="diagnosisIcd10" />
+        </div>
+        <div class="line-field">
+          <label>Pharmacy</label>
+          <input class="line-input" type="text" name="pharmacy" />
+        </div>
+      </section>
+
+      <div class="checkbox-row" aria-label="Substitution preference">
+        <label class="checkbox">
+          <input type="checkbox" name="substitutionPermitted" />
+          Substitution permitted
+        </label>
+        <label class="checkbox">
+          <input type="checkbox" name="dispenseAsWritten" />
+          Dispense as written
+        </label>
+      </div>
+
+      <section class="footer-grid">
+        <div class="line-field">
+          <label>Provider Signature</label>
+          <div class="signature-box">
+            <canvas
+              id="providerSignature"
+              width="700"
+              height="70"
+              aria-label="Provider signature pad"
+            ></canvas>
+            <div class="signature-tools">
+              <button type="button" onclick="clearProviderSignature()">Clear Signature</button>
+            </div>
+          </div>
+        </div>
+        <div class="line-field">
+          <label>Signature Date</label>
+          <input class="line-input" type="date" name="signatureDate" />
+        </div>
+      </section>
+
+      <p class="notice">
+        Template for authorized clinical use only. A prescription is valid only
+        when completed and signed by an authorized licensed healthcare provider
+        and used in accordance with applicable federal and state law.
+      </p>
+    </main>
+
+    <div class="actions">
+      <button type="button" onclick="window.print()">Print Prescription Pad</button>
+    </div>
+
+    <script>
+      const signatureCanvas = document.getElementById("providerSignature");
+      const signatureContext = signatureCanvas.getContext("2d");
+      let isSigning = false;
+
+      function getSignaturePoint(event) {
+        const rect = signatureCanvas.getBoundingClientRect();
+        return {
+          x: ((event.clientX - rect.left) / rect.width) * signatureCanvas.width,
+          y: ((event.clientY - rect.top) / rect.height) * signatureCanvas.height,
+        };
+      }
+
+      function beginProviderSignature(event) {
+        isSigning = true;
+        signatureCanvas.setPointerCapture(event.pointerId);
+        const point = getSignaturePoint(event);
+        signatureContext.beginPath();
+        signatureContext.moveTo(point.x, point.y);
+      }
+
+      function drawProviderSignature(event) {
+        if (!isSigning) return;
+        const point = getSignaturePoint(event);
+        signatureContext.lineWidth = 3;
+        signatureContext.lineCap = "round";
+        signatureContext.strokeStyle = "#10201f";
+        signatureContext.lineTo(point.x, point.y);
+        signatureContext.stroke();
+      }
+
+      function endProviderSignature() {
+        isSigning = false;
+      }
+
+      function clearProviderSignature() {
+        signatureContext.clearRect(0, 0, signatureCanvas.width, signatureCanvas.height);
+      }
+
+      signatureCanvas.addEventListener("pointerdown", beginProviderSignature);
+      signatureCanvas.addEventListener("pointermove", drawProviderSignature);
+      signatureCanvas.addEventListener("pointerup", endProviderSignature);
+      signatureCanvas.addEventListener("pointercancel", endProviderSignature);
+      signatureCanvas.addEventListener("pointerleave", endProviderSignature);
+    </script>
+  </body>
+</html>
