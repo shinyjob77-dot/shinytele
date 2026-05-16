@@ -369,6 +369,15 @@ function App() {
     message: "",
   });
   const [isPracticeVideoOpen, setIsPracticeVideoOpen] = useState(false);
+  const [expandedCareDetails, setExpandedCareDetails] = useState({
+    quick: false,
+    primary: false,
+    women: false,
+    chronic: false,
+    weightLossOptions: false,
+  });
+  const [isDisclaimerOpen, setIsDisclaimerOpen] = useState(false);
+  const [isFaqOpen, setIsFaqOpen] = useState(false);
   const [isSigning, setIsSigning] = useState(false);
   const [signatureStatus, setSignatureStatus] = useState("Signature not saved");
   const [selectedMedication, setSelectedMedication] = useState("");
@@ -434,6 +443,13 @@ function App() {
         scoreIndex === index ? Number(value) : score,
       ),
     );
+  };
+
+  const toggleCareDetails = (section) => {
+    setExpandedCareDetails((details) => ({
+      ...details,
+      [section]: !details[section],
+    }));
   };
 
   const medicationEntryPreview = [
@@ -1059,87 +1075,135 @@ function App() {
         </div>
         <div className="quick-sick-panel">
           <div className="quick-sick-heading">
-            <span className="section-kicker">Quick sick visits</span>
-            <h3>Common concerns that may fit a virtual visit.</h3>
+            <button
+              className="care-heading-trigger"
+              type="button"
+              aria-expanded={expandedCareDetails.quick}
+              onClick={() => toggleCareDetails("quick")}
+            >
+              <span className="section-kicker">Quick sick visits</span>
+              <ChevronRight size={18} aria-hidden="true" />
+            </button>
+            {expandedCareDetails.quick && (
+              <h3>Common concerns that may fit a virtual visit.</h3>
+            )}
           </div>
-          <div className="quick-sick-grid">
-            {quickSickVisitSections.map((section) => {
-              const Icon = section.icon;
-              return (
-                <article className="quick-sick-card" key={section.title}>
-                  <span className="care-symbol">
-                    <Icon size={20} aria-hidden="true" />
-                  </span>
-                  <h3>{section.title}</h3>
-                  <ul>
-                    {section.items.map((item) => (
-                      <li key={item}>{item}</li>
-                    ))}
-                  </ul>
-                </article>
-              );
-            })}
-          </div>
+          {expandedCareDetails.quick && (
+            <div className="quick-sick-grid">
+              {quickSickVisitSections.map((section) => {
+                const Icon = section.icon;
+                return (
+                  <article className="quick-sick-card" key={section.title}>
+                    <span className="care-symbol">
+                      <Icon size={20} aria-hidden="true" />
+                    </span>
+                    <h3>{section.title}</h3>
+                    <ul>
+                      {section.items.map((item) => (
+                        <li key={item}>{item}</li>
+                      ))}
+                    </ul>
+                  </article>
+                );
+              })}
+            </div>
+          )}
         </div>
         <div className="care-detail-panel">
           <div className="care-detail-heading">
-            <span className="section-kicker">Primary care</span>
-            <h3>Routine care and follow-up by telemedicine.</h3>
+            <button
+              className="care-heading-trigger"
+              type="button"
+              aria-expanded={expandedCareDetails.primary}
+              onClick={() => toggleCareDetails("primary")}
+            >
+              <span className="section-kicker">Primary care</span>
+              <ChevronRight size={18} aria-hidden="true" />
+            </button>
+            {expandedCareDetails.primary && (
+              <h3>Routine care and follow-up by telemedicine.</h3>
+            )}
           </div>
-          <div className="care-detail-grid">
-            {primaryCareSections.map((section) => {
-              const Icon = section.icon;
-              return (
-                <article className="care-detail-card" key={section.title}>
-                  <span className="care-symbol">
-                    <Icon size={20} aria-hidden="true" />
-                  </span>
-                  <h3>{section.title}</h3>
-                  <p>{section.text}</p>
-                </article>
-              );
-            })}
-          </div>
+          {expandedCareDetails.primary && (
+            <div className="care-detail-grid">
+              {primaryCareSections.map((section) => {
+                const Icon = section.icon;
+                return (
+                  <article className="care-detail-card" key={section.title}>
+                    <span className="care-symbol">
+                      <Icon size={20} aria-hidden="true" />
+                    </span>
+                    <h3>{section.title}</h3>
+                    <p>{section.text}</p>
+                  </article>
+                );
+              })}
+            </div>
+          )}
         </div>
         <div className="care-detail-panel">
           <div className="care-detail-heading">
-            <span className="section-kicker">Women&apos;s health</span>
-            <h3>Focused virtual care for common women&apos;s health concerns.</h3>
+            <button
+              className="care-heading-trigger"
+              type="button"
+              aria-expanded={expandedCareDetails.women}
+              onClick={() => toggleCareDetails("women")}
+            >
+              <span className="section-kicker">Women&apos;s health</span>
+              <ChevronRight size={18} aria-hidden="true" />
+            </button>
+            {expandedCareDetails.women && (
+              <h3>Focused virtual care for common women&apos;s health concerns.</h3>
+            )}
           </div>
-          <div className="care-detail-grid womens-health-grid">
-            {womensHealthSections.map((section) => {
-              const Icon = section.icon;
-              return (
-                <article className="care-detail-card" key={section.title}>
-                  <span className="care-symbol">
-                    <Icon size={20} aria-hidden="true" />
-                  </span>
-                  <h3>{section.title}</h3>
-                  <p>{section.text}</p>
-                </article>
-              );
-            })}
-          </div>
+          {expandedCareDetails.women && (
+            <div className="care-detail-grid womens-health-grid">
+              {womensHealthSections.map((section) => {
+                const Icon = section.icon;
+                return (
+                  <article className="care-detail-card" key={section.title}>
+                    <span className="care-symbol">
+                      <Icon size={20} aria-hidden="true" />
+                    </span>
+                    <h3>{section.title}</h3>
+                    <p>{section.text}</p>
+                  </article>
+                );
+              })}
+            </div>
+          )}
         </div>
         <div className="care-detail-panel">
           <div className="care-detail-heading">
-            <span className="section-kicker">Chronic care</span>
-            <h3>Ongoing support for stable health conditions.</h3>
+            <button
+              className="care-heading-trigger"
+              type="button"
+              aria-expanded={expandedCareDetails.chronic}
+              onClick={() => toggleCareDetails("chronic")}
+            >
+              <span className="section-kicker">Chronic care</span>
+              <ChevronRight size={18} aria-hidden="true" />
+            </button>
+            {expandedCareDetails.chronic && (
+              <h3>Ongoing support for stable health conditions.</h3>
+            )}
           </div>
-          <div className="care-detail-grid chronic-care-grid">
-            {chronicCareSections.map((section) => {
-              const Icon = section.icon;
-              return (
-                <article className="care-detail-card" key={section.title}>
-                  <span className="care-symbol">
-                    <Icon size={20} aria-hidden="true" />
-                  </span>
-                  <h3>{section.title}</h3>
-                  <p>{section.text}</p>
-                </article>
-              );
-            })}
-          </div>
+          {expandedCareDetails.chronic && (
+            <div className="care-detail-grid chronic-care-grid">
+              {chronicCareSections.map((section) => {
+                const Icon = section.icon;
+                return (
+                  <article className="care-detail-card" key={section.title}>
+                    <span className="care-symbol">
+                      <Icon size={20} aria-hidden="true" />
+                    </span>
+                    <h3>{section.title}</h3>
+                    <p>{section.text}</p>
+                  </article>
+                );
+              })}
+            </div>
+          )}
         </div>
         <div className="weight-loss-hero" id="medical-weight-loss">
           <div>
@@ -1196,30 +1260,46 @@ function App() {
 
         <div className="medical-weight-options">
           <div className="medical-weight-heading">
-            <span className="section-kicker">Medical weight loss options</span>
-            <h3>Personalized treatment plans after a virtual evaluation.</h3>
-            <p>
-              Our telehealth clinic offers personalized weight-loss treatment
-              plans based on your health history, goals, and clinical needs.
-            </p>
+            <button
+              className="care-heading-trigger"
+              type="button"
+              aria-expanded={expandedCareDetails.weightLossOptions}
+              onClick={() => toggleCareDetails("weightLossOptions")}
+            >
+              <span className="section-kicker">Medical weight loss options</span>
+              <ChevronRight size={18} aria-hidden="true" />
+            </button>
+            {expandedCareDetails.weightLossOptions && (
+              <>
+                <h3>Personalized treatment plans after a virtual evaluation.</h3>
+                <p>
+                  Our telehealth clinic offers personalized weight-loss treatment
+                  plans based on your health history, goals, and clinical needs.
+                </p>
+              </>
+            )}
           </div>
-          <div className="medical-weight-grid">
-            {medicalWeightLossOptions.map((option) => (
-              <article className="medical-weight-card" key={option.title}>
-                <span className="care-symbol">
-                  <Target size={20} aria-hidden="true" />
-                </span>
-                <h3>{option.title}</h3>
-                {option.details && <p>{option.details}</p>}
-              </article>
-            ))}
-          </div>
-          <div className="screening-note">
-            <ShieldCheck size={20} aria-hidden="true" />
-            <p>
-              Treatment plans are developed after a virtual medical evaluation.
-            </p>
-          </div>
+          {expandedCareDetails.weightLossOptions && (
+            <>
+              <div className="medical-weight-grid">
+                {medicalWeightLossOptions.map((option) => (
+                  <article className="medical-weight-card" key={option.title}>
+                    <span className="care-symbol">
+                      <Target size={20} aria-hidden="true" />
+                    </span>
+                    <h3>{option.title}</h3>
+                    {option.details && <p>{option.details}</p>}
+                  </article>
+                ))}
+              </div>
+              <div className="screening-note">
+                <ShieldCheck size={20} aria-hidden="true" />
+                <p>
+                  Treatment plans are developed after a virtual medical evaluation.
+                </p>
+              </div>
+            </>
+          )}
         </div>
       </section>
 
@@ -2232,52 +2312,62 @@ function App() {
 
       <section className="disclaimer-section" id="telemedicine-disclaimer">
         <div className="disclaimer-heading">
-          <span className="section-kicker">Telemedicine disclaimer</span>
-          <h2>Important information about virtual care.</h2>
+          <button
+            className="care-heading-trigger disclaimer-trigger"
+            type="button"
+            aria-expanded={isDisclaimerOpen}
+            onClick={() => setIsDisclaimerOpen((isOpen) => !isOpen)}
+          >
+            <span className="section-kicker">Telemedicine disclaimer</span>
+            <ChevronRight size={18} aria-hidden="true" />
+          </button>
+          {isDisclaimerOpen && <h2>Important information about virtual care.</h2>}
         </div>
-        <div className="disclaimer-card">
-          <p>
-            Telehealth services are provided through secure audio and/or video
-            communication technologies. By using this website and requesting a
-            telemedicine appointment, you understand and agree that medical care
-            will be delivered remotely by a licensed healthcare provider.
-          </p>
-          <p>
-            Telemedicine services are appropriate for many non-emergency medical
-            conditions; however, telemedicine does not replace in-person medical
-            care when a physical examination or diagnostic testing is required.
-          </p>
-          <p>
-            If at any time your provider determines that your condition requires
-            in-person evaluation, you may be advised to seek care at a local
-            clinic, urgent care center, or emergency department.
-          </p>
-          <p>
-            If you are experiencing a medical emergency, please call 911 or go
-            to the nearest emergency room immediately.
-          </p>
-          <p>
-            All medical information shared during telehealth visits is kept
-            confidential and protected in accordance with applicable privacy
-            laws, including the Health Insurance Portability and Accountability
-            Act (HIPAA).
-          </p>
-          <div>
-            <h3>By scheduling a telemedicine appointment, you acknowledge that:</h3>
-            <ul>
-              <li>
-                Telemedicine has limitations compared to in-person medical care.
-              </li>
-              <li>
-                Your provider may recommend in-person evaluation if necessary.
-              </li>
-              <li>
-                You consent to receive healthcare services through telemedicine
-                technology.
-              </li>
-            </ul>
+        {isDisclaimerOpen && (
+          <div className="disclaimer-card">
+            <p>
+              Telehealth services are provided through secure audio and/or video
+              communication technologies. By using this website and requesting a
+              telemedicine appointment, you understand and agree that medical care
+              will be delivered remotely by a licensed healthcare provider.
+            </p>
+            <p>
+              Telemedicine services are appropriate for many non-emergency medical
+              conditions; however, telemedicine does not replace in-person medical
+              care when a physical examination or diagnostic testing is required.
+            </p>
+            <p>
+              If at any time your provider determines that your condition requires
+              in-person evaluation, you may be advised to seek care at a local
+              clinic, urgent care center, or emergency department.
+            </p>
+            <p>
+              If you are experiencing a medical emergency, please call 911 or go
+              to the nearest emergency room immediately.
+            </p>
+            <p>
+              All medical information shared during telehealth visits is kept
+              confidential and protected in accordance with applicable privacy
+              laws, including the Health Insurance Portability and Accountability
+              Act (HIPAA).
+            </p>
+            <div>
+              <h3>By scheduling a telemedicine appointment, you acknowledge that:</h3>
+              <ul>
+                <li>
+                  Telemedicine has limitations compared to in-person medical care.
+                </li>
+                <li>
+                  Your provider may recommend in-person evaluation if necessary.
+                </li>
+                <li>
+                  You consent to receive healthcare services through telemedicine
+                  technology.
+                </li>
+              </ul>
+            </div>
           </div>
-        </div>
+        )}
       </section>
 
       <section className={careSectionClass("consent", "consent-section")} id="consent">
@@ -2382,17 +2472,29 @@ function App() {
 
       <section className="seo-section" id="faq">
         <div className="seo-heading">
-          <span className="section-kicker">Common questions</span>
-          <h2>Telemedicine care, booking, and weight loss support.</h2>
+          <button
+            className="care-heading-trigger faq-trigger"
+            type="button"
+            aria-expanded={isFaqOpen}
+            onClick={() => setIsFaqOpen((isOpen) => !isOpen)}
+          >
+            <span className="section-kicker">Common questions</span>
+            <ChevronRight size={18} aria-hidden="true" />
+          </button>
+          {isFaqOpen && (
+            <h2>Telemedicine care, booking, and weight loss support.</h2>
+          )}
         </div>
-        <div className="faq-list">
-          {faqs.map((item) => (
-            <article className="faq-item" key={item.question}>
-              <h3>{item.question}</h3>
-              <p>{item.answer}</p>
-            </article>
-          ))}
-        </div>
+        {isFaqOpen && (
+          <div className="faq-list">
+            {faqs.map((item) => (
+              <article className="faq-item" key={item.question}>
+                <h3>{item.question}</h3>
+                <p>{item.answer}</p>
+              </article>
+            ))}
+          </div>
+        )}
       </section>
 
       <footer className="footer" id="contact">
