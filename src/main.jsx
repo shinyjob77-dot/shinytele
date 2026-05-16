@@ -344,17 +344,37 @@ const faqs = [
   {
     question: "What services does TeleDNPnow offer?",
     answer:
-      "TeleDNPnow offers virtual primary care, sick visits, chronic care follow-up, medication refill visits, patient intake, booking support, and medical weight loss care.",
+      "TeleDNPnow offers virtual primary care, sick visits, chronic care follow-up, prescription and medication refill visits, women's health counseling, UTI care, STD/STI concerns, patient intake, booking support, obesity management, and medical weight loss care.",
   },
   {
     question: "Who provides care at TeleDNPnow?",
     answer:
-      "Care is provided by Dr. Shiny Job, DNP, FNP-C, a Nurse Practitioner offering secure telemedicine visits.",
+      "Care is provided by Dr. Shiny Job, DNP, FNP-C, a board-certified Family Nurse Practitioner offering secure telemedicine visits.",
   },
   {
     question: "Can I book a weight loss appointment online?",
     answer:
       "Yes. Patients can request a telemedicine appointment for the weight loss program and complete intake details before the visit.",
+  },
+  {
+    question: "Does TeleDNPnow provide telehealth visits in Arizona?",
+    answer:
+      "TeleDNPnow provides virtual visits for Arizona patients when telemedicine is clinically appropriate for the concern.",
+  },
+  {
+    question: "What concerns may fit a virtual sick visit?",
+    answer:
+      "Common virtual sick visit concerns may include cold and flu symptoms, sinus symptoms, mild stomach concerns, uncomplicated infections, minor skin issues, and medication refill needs when appropriate.",
+  },
+  {
+    question: "Can I schedule a telehealth visit without insurance?",
+    answer:
+      "Yes. TeleDNPnow offers self-pay options for patients who do not have insurance or prefer to pay directly.",
+  },
+  {
+    question: "Can TeleDNPnow help with UTI or STD concerns by telehealth?",
+    answer:
+      "TeleDNPnow can evaluate appropriate UTI and STD/STI concerns by telehealth, discuss symptoms, order local testing when needed, and send prescriptions when clinically appropriate.",
   },
 ];
 
