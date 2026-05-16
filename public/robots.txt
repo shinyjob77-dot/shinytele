@@ -1,4 +1,8 @@
 User-agent: *
 Allow: /
+Disallow: /telednpnow-w9-draft.html
+Disallow: /telednpnow-cms-460-draft.html
+Disallow: /telednpnow-prescription-pad.html
+Disallow: /telednpnow-referral-form.html
 
-Sitemap: https://telednpnow.com/sitemap.xml
+Sitemap: https://telednpnow.org/sitemap.xml
