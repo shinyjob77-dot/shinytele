@@ -2294,16 +2294,17 @@ p {
 
   .charm-calendar-embed {
     width: calc(100vw - 24px);
-    max-height: 92vh;
+    max-height: 88vh;
     margin-left: calc(50% - 50vw + 12px);
+    padding-top: 14px;
     border: 0;
     border-radius: 0;
   }
 
   .charm-calendar-embed iframe {
     min-width: 360px;
-    height: 92vh;
-    min-height: 92vh;
+    height: 86vh;
+    min-height: 86vh;
   }
 
   .payment-image-row {
