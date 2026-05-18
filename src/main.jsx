@@ -1098,7 +1098,7 @@ function App() {
     }));
     window.requestAnimationFrame(() => {
       document
-        .getElementById("charm-booking")
+        .getElementById("charm-calendar")
         ?.scrollIntoView({ behavior: "smooth", block: "start" });
     });
   };
@@ -1280,7 +1280,7 @@ function App() {
             <button
               className="primary-button"
               type="button"
-              onClick={() => showCareSection("book")}
+              onClick={showBookingFrame}
             >
               Schedule a Visit
               <ChevronRight size={18} aria-hidden="true" />
@@ -1939,7 +1939,7 @@ function App() {
               )}
             </div>
             {expandedCareDetails.charmBooking && (
-              <div className="charm-calendar-embed full-width">
+              <div className="charm-calendar-embed full-width" id="charm-calendar">
                 <iframe
                   title="TeleDNPNow appointment calendar"
                   width="100%"
