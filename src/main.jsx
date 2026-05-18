@@ -1945,7 +1945,7 @@ function App() {
                   width="100%"
                   height="1000"
                   src="https://ehr.charmtracker.com/publicCal.sas?method=getCal&digest=8e0b9864de414b6e13f96d8257763cf5a8c456c327218389c9641f027c2ac896ef59d40e1bb127afa7c934a1881fa51ad95fcbc3b76e32a2"
-                  style={{ overflow: "hidden" }}
+                  style={{ overflow: "auto" }}
                   frameBorder="0"
                 />
               </div>
