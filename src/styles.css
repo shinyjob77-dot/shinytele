@@ -2289,17 +2289,21 @@ p {
 
   .booking-form,
   .booking-frame-panel {
-    padding: 14px;
+    padding: 8px;
   }
 
   .charm-calendar-embed {
-    max-height: 78vh;
+    width: calc(100vw - 24px);
+    max-height: 92vh;
+    margin-left: calc(50% - 50vw + 12px);
     border: 1px solid #c8d8df;
+    border-radius: 6px;
   }
 
   .charm-calendar-embed iframe {
     min-width: 360px;
-    min-height: 1250px;
+    height: 92vh;
+    min-height: 92vh;
   }
 
   .payment-image-row {
