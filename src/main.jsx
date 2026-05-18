@@ -1,4 +1,4 @@
-import { StrictMode, useEffect, useRef, useState } from "react";
+import { Fragment, StrictMode, useEffect, useRef, useState } from "react";
 import { createRoot } from "react-dom/client";
 import {
   Activity,
@@ -28,6 +28,8 @@ const charmHealthLinks = {
 };
 
 const practiceIntroVideo = "/tele_back_final_IMG_5838_presenter_eleven_website.mp4";
+const quickSickPresenterImage =
+  "/tele_blue_empowering_right_shiny_presenter_bottom_center.png";
 
 const primaryCareSections = [
   {
@@ -97,6 +99,44 @@ const chronicCareSections = [
     icon: ShieldCheck,
     title: "GERD",
     text: "Reflux symptom follow-up, medication review, and lifestyle counseling.",
+  },
+];
+
+const additionalCareSections = [
+  {
+    key: "medicationRefills",
+    icon: ClipboardList,
+    title: "Medication Refills",
+    heading: "Medication refill review by telemedicine.",
+    text: "Review current medications, refill needs, side effects, and safety before sending prescriptions when appropriate.",
+  },
+  {
+    key: "labReview",
+    icon: FileText,
+    title: "Lab Review",
+    heading: "Review results and next steps.",
+    text: "Discuss recent lab results, abnormal findings, follow-up needs, and next steps for ongoing care.",
+  },
+  {
+    key: "mentalHealth",
+    icon: HeartPulse,
+    title: "Mental Health Screening",
+    heading: "Focused screening and supportive guidance.",
+    text: "Screen for depression, anxiety, stress, sleep concerns, and recommend follow-up or referral when needed.",
+  },
+  {
+    key: "skinDermatology",
+    icon: Stethoscope,
+    title: "Skin & Dermatology",
+    heading: "Virtual review for common skin concerns.",
+    text: "Evaluate common rashes, acne concerns, eczema flares, skin irritation, and minor dermatology questions.",
+  },
+  {
+    key: "sexualHealth",
+    icon: ShieldCheck,
+    title: "Sexual Health / STI",
+    heading: "Private sexual health and STI support.",
+    text: "Discuss STI testing, counseling, symptoms, lab options, and treatment when clinically appropriate.",
   },
 ];
 
@@ -378,8 +418,185 @@ const faqs = [
   },
 ];
 
+function QuickSickVisitsPage() {
+  return (
+    <main className="site-shell quick-page-shell">
+      <header className="topbar">
+        <a className="brand" href="/" aria-label="TeleDNPnow home">
+          <span className="brand-mark">
+            <Video size={20} aria-hidden="true" />
+          </span>
+          <span>TeleDNPnow</span>
+        </a>
+        <nav className="nav-links" aria-label="Quick sick visit navigation">
+          <a href="/">Home</a>
+          <a href="/#services">Services</a>
+          <a href="/#care-sections">Book Visit</a>
+          <a href="/#telemedicine-disclaimer">Disclaimer</a>
+        </nav>
+        <a className="nav-action" href="tel:+14806265571">
+          Call Now
+        </a>
+      </header>
+
+      <section className="provider-profile-hero">
+        <div className="provider-profile-copy">
+          <span className="eyebrow">
+            <CheckCircle2 size={15} aria-hidden="true" />
+            Arizona telehealth sick visits
+          </span>
+          <h1>Quick sick visits with Dr. Shiny Job, DNP, FNP-C.</h1>
+          <p>
+            Convenient virtual care for common non-emergency symptoms, minor
+            infections, skin concerns, stomach concerns, medication refill needs,
+            and everyday health questions when telemedicine is appropriate.
+          </p>
+          <div className="provider-line">
+            <UserRound size={18} aria-hidden="true" />
+            <span>
+              <strong>Dr. Shiny Job, DNP, FNP-C</strong>
+              <small>Board-Certified Family Nurse Practitioner</small>
+            </span>
+          </div>
+          <div className="hero-actions">
+            <a className="primary-button" href="/#care-sections">
+              Book a Sick Visit
+              <ChevronRight size={18} aria-hidden="true" />
+            </a>
+            <a className="secondary-button" href="tel:+14806265571">
+              <Phone size={18} aria-hidden="true" />
+              (480) 626-5571
+            </a>
+          </div>
+        </div>
+
+        <aside className="provider-profile-card" aria-label="Provider profile">
+          <img
+            src={quickSickPresenterImage}
+            alt="Dr. Shiny Job presenting TeleDNPnow virtual care services"
+          />
+          <div>
+            <h2>TeleDNPnow</h2>
+            <p>Secure virtual care for Arizona patients.</p>
+          </div>
+        </aside>
+      </section>
+
+      <section className="profile-layout">
+        <aside className="profile-sidebar">
+          <div className="profile-info-card">
+            <h2>Practice at a glance</h2>
+            <dl>
+              <div>
+                <dt>Visit type</dt>
+                <dd>Telemedicine</dd>
+              </div>
+              <div>
+                <dt>Location</dt>
+                <dd>Arizona virtual visits</dd>
+              </div>
+              <div>
+                <dt>Payment</dt>
+                <dd>Self-pay and insurance options</dd>
+              </div>
+              <div>
+                <dt>Provider</dt>
+                <dd>Board-certified Family Nurse Practitioner</dd>
+              </div>
+            </dl>
+            <a className="primary-button" href="/#care-sections">
+              Request Appointment
+            </a>
+          </div>
+          <div className="profile-info-card">
+            <h2>Contact</h2>
+            <p>
+              Phone: <a href="tel:+14806265571">(480) 626-5571</a>
+            </p>
+            <p>
+              Email: <a href="mailto:care@telednpnow.org">care@telednpnow.org</a>
+            </p>
+            <p>
+              Telehealth: <a href="https://doxy.me/telednpnow">Doxy.me visit room</a>
+            </p>
+          </div>
+        </aside>
+
+        <div className="profile-main">
+          <section className="profile-section provider-introduction">
+            <h2>Convenient, compassionate telehealth care</h2>
+            <p>
+              Are you feeling sick, overwhelmed with ongoing health concerns,
+              struggling with weight management, or simply needing convenient
+              access to healthcare without long wait times? Maybe you are
+              managing a chronic condition like high blood pressure, diabetes,
+              asthma, or high cholesterol and want compassionate, personalized
+              care from the comfort of your home. Or perhaps you are looking for
+              guidance on common illnesses, medication refills, preventive care,
+              or a healthier lifestyle? You are not alone. How can I help you?
+            </p>
+            <p>
+              I am Shiny Job, DNP, FNP-C, a Family Nurse Practitioner with over
+              14 years of experience providing patient-centered, evidence-based
+              care. My background includes primary care, chronic disease
+              management, urgent care, and correctional healthcare, allowing me
+              to care for a wide range of acute and chronic conditions through
+              telehealth.
+            </p>
+            <p>
+              I provide care for common illnesses, respiratory symptoms, chronic
+              care follow-ups, medication management, women&apos;s health concerns,
+              and personalized weight loss programs, including GLP-1 treatment
+              options when clinically appropriate.
+            </p>
+            <p>
+              At TeleDNPnow, my goal is to make healthcare more accessible,
+              convenient, affordable, and compassionate. I offer easy access to
+              telehealth services from the comfort of your home, with simple
+              self-pay cash-pay options, transparent pricing, and convenient
+              scheduling. Whether you have insurance, limited coverage, or
+              prefer affordable self-pay care, my focus is providing quality,
+              personalized healthcare without unnecessary barriers.
+            </p>
+            <p>
+              I believe healthcare should be simple, supportive, and focused on
+              your individual needs. Whether you are seeking help for a current
+              illness, long-term health condition, wellness guidance, medication
+              refill, or weight management support, I am here to listen, guide,
+              and support you on your health journey.
+            </p>
+            <p>
+              Taking the first step toward better health is not always easy, but
+              you are already here. I look forward to meeting you, understanding
+              your health goals, and working together to help you feel your best.
+            </p>
+            <p className="profile-closing-line">
+              TeleDNPnow: Convenient, compassionate telehealth care with
+              self-pay options available. Schedule your virtual visit today.
+            </p>
+          </section>
+
+        </div>
+      </section>
+
+      <footer className="footer" id="contact">
+        <div>
+          <strong>TeleDNPnow</strong>
+          <p>Care provided by Dr. Shiny Job, DNP, FNP-C.</p>
+        </div>
+        <div className="footer-links">
+          <a href="tel:+14806265571">(480) 626-5571</a>
+          <a href="mailto:care@telednpnow.org">care@telednpnow.org</a>
+        </div>
+      </footer>
+    </main>
+  );
+}
+
 function App() {
   const signatureCanvasRef = useRef(null);
+  const currentPath = window.location.pathname;
+  const normalizedPath = currentPath.replace(/\/$/, "") || "/";
   const [activeSection, setActiveSection] = useState("book");
   const [isLoginOpen, setIsLoginOpen] = useState(false);
   const [providerLogin, setProviderLogin] = useState({
@@ -394,6 +611,13 @@ function App() {
     primary: false,
     women: false,
     chronic: false,
+    medicationRefills: false,
+    labReview: false,
+    mentalHealth: false,
+    skinDermatology: false,
+    sexualHealth: false,
+    charmBooking: false,
+    weightProgram: false,
     weightLossOptions: false,
   });
   const [isDisclaimerOpen, setIsDisclaimerOpen] = useState(false);
@@ -867,6 +1091,19 @@ function App() {
     });
   };
 
+  const showBookingFrame = () => {
+    setActiveSection("book");
+    setExpandedCareDetails((details) => ({
+      ...details,
+      charmBooking: true,
+    }));
+    window.requestAnimationFrame(() => {
+      document
+        .getElementById("charm-booking")
+        ?.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+  };
+
   const careSectionClass = (sectionId, baseClass) =>
     `${baseClass} action-section ${
       activeSection === sectionId ? "is-active" : ""
@@ -887,6 +1124,22 @@ function App() {
     }));
   };
 
+  useEffect(() => {
+    if (normalizedPath === "/quick-sick-visits") {
+      document.title = "Quick Sick Visits | TeleDNPnow Arizona Telehealth";
+      document
+        .querySelector('meta[name="description"]')
+        ?.setAttribute(
+          "content",
+          "Book a TeleDNPnow quick sick visit in Arizona with Dr. Shiny Job, DNP, FNP-C for non-emergency cold and flu symptoms, UTI concerns, STD/STI concerns, minor skin issues, stomach symptoms, and prescription support.",
+        );
+    }
+  }, [normalizedPath]);
+
+  if (normalizedPath === "/quick-sick-visits") {
+    return <QuickSickVisitsPage />;
+  }
+
   return (
     <main className="site-shell">
       <header className="topbar">
@@ -898,7 +1151,8 @@ function App() {
         </a>
         <nav className="nav-links" aria-label="Main navigation">
           <a href="#services">Services</a>
-          <a href="#medical-weight-loss">
+          <a href="/quick-sick-visits.html">Quick Sick</a>
+          <a href="#medical-weight-loss-options">
             Weight Loss
           </a>
           <a href="#intake" onClick={() => showCareSection("intake")}>
@@ -922,7 +1176,7 @@ function App() {
           <button
             className="nav-action"
             type="button"
-            onClick={() => showCareSection("book")}
+            onClick={showBookingFrame}
           >
             Book Visit
           </button>
@@ -1006,10 +1260,15 @@ function App() {
             <ShieldCheck size={15} aria-hidden="true" />
             Secure virtual care
           </span>
-          <h2>Telemedicine care that meets you where you are.</h2>
+          <h4>Telehealthcare Made Simple, Convenient, and Personal</h4>
           <p>
-            Connect with Dr. Shiny Job, DNP, FNP-C for convenient primary care,
-            urgent concerns, and ongoing health support without the waiting room.
+            At TeleDNPnow, we believe quality healthcare should be accessible,
+            stress-free, and Affordable. Whether you are feeling sick, managing
+            a chronic condition, working toward healthier goals, or weight loss
+            management, we provide compassionate telehealth care designed around
+            your needs from the comfort of home. Now accepting patients in
+            Arizona only at this time. We currently offer simple Self-pay
+            Through Secure Card Payment.
           </p>
           <div className="provider-line">
             <UserRound size={18} aria-hidden="true" />
@@ -1027,7 +1286,7 @@ function App() {
               Schedule a Visit
               <ChevronRight size={18} aria-hidden="true" />
             </button>
-            <a className="secondary-button" href="tel:+14802006897">
+            <a className="secondary-button" href="tel:+14806265571">
               <Phone size={18} aria-hidden="true" />
               Call Now
             </a>
@@ -1093,6 +1352,7 @@ function App() {
           <span className="section-kicker">Care options</span>
           <h2>Virtual visits for real-life health needs.</h2>
         </div>
+        <div className="care-sections-grid">
         <div className="quick-sick-panel">
           <div className="quick-sick-heading">
             <button
@@ -1105,7 +1365,13 @@ function App() {
               <ChevronRight size={18} aria-hidden="true" />
             </button>
             {expandedCareDetails.quick && (
-              <h3>Common concerns that may fit a virtual visit.</h3>
+              <div className="quick-sick-subheading">
+                <h3>Common concerns that may fit a virtual visit.</h3>
+                <a className="secondary-button" href="/quick-sick-visits.html">
+                  Quick Sick Visit Details
+                  <ChevronRight size={18} aria-hidden="true" />
+                </a>
+              </div>
             )}
           </div>
           {expandedCareDetails.quick && (
@@ -1141,7 +1407,13 @@ function App() {
               <ChevronRight size={18} aria-hidden="true" />
             </button>
             {expandedCareDetails.primary && (
-              <h3>Routine care and follow-up by telemedicine.</h3>
+              <div className="care-subheading">
+                <h3>Routine care and follow-up by telemedicine.</h3>
+                <a className="secondary-button" href="/primary_care.html">
+                  Primary Care Details
+                  <ChevronRight size={18} aria-hidden="true" />
+                </a>
+              </div>
             )}
           </div>
           {expandedCareDetails.primary && (
@@ -1173,7 +1445,13 @@ function App() {
               <ChevronRight size={18} aria-hidden="true" />
             </button>
             {expandedCareDetails.women && (
-              <h3>Focused virtual care for common women&apos;s health concerns.</h3>
+              <div className="care-subheading">
+                <h3>Focused virtual care for common women&apos;s health concerns.</h3>
+                <a className="secondary-button" href="/Women_health.html">
+                  Women&apos;s Health Details
+                  <ChevronRight size={18} aria-hidden="true" />
+                </a>
+              </div>
             )}
           </div>
           {expandedCareDetails.women && (
@@ -1205,7 +1483,13 @@ function App() {
               <ChevronRight size={18} aria-hidden="true" />
             </button>
             {expandedCareDetails.chronic && (
-              <h3>Ongoing support for stable health conditions.</h3>
+              <div className="care-subheading">
+                <h3>Ongoing support for stable health conditions.</h3>
+                <a className="secondary-button" href="/chronic_care.html">
+                  Chronic Care Details
+                  <ChevronRight size={18} aria-hidden="true" />
+                </a>
+              </div>
             )}
           </div>
           {expandedCareDetails.chronic && (
@@ -1225,61 +1509,82 @@ function App() {
             </div>
           )}
         </div>
-        <div className="weight-loss-hero" id="medical-weight-loss">
-          <div>
-            <span className="section-kicker">Weight loss program</span>
-            <h2>Medical weight loss with virtual support.</h2>
-            <p>
-              Work with Dr. Shiny Job, DNP, FNP-C to create a sustainable plan
-              for weight management, metabolic health, and long-term wellness.
-            </p>
-          </div>
-          <button
-            className="primary-button"
-            type="button"
-            onClick={() => showCareSection("weight-loss")}
-          >
-            Complete Prior to Televisit
-            <ChevronRight size={18} aria-hidden="true" />
-          </button>
-        </div>
-        <div className="weight-loss-grid">
-          {weightLossFeatures.map((feature) => {
-            const Icon = feature.icon;
-            return (
-              <article className="weight-card" key={feature.title}>
-                <span className="service-icon">
-                  <Icon size={24} aria-hidden="true" />
-                </span>
-                <h3>{feature.title}</h3>
-                <p>{feature.text}</p>
-              </article>
-            );
-          })}
-        </div>
-
-        <div className="program-details">
-          <div>
-            <h3>What the program may include</h3>
-            <ul>
-              <li>Initial telemedicine consultation</li>
-              <li>Medication and health history review</li>
-              <li>Nutrition and lifestyle coaching</li>
-              <li>Lab discussion when clinically appropriate</li>
-              <li>Follow-up visits for accountability and adjustments</li>
-            </ul>
-          </div>
-          <div className="program-note">
-            <ShieldCheck size={24} aria-hidden="true" />
-            <p>
-              Weight loss care is personalized. Treatment options depend on your
-              health history, goals, clinical needs, and provider assessment.
-            </p>
-          </div>
-        </div>
-
-        <div className="medical-weight-options">
-          <div className="medical-weight-heading">
+        {additionalCareSections.map((section) => {
+          const Icon = section.icon;
+          return (
+            <Fragment key={section.key}>
+            <div className="care-detail-panel standalone-care-panel">
+              <div className="care-detail-heading">
+                <button
+                  className="care-heading-trigger"
+                  type="button"
+                  aria-expanded={expandedCareDetails[section.key]}
+                  onClick={() => toggleCareDetails(section.key)}
+                >
+                  <span className="section-kicker">{section.title}</span>
+                  <ChevronRight size={18} aria-hidden="true" />
+                </button>
+                {expandedCareDetails[section.key] && section.key === "medicationRefills" ? (
+                  <div className="care-subheading">
+                    <h3>{section.heading}</h3>
+                    <a className="secondary-button" href="/medication_refills.html">
+                      Medication Refill Details
+                      <ChevronRight size={18} aria-hidden="true" />
+                    </a>
+                  </div>
+                ) : expandedCareDetails[section.key] && section.key === "skinDermatology" ? (
+                  <div className="care-subheading">
+                    <h3>{section.heading}</h3>
+                    <a className="secondary-button" href="/skin_dermatology.html">
+                      Skin Care Details
+                      <ChevronRight size={18} aria-hidden="true" />
+                    </a>
+                  </div>
+                ) : expandedCareDetails[section.key] && section.key === "labReview" ? (
+                  <div className="care-subheading">
+                    <h3>{section.heading}</h3>
+                    <a className="secondary-button" href="/lab_leview.html">
+                      Lab Review Details
+                      <ChevronRight size={18} aria-hidden="true" />
+                    </a>
+                  </div>
+                ) : expandedCareDetails[section.key] && section.key === "mentalHealth" ? (
+                  <div className="care-subheading">
+                    <h3>{section.heading}</h3>
+                    <a className="secondary-button" href="/mental_health_screening.html">
+                      Mental Health Details
+                      <ChevronRight size={18} aria-hidden="true" />
+                    </a>
+                  </div>
+                ) : expandedCareDetails[section.key] && section.key === "sexualHealth" ? (
+                  <div className="care-subheading">
+                    <h3>{section.heading}</h3>
+                    <a className="secondary-button" href="/sexual_health_sti.html">
+                      Sexual Health Details
+                      <ChevronRight size={18} aria-hidden="true" />
+                    </a>
+                  </div>
+                ) : (
+                  expandedCareDetails[section.key] && <h3>{section.heading}</h3>
+                )}
+              </div>
+              {expandedCareDetails[section.key] && (
+                <div className="care-detail-grid standalone-care-grid">
+                  <article className="care-detail-card">
+                    <span className="care-symbol">
+                      <Icon size={20} aria-hidden="true" />
+                    </span>
+                    <h3>{section.title}</h3>
+                    <p>{section.text}</p>
+                  </article>
+                </div>
+              )}
+            </div>
+            </Fragment>
+          );
+        })}
+        <div className="care-detail-panel medical-weight-options" id="medical-weight-loss-options">
+          <div className="care-detail-heading medical-weight-heading">
             <button
               className="care-heading-trigger"
               type="button"
@@ -1291,11 +1596,19 @@ function App() {
             </button>
             {expandedCareDetails.weightLossOptions && (
               <>
-                <h3>Personalized treatment plans after a virtual evaluation.</h3>
-                <p>
-                  Our telehealth clinic offers personalized weight-loss treatment
-                  plans based on your health history, goals, and clinical needs.
-                </p>
+                <div className="care-subheading">
+                  <div>
+                    <h3>Personalized treatment plans after a virtual evaluation.</h3>
+                    <p>
+                      Our telehealth clinic offers personalized weight-loss treatment
+                      plans based on your health history, goals, and clinical needs.
+                    </p>
+                  </div>
+                  <a className="secondary-button" href="/medical_weight_loss_options.html">
+                    Weight Loss Details
+                    <ChevronRight size={18} aria-hidden="true" />
+                  </a>
+                </div>
               </>
             )}
           </div>
@@ -1321,43 +1634,88 @@ function App() {
             </>
           )}
         </div>
-      </section>
 
-      <div className="section-switcher" id="care-sections">
-        <div>
-          <h3>Next Step</h3>
+        <div className="care-detail-panel disclaimer-care-panel" id="telemedicine-disclaimer">
+          <div className="care-detail-heading">
+            <button
+              className="care-heading-trigger disclaimer-trigger"
+              type="button"
+              aria-expanded={isDisclaimerOpen}
+              onClick={() => setIsDisclaimerOpen((isOpen) => !isOpen)}
+            >
+              <span className="section-kicker">Telemedicine disclaimer</span>
+              <ChevronRight size={18} aria-hidden="true" />
+            </button>
+            {isDisclaimerOpen && <h3>Important information about virtual care.</h3>}
+          </div>
+          {isDisclaimerOpen && (
+            <div className="disclaimer-card">
+              <p>
+                Telehealth services are provided through secure audio and/or
+                video communication technologies. By using this website and
+                requesting a telemedicine appointment, you understand and agree
+                that medical care will be delivered remotely by a licensed
+                healthcare provider.
+              </p>
+              <p>
+                Telemedicine services are appropriate for many non-emergency
+                medical conditions; however, telemedicine does not replace
+                in-person medical care when a physical examination or diagnostic
+                testing is required.
+              </p>
+              <p>
+                If at any time your provider determines that your condition
+                requires in-person evaluation, you may be advised to seek care at
+                a local clinic, urgent care center, or emergency department.
+              </p>
+              <p>
+                If you are experiencing a medical emergency, please call 911 or
+                go to the nearest emergency room immediately.
+              </p>
+              <p>
+                All medical information shared during telehealth visits is kept
+                confidential and protected in accordance with applicable privacy
+                laws, including the Health Insurance Portability and
+                Accountability Act (HIPAA).
+              </p>
+              <div>
+                <h3>By scheduling a telemedicine appointment, you acknowledge that:</h3>
+                <ul>
+                  <li>Telemedicine has limitations compared to in-person medical care.</li>
+                  <li>Your provider may recommend in-person evaluation if necessary.</li>
+                  <li>You consent to receive healthcare services through telemedicine technology.</li>
+                </ul>
+              </div>
+            </div>
+          )}
         </div>
-        <div className="section-switcher-actions" role="group" aria-label="Care sections">
-          <button
-            type="button"
-            className={activeSection === "book" ? "is-active" : ""}
-            onClick={() => showCareSection("book")}
-          >
-            Book Visit
-          </button>
-          <button
-            type="button"
-            className={activeSection === "weight-loss" ? "is-active" : ""}
-            onClick={() => showCareSection("weight-loss")}
-          >
-            Weight Loss
-          </button>
-          <button
-            type="button"
-            className={activeSection === "intake" ? "is-active" : ""}
-            onClick={() => showCareSection("intake")}
-          >
-            Intake
-          </button>
-          <button
-            type="button"
-            className={activeSection === "consent" ? "is-active" : ""}
-            onClick={() => showCareSection("consent")}
-          >
-            Consent
-          </button>
+
+        <div className="care-detail-panel faq-care-panel" id="faq">
+          <div className="care-detail-heading">
+            <button
+              className="care-heading-trigger faq-trigger"
+              type="button"
+              aria-expanded={isFaqOpen}
+              onClick={() => setIsFaqOpen((isOpen) => !isOpen)}
+            >
+              <span className="section-kicker">Common questions</span>
+              <ChevronRight size={18} aria-hidden="true" />
+            </button>
+            {isFaqOpen && <h3>Telemedicine care, booking, and weight loss support.</h3>}
+          </div>
+          {isFaqOpen && (
+            <div className="faq-list">
+              {faqs.map((item) => (
+                <article className="faq-item" key={item.question}>
+                  <h3>{item.question}</h3>
+                  <p>{item.answer}</p>
+                </article>
+              ))}
+            </div>
+          )}
         </div>
-      </div>
+        </div>
+      </section>
 
       <section className={careSectionClass("weight-loss", "weight-loss-page")} id="weight-loss">
         <div className="bmi-panel">
@@ -1565,55 +1923,59 @@ function App() {
       </section>
 
       <section className={careSectionClass("book", "booking-section")} id="book">
-        <figure className="booking-visual">
-          <img
-            src="/telemedicine-appointment-request.svg"
-            alt="Request a telemedicine appointment with steps to choose date and time, provide information, and join the visit"
-          />
-          <img
-            className="booking-provider-logo"
-            src="/dr-shiny-job-logo.png"
-            alt="Dr. Shiny Job, DNP, FNP-C Family Nurse Practitioner"
-          />
-        </figure>
         <form className="booking-form">
-          <a
-            className="primary-button form-button"
-            href={charmHealthLinks.booking}
-            target="_blank"
-            rel="noreferrer"
-          >
-            Open CharmHealth Booking
-            <ChevronRight size={18} aria-hidden="true" />
-          </a>
-          <div className="charm-calendar-embed full-width">
-            <iframe
-              title="TeleDNPNow appointment calendar"
-              width="100%"
-              height="1000"
-              src="https://ehr.charmtracker.com/publicCal.sas?method=getCal&digest=8e0b9864de414b6e13f96d8257763cf5a8c456c327218389c9641f027c2ac896ef59d40e1bb127afa7c934a1881fa51ad95fcbc3b76e32a2"
-              style={{ overflow: "hidden" }}
-              frameBorder="0"
-            />
+          <div className="booking-frame-panel full-width" id="charm-booking">
+            <div className="care-detail-heading">
+              <button
+                className="care-heading-trigger"
+                type="button"
+                aria-expanded={expandedCareDetails.charmBooking}
+                onClick={() => toggleCareDetails("charmBooking")}
+              >
+                <span className="section-kicker">Book Tele Visit</span>
+                <ChevronRight size={18} aria-hidden="true" />
+              </button>
+              {expandedCareDetails.charmBooking && (
+                <h3>Web Embed Calendar</h3>
+              )}
+            </div>
+            {expandedCareDetails.charmBooking && (
+              <div className="charm-calendar-embed full-width">
+                <iframe
+                  title="TeleDNPNow appointment calendar"
+                  width="100%"
+                  height="1000"
+                  src="https://ehr.charmtracker.com/publicCal.sas?method=getCal&digest=8e0b9864de414b6e13f96d8257763cf5a8c456c327218389c9641f027c2ac896ef59d40e1bb127afa7c934a1881fa51ad95fcbc3b76e32a2"
+                  style={{ overflow: "hidden" }}
+                  frameBorder="0"
+                />
+              </div>
+            )}
           </div>
           <div className="secure-payment-panel full-width">
-            <div>
-              <h3>Pay by card through CharmHealth/Bluefin</h3>
-              <p>
-                After an invoice or payment link is created in CharmHealth,
-                patients can pay securely by card through Bluefin. Card numbers
-                are not collected or stored on this website.
-              </p>
+            <div className="payment-content">
+              <div className="payment-image-row" aria-label="TeleDNPnow booking and provider images">
+                <img
+                  src="/telemedicine-appointment-request.svg"
+                  alt="Request a telemedicine appointment with steps to choose date and time, provide information, and join the visit"
+                />
+                <img
+                  src="/dr-shiny-job-logo.png"
+                  alt="Dr. Shiny Job, DNP, FNP-C Family Nurse Practitioner"
+                />
+                <div className="provider-about-card">
+                  <h3>About Me</h3>
+                  <p>
+                    Hi, I&apos;m Shiny Job, DNP, FNP-C, a Family Nurse
+                    Practitioner practicing since 2012.
+                  </p>
+                  <a className="secondary-button" href="/about_me.html">
+                    More
+                    <ChevronRight size={18} aria-hidden="true" />
+                  </a>
+                </div>
+              </div>
             </div>
-            <a
-              className="secondary-button"
-              href={charmHealthLinks.payment}
-              target="_blank"
-              rel="noreferrer"
-            >
-              Pay Self-Pay by Card
-              <ChevronRight size={18} aria-hidden="true" />
-            </a>
           </div>
         </form>
       </section>
@@ -1645,7 +2007,7 @@ function App() {
               </label>
               <label>
                 Phone
-                <input type="tel" name="phone" placeholder="(480) 200-6897" />
+                <input type="tel" name="phone" placeholder="(480) 626-5571" />
               </label>
               <label>
                 Email
@@ -2330,66 +2692,6 @@ function App() {
         </form>
       </section>
 
-      <section className="disclaimer-section" id="telemedicine-disclaimer">
-        <div className="disclaimer-heading">
-          <button
-            className="care-heading-trigger disclaimer-trigger"
-            type="button"
-            aria-expanded={isDisclaimerOpen}
-            onClick={() => setIsDisclaimerOpen((isOpen) => !isOpen)}
-          >
-            <span className="section-kicker">Telemedicine disclaimer</span>
-            <ChevronRight size={18} aria-hidden="true" />
-          </button>
-          {isDisclaimerOpen && <h2>Important information about virtual care.</h2>}
-        </div>
-        {isDisclaimerOpen && (
-          <div className="disclaimer-card">
-            <p>
-              Telehealth services are provided through secure audio and/or video
-              communication technologies. By using this website and requesting a
-              telemedicine appointment, you understand and agree that medical care
-              will be delivered remotely by a licensed healthcare provider.
-            </p>
-            <p>
-              Telemedicine services are appropriate for many non-emergency medical
-              conditions; however, telemedicine does not replace in-person medical
-              care when a physical examination or diagnostic testing is required.
-            </p>
-            <p>
-              If at any time your provider determines that your condition requires
-              in-person evaluation, you may be advised to seek care at a local
-              clinic, urgent care center, or emergency department.
-            </p>
-            <p>
-              If you are experiencing a medical emergency, please call 911 or go
-              to the nearest emergency room immediately.
-            </p>
-            <p>
-              All medical information shared during telehealth visits is kept
-              confidential and protected in accordance with applicable privacy
-              laws, including the Health Insurance Portability and Accountability
-              Act (HIPAA).
-            </p>
-            <div>
-              <h3>By scheduling a telemedicine appointment, you acknowledge that:</h3>
-              <ul>
-                <li>
-                  Telemedicine has limitations compared to in-person medical care.
-                </li>
-                <li>
-                  Your provider may recommend in-person evaluation if necessary.
-                </li>
-                <li>
-                  You consent to receive healthcare services through telemedicine
-                  technology.
-                </li>
-              </ul>
-            </div>
-          </div>
-        )}
-      </section>
-
       <section className={careSectionClass("consent", "consent-section")} id="consent">
         <div className="consent-heading">
           <span className="section-kicker">Telemedicine consent</span>
@@ -2490,40 +2792,13 @@ function App() {
         </form>
       </section>
 
-      <section className="seo-section" id="faq">
-        <div className="seo-heading">
-          <button
-            className="care-heading-trigger faq-trigger"
-            type="button"
-            aria-expanded={isFaqOpen}
-            onClick={() => setIsFaqOpen((isOpen) => !isOpen)}
-          >
-            <span className="section-kicker">Common questions</span>
-            <ChevronRight size={18} aria-hidden="true" />
-          </button>
-          {isFaqOpen && (
-            <h2>Telemedicine care, booking, and weight loss support.</h2>
-          )}
-        </div>
-        {isFaqOpen && (
-          <div className="faq-list">
-            {faqs.map((item) => (
-              <article className="faq-item" key={item.question}>
-                <h3>{item.question}</h3>
-                <p>{item.answer}</p>
-              </article>
-            ))}
-          </div>
-        )}
-      </section>
-
       <footer className="footer" id="contact">
         <div>
           <strong>TeleDNPnow</strong>
           <p>Care provided by Dr. Shiny Job, DNP, FNP-C.</p>
         </div>
         <div className="footer-links">
-          <a href="tel:+14802006897">(480) 200-6897</a>
+          <a href="tel:+14806265571">(480) 626-5571</a>
           <a href="mailto:care@telednpnow.org">care@telednpnow.org</a>
         </div>
       </footer>
