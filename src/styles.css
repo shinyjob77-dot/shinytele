@@ -1458,16 +1458,19 @@ p {
 }
 
 .charm-calendar-embed {
-  overflow: hidden;
+  width: 100%;
+  overflow: auto;
   border: 0;
   border-radius: 8px;
   background: #ffffff;
+  -webkit-overflow-scrolling: touch;
 }
 
 .charm-calendar-embed iframe {
   display: block;
   width: 100%;
   max-width: 100%;
+  min-height: 1000px;
   border: 0;
 }
 
@@ -2282,6 +2285,21 @@ p {
   .secure-payment-panel {
     align-items: stretch;
     flex-direction: column;
+  }
+
+  .booking-form,
+  .booking-frame-panel {
+    padding: 14px;
+  }
+
+  .charm-calendar-embed {
+    max-height: 78vh;
+    border: 1px solid #c8d8df;
+  }
+
+  .charm-calendar-embed iframe {
+    min-width: 360px;
+    min-height: 1250px;
   }
 
   .payment-image-row {
