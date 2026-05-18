@@ -1376,19 +1376,19 @@ p {
 .booking-form {
   display: grid;
   gap: 16px;
-  padding: 22px;
+  padding: 0;
   border-radius: 8px;
-  background: #ffffff;
+  background: transparent;
 }
 
 .booking-frame-panel {
   display: grid;
   gap: 18px;
-  padding: 26px;
-  border: 1px solid rgba(16, 32, 31, 0.1);
-  border-radius: 8px;
-  background: #ffffff;
-  box-shadow: 0 16px 42px rgba(24, 45, 43, 0.07);
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
 }
 
 .booking-frame-panel .care-heading-trigger {
@@ -2289,15 +2289,15 @@ p {
 
   .booking-form,
   .booking-frame-panel {
-    padding: 8px;
+    padding: 0;
   }
 
   .charm-calendar-embed {
     width: calc(100vw - 24px);
     max-height: 92vh;
     margin-left: calc(50% - 50vw + 12px);
-    border: 1px solid #c8d8df;
-    border-radius: 6px;
+    border: 0;
+    border-radius: 0;
   }
 
   .charm-calendar-embed iframe {
