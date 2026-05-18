@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>TeleDNPnow CMS-460 Draft</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        background: #eef5f8;
+        color: #111827;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      .toolbar {
+        align-items: center;
+        background: #0f4c81;
+        color: #fff;
+        display: flex;
+        gap: 12px;
+        justify-content: space-between;
+        padding: 12px 18px;
+      }
+
+      .toolbar strong {
+        font-size: 16px;
+      }
+
+      button {
+        background: #fff;
+        border: 0;
+        border-radius: 6px;
+        color: #0f4c81;
+        cursor: pointer;
+        font-weight: 700;
+        padding: 9px 14px;
+      }
+
+      .page {
+        background: #fff;
+        margin: 22px auto;
+        max-width: 8.5in;
+        min-height: 11in;
+        padding: 0.42in;
+        width: 8.5in;
+      }
+
+      .header {
+        border-bottom: 3px solid #111827;
+        display: grid;
+        gap: 4px;
+        padding-bottom: 10px;
+        text-align: center;
+      }
+
+      .agency {
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.02em;
+        text-transform: uppercase;
+      }
+
+      h1 {
+        font-size: 20px;
+        line-height: 1.15;
+        margin: 4px 0 0;
+      }
+
+      .form-number {
+        color: #374151;
+        font-size: 12px;
+        font-weight: 700;
+      }
+
+      .notice {
+        border: 1px solid #111827;
+        font-size: 11px;
+        line-height: 1.4;
+        margin-top: 14px;
+        padding: 9px;
+      }
+
+      .section-title {
+        background: #111827;
+        color: #fff;
+        font-size: 12px;
+        font-weight: 800;
+        margin-top: 14px;
+        padding: 6px 8px;
+      }
+
+      .row {
+        border: 1px solid #111827;
+        border-top: 0;
+        display: grid;
+        grid-template-columns: 1fr;
+        min-height: 48px;
+        padding: 6px 8px;
+      }
+
+      .two-col {
+        grid-template-columns: 1fr 1fr;
+        gap: 0;
+        padding: 0;
+      }
+
+      .two-col > div {
+        min-height: 50px;
+        padding: 6px 8px;
+      }
+
+      .two-col > div:first-child {
+        border-right: 1px solid #111827;
+      }
+
+      .label {
+        font-size: 10px;
+        font-weight: 800;
+        line-height: 1.25;
+        margin-bottom: 4px;
+      }
+
+      .value {
+        min-height: 22px;
+        padding: 2px 0;
+      }
+
+      [contenteditable="true"] {
+        outline: 1px dashed transparent;
+      }
+
+      [contenteditable="true"]:focus {
+        outline-color: #0f4c81;
+      }
+
+      .agreement-text {
+        border: 1px solid #111827;
+        border-top: 0;
+        font-size: 11px;
+        line-height: 1.42;
+        padding: 10px;
+      }
+
+      .signature-grid {
+        border: 1px solid #111827;
+        border-top: 0;
+        display: grid;
+        grid-template-columns: 1.3fr 0.7fr 0.8fr;
+      }
+
+      .signature-grid > div {
+        min-height: 62px;
+        padding: 6px 8px;
+      }
+
+      .signature-grid > div:not(:last-child) {
+        border-right: 1px solid #111827;
+      }
+
+      .signature-line {
+        border-bottom: 1px solid #111827;
+        height: 30px;
+      }
+
+      .small {
+        color: #374151;
+        font-size: 10px;
+        line-height: 1.35;
+      }
+
+      .footer-note {
+        background: #f3f8fb;
+        border: 1px solid #c7dce8;
+        border-radius: 6px;
+        font-size: 11px;
+        line-height: 1.35;
+        margin-top: 12px;
+        padding: 9px;
+      }
+
+      @media print {
+        body {
+          background: #fff;
+        }
+
+        .toolbar {
+          display: none;
+        }
+
+        .page {
+          box-shadow: none;
+          margin: 0;
+          max-width: none;
+          min-height: auto;
+          padding: 0.3in;
+          width: auto;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="toolbar">
+      <strong>TeleDNPnow CMS-460 Draft</strong>
+      <button type="button" onclick="window.print()">Print / Save as PDF</button>
+    </div>
+
+    <main class="page">
+      <section class="header">
+        <div class="agency">Department of Health and Human Services · Centers for Medicare & Medicaid Services</div>
+        <h1>Medicare Participating Physician or Supplier Agreement</h1>
+        <div class="form-number">CMS-460</div>
+      </section>
+
+      <div class="notice">
+        This draft is prepared for review and signature. By signing CMS-460, the participant agrees to accept assignment for all covered Medicare Part B services furnished to Medicare patients and to accept the Medicare-approved amount as payment in full, except for applicable deductible, coinsurance, or copayment.
+      </div>
+
+      <div class="section-title">Participant Information</div>
+      <section class="row">
+        <div class="label">Name of participant, physician, practitioner, supplier, group, or organization</div>
+        <div class="value" contenteditable="true">TELEDNPNOW PLLC</div>
+      </section>
+
+      <section class="row">
+        <div class="label">Street address</div>
+        <div class="value" contenteditable="true">2923 N Hawthorn Dr</div>
+      </section>
+
+      <section class="row two-col">
+        <div>
+          <div class="label">City, state, ZIP code</div>
+          <div class="value" contenteditable="true">Florence, AZ 85132-6872</div>
+        </div>
+        <div>
+          <div class="label">Office phone number</div>
+          <div class="value" contenteditable="true">(480) 626-5571</div>
+        </div>
+      </section>
+
+      <section class="row two-col">
+        <div>
+          <div class="label">National Provider Identifier (NPI)</div>
+          <div class="value" contenteditable="true">1073440673</div>
+          <div class="small">Organization Type 2 NPI for TELEDNPNOW PLLC</div>
+        </div>
+        <div>
+          <div class="label">Tax Identification Number (TIN/EIN)</div>
+          <div class="value" contenteditable="true">42-2063615</div>
+        </div>
+      </section>
+
+      <section class="row two-col">
+        <div>
+          <div class="label">Participant type</div>
+          <div class="value" contenteditable="true">Sole owner PLLC / Group practice</div>
+        </div>
+        <div>
+          <div class="label">Medicare specialty / supplier type</div>
+          <div class="value" contenteditable="true">Nurse Practitioner / Group Practice</div>
+        </div>
+      </section>
+
+      <div class="section-title">Agreement</div>
+      <section class="agreement-text">
+        I request to be a participating physician or supplier in the Medicare program. I agree to accept assignment for all covered services furnished to Medicare beneficiaries, and I agree to accept the Medicare-approved amount as payment in full. I understand that Medicare beneficiaries may be responsible only for applicable deductible, coinsurance, or copayment amounts for covered services. I understand this agreement applies to all Medicare-covered services furnished during the effective period of participation, unless changed according to Medicare rules.
+      </section>
+
+      <div class="section-title">Authorized Signature</div>
+      <section class="signature-grid">
+        <div>
+          <div class="label">Signature of participant or authorized/delegated official</div>
+          <div class="signature-line"></div>
+        </div>
+        <div>
+          <div class="label">Date</div>
+          <div class="signature-line"></div>
+        </div>
+        <div>
+          <div class="label">Title</div>
+          <div class="value" contenteditable="true">Owner / Authorized Official</div>
+        </div>
+      </section>
+
+      <section class="row two-col">
+        <div>
+          <div class="label">Print name</div>
+          <div class="value" contenteditable="true">Dr. Shiny Job, DNP, FNP-C</div>
+        </div>
+        <div>
+          <div class="label">Contact email</div>
+          <div class="value" contenteditable="true">care@telednpnow.org</div>
+        </div>
+      </section>
+
+      <div class="footer-note">
+        Review this draft against the official CMS-460 form and your PECOS/Noridian instructions before submitting. If this CMS-460 is being submitted with the TELEDNPNOW PLLC organization/sole-owner enrollment, use the organization name and Type 2 NPI. Sign and date only after confirming all information is correct.
+      </div>
+    </main>
+  </body>
+</html>
