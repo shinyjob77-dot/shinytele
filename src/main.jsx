@@ -17,7 +17,6 @@ import {
   UserRound,
   Video,
 } from "lucide-react";
-import heroImage from "./assets/telemedicine-hero.png";
 import "./styles.css";
 
 const charmHealthLinks = {
@@ -1318,7 +1317,7 @@ function App() {
 
         <div className="hero-visual">
           <img
-            src={heroImage}
+            src="/telemedicine-hero.png"
             alt="Patient having a telemedicine video visit from home"
           />
         </div>
