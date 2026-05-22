@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Abdominal Pain Clinical Intake Tool</title>
+  <style>
+    body {
+      font-family: Arial;
+      margin: 20px;
+      background: #f8f9fa;
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    .section {
+      background: white;
+      padding: 15px;
+      margin-bottom: 20px;
+      border-radius: 8px;
+    }
+
+    button {
+      padding: 12px 25px;
+      background: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .result {
+      background: #e9ecef;
+      padding: 15px;
+      border-radius: 8px;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Abdominal Pain Intake & Decision Tool</h1>
+
+  <div class="section">
+    <h2>1. Pain Location</h2>
+    <input type="checkbox" id="ruq"> RUQ
+    <input type="checkbox" id="luq"> LUQ
+    <input type="checkbox" id="epigastric"> Epigastric
+    <input type="checkbox" id="periumbilical"> Periumbilical
+    <input type="checkbox" id="rlq"> RLQ
+    <input type="checkbox" id="llq"> LLQ
+    <input type="checkbox" id="suprapubic"> Suprapubic
+    <input type="checkbox" id="diffuse"> Diffuse
+  </div>
+
+  <div class="section">
+    <h2>2. Pain Characteristics</h2>
+    Severity (1-10): <input type="number" id="severity"><br><br>
+    Onset:
+    <select id="onset">
+      <option>Sudden</option>
+      <option>Gradual</option>
+    </select>
+  </div>
+
+  <div class="section">
+    <h2>3. Associated Symptoms</h2>
+    <input type="checkbox" id="fever"> Fever
+    <input type="checkbox" id="nausea"> Nausea/Vomiting
+    <input type="checkbox" id="diarrhea"> Diarrhea
+    <input type="checkbox" id="constipation"> Constipation
+    <input type="checkbox" id="rebound"> Rebound/guarding
+    <input type="checkbox" id="urinary"> Urinary symptoms
+    <input type="checkbox" id="pregnancy"> Possible pregnancy
+  </div>
+
+  <div class="section">
+    <h2>4. Bowel Movement (HIGH YIELD)</h2>
+    Last BM:
+    <select id="lastBM">
+      <option>Today</option>
+      <option>Yesterday</option>
+      <option>2-3 days ago</option>
+      <option>&gt;3-5 days ago</option>
+    </select><br><br>
+
+    Passing stool normally?
+    <select id="bmNormal">
+      <option>Yes</option>
+      <option>No</option>
+    </select><br><br>
+
+    Passing gas?
+    <select id="flatus">
+      <option>Yes</option>
+      <option>No</option>
+    </select><br><br>
+
+    Blood in stool?
+    <select id="blood">
+      <option>No</option>
+      <option>Bright red</option>
+      <option>Black/tarry</option>
+    </select>
+  </div>
+
+  <div class="section">
+    <h2>5. Red Flags</h2>
+    <input type="checkbox" id="severe"> Severe pain
+    <input type="checkbox" id="unstable"> Hypotension/syncope
+  </div>
+
+  <button onclick="diagnose()">Generate Clinical Plan</button>
+  <div id="output" class="result"></div>
+
+  <script>
+    function diagnose() {
+      let ruq = document.getElementById("ruq").checked;
+      let epigastric = document.getElementById("epigastric").checked;
+      let rlq = document.getElementById("rlq").checked;
+      let llq = document.getElementById("llq").checked;
+      let suprapubic = document.getElementById("suprapubic").checked;
+      let diffuse = document.getElementById("diffuse").checked;
+      let fever = document.getElementById("fever").checked;
+      let nausea = document.getElementById("nausea").checked;
+      let diarrhea = document.getElementById("diarrhea").checked;
+      let constipation = document.getElementById("constipation").checked;
+      let rebound = document.getElementById("rebound").checked;
+      let urinary = document.getElementById("urinary").checked;
+      let pregnancy = document.getElementById("pregnancy").checked;
+      let flatus = document.getElementById("flatus").value;
+      let bmNormal = document.getElementById("bmNormal").value;
+      let blood = document.getElementById("blood").value;
+      let severe = document.getElementById("severe").checked;
+      let unstable = document.getElementById("unstable").checked;
+      let result = "";
+
+      /* EMERGENCY */
+      if (unstable || (severe && rebound) || pregnancy) {
+        result = `
+          <b>EMERGENT ABDOMEN / HIGH-RISK ABDOMINAL PAIN</b><br>
+          ICD-10: R10.0<br><br>
+          Plan:<br>
+          - Immediate ED transfer<br>
+          - NPO<br>
+          - IV fluids<br>
+          - Piperacillin-Tazobactam 3.375 g IV q6h when clinically indicated<br>
+          - STAT CT abdomen/pelvis or appropriate imaging<br>
+          - Possible pregnancy requires urgent in-person evaluation<br>
+        `;
+      }
+
+      /* BOWEL OBSTRUCTION */
+      else if (flatus === "No" && bmNormal === "No") {
+        result = `
+          <b>Possible Bowel Obstruction</b><br>
+          ICD-10: K56.609<br><br>
+          Plan:<br>
+          - NPO<br>
+          - NG tube<br>
+          - IV fluids<br>
+          - Surgical consult<br><br>
+          Workup:<br>
+          - CT abdomen/pelvis<br>
+        `;
+      }
+
+      /* APPENDICITIS */
+      else if (rlq && fever && nausea) {
+        result = `
+          <b>Appendicitis</b><br>
+          ICD-10: K35.80<br><br>
+          Treatment:<br>
+          - Ceftriaxone 1 g IV + Metronidazole 500 mg IV q8h<br>
+          - Surgical consult<br>
+        `;
+      }
+
+      /* CHOLECYSTITIS */
+      else if (ruq && fever && nausea) {
+        result = `
+          <b>Acute Cholecystitis</b><br>
+          ICD-10: K81.0<br><br>
+          Treatment:<br>
+          - Ceftriaxone 1 g IV daily<br>
+          - Ketorolac 15-30 mg IV if appropriate<br>
+        `;
+      }
+
+      /* PANCREATITIS */
+      else if (epigastric && nausea) {
+        result = `
+          <b>Pancreatitis</b><br>
+          ICD-10: K85.90<br><br>
+          Treatment:<br>
+          - IV fluids (LR)<br>
+          - Hydromorphone 0.2-0.6 mg IV in monitored setting<br>
+          - Check lipase<br>
+        `;
+      }
+
+      /* DIVERTICULITIS */
+      else if (llq && fever) {
+        result = `
+          <b>Diverticulitis</b><br>
+          ICD-10: K57.92<br><br>
+          Treatment:<br>
+          - Amoxicillin-clavulanate 875/125 mg BID when antibiotics are clinically indicated<br>
+        `;
+      }
+
+      /* UTI */
+      else if (suprapubic && urinary) {
+        result = `
+          <b>UTI</b><br>
+          ICD-10: N39.0<br><br>
+          Treatment:<br>
+          - Nitrofurantoin 100 mg BID x5 days if appropriate<br>
+        `;
+      }
+
+      /* GI BLEED */
+      else if (blood === "Black/tarry") {
+        result = `
+          <b>Possible Upper GI Bleed</b><br>
+          ICD-10: K92.2<br><br>
+          Plan:<br>
+          - PPI (Pantoprazole 40 mg IV)<br>
+          - GI consult<br>
+          - Urgent in-person or ED evaluation<br>
+        `;
+      }
+
+      /* GASTROENTERITIS */
+      else if (diffuse && diarrhea) {
+        result = `
+          <b>Gastroenteritis</b><br>
+          ICD-10: K52.9<br><br>
+          Treatment:<br>
+          - Oral hydration<br>
+          - Ondansetron 4 mg q8h PRN if appropriate<br>
+        `;
+      }
+
+      /* CONSTIPATION */
+      else if (constipation && bmNormal === "No") {
+        result = `
+          <b>Constipation</b><br>
+          ICD-10: K59.00<br><br>
+          Treatment:<br>
+          - Polyethylene glycol daily<br>
+          - Senna PRN<br>
+          - Evaluate for obstruction if vomiting, distension, severe pain, or no flatus<br>
+        `;
+      }
+
+      /* DEFAULT */
+      else {
+        result = `
+          <b>Undifferentiated Abdominal Pain</b><br>
+          ICD-10: R10.9<br><br>
+          Workup:<br>
+          - CBC, CMP, lipase<br>
+          - UA, pregnancy test when applicable<br>
+          - Imaging as needed<br>
+        `;
+      }
+
+      document.getElementById("output").innerHTML = result;
+    }
+  </script>
+</body>
+</html>

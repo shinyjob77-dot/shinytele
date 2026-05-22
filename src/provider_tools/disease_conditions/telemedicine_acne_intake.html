@@ -1,0 +1,959 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>TeleDNPnow Acne Telemedicine Intake Questionnaire</title>
+  <script>
+    if (window.localStorage.getItem("telednpnowProviderAuthorized") !== "yes") {
+      window.location.replace("/#provider-login-required");
+    }
+  </script>
+  <style>
+    :root {
+      --primary: #2f80a8;
+      --secondary: #eaf7fb;
+      --accent: #0f5f7f;
+      --border: #c8dce5;
+      --text: #1f2933;
+      --muted: #5f6c72;
+      --danger: #b42318;
+      --light: #ffffff;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f7fbfd;
+      color: var(--text);
+      margin: 0;
+      padding: 0;
+      line-height: 1.5;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 28px;
+    }
+
+    header {
+      background: linear-gradient(135deg, #dff4fb, #ffffff);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 28px;
+      margin-bottom: 24px;
+      box-shadow: 0 8px 20px rgba(47, 128, 168, 0.08);
+    }
+
+    h1 {
+      color: var(--accent);
+      margin: 0 0 8px;
+      font-size: 30px;
+    }
+
+    .subtitle {
+      color: var(--muted);
+      font-size: 16px;
+      margin: 0;
+    }
+
+    .badge {
+      display: inline-block;
+      background: var(--primary);
+      color: white;
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-size: 13px;
+      margin-bottom: 12px;
+      font-weight: bold;
+    }
+
+    section {
+      background: var(--light);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 22px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 14px rgba(15, 95, 127, 0.05);
+    }
+
+    h2 {
+      color: var(--accent);
+      margin-top: 0;
+      font-size: 22px;
+      border-bottom: 2px solid var(--secondary);
+      padding-bottom: 8px;
+    }
+
+    h3 {
+      color: var(--primary);
+      margin-bottom: 8px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .question {
+      margin-bottom: 16px;
+    }
+
+    label {
+      font-weight: bold;
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    input[type="text"],
+    input[type="date"],
+    input[type="number"],
+    textarea,
+    select {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 10px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      font-size: 14px;
+      background: #fff;
+    }
+
+    textarea {
+      min-height: 80px;
+      resize: vertical;
+    }
+
+    .checks {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px 18px;
+      margin-top: 6px;
+    }
+
+    .checks label {
+      font-weight: normal;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin: 0;
+    }
+
+    .full {
+      grid-column: 1 / -1;
+    }
+
+    .note {
+      background: var(--secondary);
+      border-left: 5px solid var(--primary);
+      padding: 12px 14px;
+      border-radius: 10px;
+      color: #264653;
+      margin-top: 10px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 12px;
+      font-size: 14px;
+    }
+
+    th, td {
+      border: 1px solid var(--border);
+      padding: 10px;
+      vertical-align: top;
+      text-align: left;
+    }
+
+    th {
+      background: var(--secondary);
+      color: var(--accent);
+    }
+
+    .red {
+      color: var(--danger);
+      font-weight: bold;
+    }
+
+    .signature-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      margin-top: 10px;
+    }
+
+    .line {
+      border-bottom: 1px solid var(--text);
+      min-height: 34px;
+    }
+
+    .print-btn {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 12px 18px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 15px;
+      margin: 0 0 20px;
+    }
+
+    .print-btn:hover {
+      background: var(--accent);
+    }
+
+    .close-btn {
+      background: #ffffff;
+      color: var(--primary);
+      border: 1px solid var(--primary);
+      padding: 12px 18px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 15px;
+      font-weight: bold;
+      margin: 0 0 20px 10px;
+    }
+
+    .copy-chatgpt-btn {
+      background: #ffffff;
+      color: #0f5f7f;
+      border: 1px solid #0f5f7f;
+      padding: 12px 18px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 15px;
+      font-weight: bold;
+      margin: 0 0 20px 10px;
+    }
+
+    .copy-status {
+      display: inline-block;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: bold;
+      margin: 0 0 20px 10px;
+    }
+
+    .form-search {
+      position: sticky;
+      top: 0;
+      z-index: 5;
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 16px;
+      margin-bottom: 20px;
+      box-shadow: 0 8px 20px rgba(47, 128, 168, 0.1);
+    }
+
+    .form-search label {
+      color: var(--accent);
+      font-size: 16px;
+    }
+
+    .search-row {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto auto;
+      gap: 10px;
+      align-items: end;
+      margin-top: 8px;
+    }
+
+    .form-search input {
+      min-height: 44px;
+    }
+
+    .form-search button {
+      min-height: 44px;
+      border: 1px solid var(--primary);
+      border-radius: 10px;
+      padding: 0 14px;
+      color: #ffffff;
+      background: var(--primary);
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .form-search button.secondary {
+      color: var(--primary);
+      background: #ffffff;
+    }
+
+    .search-status {
+      color: var(--muted);
+      font-size: 13px;
+      margin-top: 8px;
+    }
+
+    .search-results {
+      display: grid;
+      gap: 8px;
+      max-height: 220px;
+      overflow: auto;
+      margin-top: 10px;
+    }
+
+    .search-result {
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 10px;
+      color: var(--accent);
+      background: var(--secondary);
+      text-align: left;
+    }
+
+    .search-match {
+      outline: 3px solid rgba(47, 128, 168, 0.35);
+      background: #fffdf0 !important;
+      scroll-margin-top: 110px;
+    }
+
+    .search-current {
+      outline-color: var(--danger);
+    }
+
+    footer {
+      color: var(--muted);
+      font-size: 13px;
+      text-align: center;
+      padding: 18px;
+    }
+
+    @media print {
+      body {
+        background: white;
+      }
+
+      .container {
+        max-width: none;
+        padding: 0;
+      }
+
+      section, header {
+        box-shadow: none;
+        break-inside: avoid;
+      }
+
+      .print-btn,
+      .copy-chatgpt-btn,
+      .copy-status {
+        display: none;
+      }
+
+      .close-btn {
+        display: none;
+      }
+
+      .form-search {
+        display: none;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .grid,
+      .checks,
+      .signature-row,
+      .search-row {
+        grid-template-columns: 1fr;
+      }
+
+      .container {
+        padding: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <button class="print-btn" onclick="window.print()">Print / Save as PDF</button>
+    <button class="close-btn" onclick="window.close(); if (!window.closed) { history.back(); }">Close Page</button>
+    <button class="copy-chatgpt-btn" type="button" id="copySummaryForChatGPT">Copy Summary for ChatGPT</button>
+    <span class="copy-status" id="copySummaryStatus"></span>
+
+    <header>
+      <span class="badge">TeleDNPnow Provider Intake Tool</span>
+      <h1>Acne Telemedicine Intake Questionnaire</h1>
+      <p class="subtitle">
+        Provider-focused questionnaire to support acne diagnosis, differential diagnosis, treatment planning,
+        documentation, insurance approval, and follow-up care.
+      </p>
+    </header>
+
+    <section class="form-search" aria-label="Search acne intake form">
+      <label for="formSearchInput">Search this form</label>
+      <div class="search-row">
+        <input
+          id="formSearchInput"
+          type="search"
+          placeholder="Search items, example: pharmacy, pregnancy, rosacea, referral"
+          autocomplete="off"
+        />
+        <button type="button" id="formSearchButton">Search</button>
+        <button type="button" class="secondary" id="formSearchClear">Clear</button>
+      </div>
+      <div class="search-status" id="formSearchStatus">
+        Type a word or phrase to find matching sections, questions, or checklist items.
+      </div>
+      <div class="search-results" id="formSearchResults"></div>
+    </section>
+
+    <section>
+      <h2>Patient Information</h2>
+      <div class="grid">
+        <div class="question">
+          <label>Patient Name</label>
+          <input type="text" />
+        </div>
+        <div class="question">
+          <label>Date of Birth</label>
+          <input type="date" />
+        </div>
+        <div class="question">
+          <label>Date of Visit</label>
+          <input type="date" />
+        </div>
+        <div class="question">
+          <label>Preferred Pharmacy</label>
+          <input type="text" />
+        </div>
+        <div class="question full">
+          <label>Chief Complaint</label>
+          <textarea placeholder="Example: Acne on face for 6 months, worsening despite OTC benzoyl peroxide."></textarea>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>History of Present Illness</h2>
+      <div class="grid">
+        <div class="question">
+          <label>When did the acne/skin concern start?</label>
+          <input type="text" placeholder="Days / weeks / months / years" />
+        </div>
+        <div class="question">
+          <label>Course</label>
+          <select>
+            <option></option>
+            <option>Improving</option>
+            <option>Worsening</option>
+            <option>Unchanged</option>
+            <option>Comes and goes</option>
+          </select>
+        </div>
+        <div class="question full">
+          <label>Location</label>
+          <div class="checks">
+            <label><input type="checkbox" /> Face</label>
+            <label><input type="checkbox" /> Forehead</label>
+            <label><input type="checkbox" /> Chin/Jawline</label>
+            <label><input type="checkbox" /> Nose/Cheeks</label>
+            <label><input type="checkbox" /> Chest</label>
+            <label><input type="checkbox" /> Back</label>
+            <label><input type="checkbox" /> Shoulders</label>
+            <label><input type="checkbox" /> Other</label>
+          </div>
+        </div>
+        <div class="question full">
+          <label>Type of lesions reported/seen</label>
+          <div class="checks">
+            <label><input type="checkbox" /> Whiteheads</label>
+            <label><input type="checkbox" /> Blackheads</label>
+            <label><input type="checkbox" /> Red bumps/papules</label>
+            <label><input type="checkbox" /> Pus-filled pimples/pustules</label>
+            <label><input type="checkbox" /> Painful cysts/nodules</label>
+            <label><input type="checkbox" /> Dark spots/post-inflammatory hyperpigmentation</label>
+            <label><input type="checkbox" /> Scarring</label>
+            <label><input type="checkbox" /> Dry/flaky rash</label>
+          </div>
+        </div>
+        <div class="question">
+          <label>Patient-reported severity</label>
+          <select>
+            <option></option>
+            <option>Mild</option>
+            <option>Moderate</option>
+            <option>Severe</option>
+          </select>
+        </div>
+        <div class="question">
+          <label>Symptoms</label>
+          <div class="checks">
+            <label><input type="checkbox" /> Pain</label>
+            <label><input type="checkbox" /> Itching</label>
+            <label><input type="checkbox" /> Burning</label>
+            <label><input type="checkbox" /> Dryness</label>
+            <label><input type="checkbox" /> None</label>
+          </div>
+        </div>
+        <div class="question full">
+          <label>Worsening or triggering factors</label>
+          <div class="checks">
+            <label><input type="checkbox" /> Menstrual cycle</label>
+            <label><input type="checkbox" /> Stress</label>
+            <label><input type="checkbox" /> Sweating/gym</label>
+            <label><input type="checkbox" /> Face mask/helmet/friction</label>
+            <label><input type="checkbox" /> New skincare products</label>
+            <label><input type="checkbox" /> Hair oils/cosmetics</label>
+            <label><input type="checkbox" /> Steroid cream use</label>
+            <label><input type="checkbox" /> Unknown</label>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Previous Treatments Tried</h2>
+      <div class="grid">
+        <div class="question full">
+          <label>Over-the-counter treatments tried</label>
+          <div class="checks">
+            <label><input type="checkbox" /> Benzoyl peroxide</label>
+            <label><input type="checkbox" /> Salicylic acid</label>
+            <label><input type="checkbox" /> Adapalene/Differin</label>
+            <label><input type="checkbox" /> Acne face wash</label>
+            <label><input type="checkbox" /> Moisturizer only</label>
+            <label><input type="checkbox" /> None</label>
+          </div>
+        </div>
+        <div class="question full">
+          <label>Prescription treatments tried</label>
+          <div class="checks">
+            <label><input type="checkbox" /> Topical clindamycin</label>
+            <label><input type="checkbox" /> Tretinoin/Retin-A</label>
+            <label><input type="checkbox" /> Doxycycline</label>
+            <label><input type="checkbox" /> Minocycline</label>
+            <label><input type="checkbox" /> Spironolactone</label>
+            <label><input type="checkbox" /> Isotretinoin/Accutane</label>
+            <label><input type="checkbox" /> Other</label>
+          </div>
+        </div>
+        <div class="question">
+          <label>Did treatment help?</label>
+          <select>
+            <option></option>
+            <option>Yes</option>
+            <option>No</option>
+            <option>Somewhat</option>
+            <option>Stopped due to side effects</option>
+          </select>
+        </div>
+        <div class="question">
+          <label>Duration of failed treatment</label>
+          <input type="text" placeholder="Example: 8 weeks, 3 months" />
+        </div>
+        <div class="question full">
+          <label>Side effects or reason stopped</label>
+          <textarea></textarea>
+        </div>
+      </div>
+      <div class="note">
+        Insurance documentation tip: document failed OTC/prescription products, duration of use, severity, scarring, and photos when available.
+      </div>
+    </section>
+
+    <section>
+      <h2>Differential Diagnosis Screening</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Possible Condition</th>
+            <th>Screening Questions</th>
+            <th>Provider Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Acne Vulgaris</td>
+            <td>Blackheads/whiteheads? Papules/pustules? Face/chest/back involvement?</td>
+            <td><textarea></textarea></td>
+          </tr>
+          <tr>
+            <td>Rosacea</td>
+            <td>Facial flushing/redness? Triggers such as heat, spicy food, alcohol? No comedones?</td>
+            <td><textarea></textarea></td>
+          </tr>
+          <tr>
+            <td>Fungal Acne / Malassezia Folliculitis</td>
+            <td>Itchy, uniform small bumps? Chest/back involvement? Worse with sweating?</td>
+            <td><textarea></textarea></td>
+          </tr>
+          <tr>
+            <td>Perioral Dermatitis</td>
+            <td>Rash around mouth/nose? Steroid cream use? Sparing of lip border?</td>
+            <td><textarea></textarea></td>
+          </tr>
+          <tr>
+            <td>Hormonal Acne / PCOS Pattern</td>
+            <td>Jawline/chin acne? Cyclic flares? Irregular menses? Hirsutism? PCOS history?</td>
+            <td><textarea></textarea></td>
+          </tr>
+          <tr>
+            <td>Medication-Induced Acne</td>
+            <td>Recent steroids, testosterone, lithium, anticonvulsants, hormonal medication?</td>
+            <td><textarea></textarea></td>
+          </tr>
+          <tr>
+            <td>Hidradenitis Suppurativa</td>
+            <td>Painful nodules/abscesses in axilla, groin, under breasts? Drainage or sinus tracts?</td>
+            <td><textarea></textarea></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>Medical Safety Screening</h2>
+      <div class="grid">
+        <div class="question">
+          <label>Medication allergies</label>
+          <input type="text" />
+        </div>
+        <div class="question">
+          <label>Current medications</label>
+          <input type="text" />
+        </div>
+        <div class="question">
+          <label>Pregnant, trying to become pregnant, or breastfeeding?</label>
+          <select>
+            <option></option>
+            <option>No</option>
+            <option>Pregnant</option>
+            <option>Trying to become pregnant</option>
+            <option>Breastfeeding</option>
+            <option>Not applicable</option>
+          </select>
+        </div>
+        <div class="question">
+          <label>Kidney disease or liver disease?</label>
+          <select>
+            <option></option>
+            <option>No</option>
+            <option>Kidney disease</option>
+            <option>Liver disease</option>
+            <option>Both</option>
+            <option>Unsure</option>
+          </select>
+        </div>
+        <div class="question full">
+          <label>Relevant medical history</label>
+          <textarea placeholder="PCOS, pregnancy risk, depression history, inflammatory bowel disease, prior isotretinoin use, etc."></textarea>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Red Flags / Referral Screening</h2>
+      <div class="checks">
+        <label><input type="checkbox" /> Painful deep cysts or nodules</label>
+        <label><input type="checkbox" /> Permanent scarring</label>
+        <label><input type="checkbox" /> Rapid worsening or severe inflammation</label>
+        <label><input type="checkbox" /> Fever, cellulitis, abscess, or spreading infection</label>
+        <label><input type="checkbox" /> Significant distress or mental health impact</label>
+        <label><input type="checkbox" /> Suspicion for hidradenitis suppurativa</label>
+        <label><input type="checkbox" /> Ocular rosacea symptoms</label>
+        <label><input type="checkbox" /> Failed standard treatment after 8-12 weeks</label>
+      </div>
+      <div class="note red">
+        Consider dermatology or in-person referral for severe nodulocystic acne, scarring, abscess/cellulitis, ocular symptoms, diagnostic uncertainty, or need for isotretinoin.
+      </div>
+    </section>
+
+    <section>
+      <h2>Telehealth Photo Request</h2>
+      <p>Please request clear, well-lit photos before or during the visit:</p>
+      <div class="checks">
+        <label><input type="checkbox" /> Front face</label>
+        <label><input type="checkbox" /> Right side face</label>
+        <label><input type="checkbox" /> Left side face</label>
+        <label><input type="checkbox" /> Close-up of affected area</label>
+        <label><input type="checkbox" /> Chest/back if involved</label>
+        <label><input type="checkbox" /> Photos uploaded to chart</label>
+      </div>
+    </section>
+
+    <section>
+      <h2>Provider Assessment & Plan</h2>
+      <div class="grid">
+        <div class="question">
+          <label>Working Diagnosis</label>
+          <input type="text" />
+        </div>
+        <div class="question">
+          <label>ICD-10 Code</label>
+          <input type="text" placeholder="Example: L70.0" />
+        </div>
+        <div class="question">
+          <label>Severity</label>
+          <select>
+            <option></option>
+            <option>Mild comedonal</option>
+            <option>Moderate inflammatory</option>
+            <option>Severe / nodulocystic</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="question">
+          <label>Telehealth appropriate today?</label>
+          <select>
+            <option></option>
+            <option>Yes</option>
+            <option>Needs in-person evaluation</option>
+            <option>Dermatology referral recommended</option>
+          </select>
+        </div>
+        <div class="question full">
+          <label>Differential Diagnosis</label>
+          <textarea></textarea>
+        </div>
+        <div class="question full">
+          <label>Treatment Plan</label>
+          <textarea placeholder="Example: Benzoyl peroxide wash AM, clindamycin gel AM, tretinoin 0.025% PM 2-3 nights/week then increase as tolerated."></textarea>
+        </div>
+        <div class="question full">
+          <label>Insurance / Prior Authorization Notes</label>
+          <textarea placeholder="Example: Failed OTC benzoyl peroxide and salicylic acid for 8 weeks; moderate inflammatory acne with scarring risk."></textarea>
+        </div>
+        <div class="question full">
+          <label>Patient Education Provided</label>
+          <textarea placeholder="Skin irritation precautions, sunscreen, pregnancy precautions, medication adherence, expected improvement timeline 8-12 weeks."></textarea>
+        </div>
+        <div class="question">
+          <label>Follow-up Plan</label>
+          <input type="text" placeholder="Example: 6-8 weeks with updated photos" />
+        </div>
+        <div class="question">
+          <label>Referral Needed?</label>
+          <select>
+            <option></option>
+            <option>No</option>
+            <option>Dermatology</option>
+            <option>In-person urgent evaluation</option>
+            <option>Endocrinology/PCOS evaluation</option>
+          </select>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Provider Signature</h2>
+      <div class="signature-row">
+        <div>
+          <label>Provider Name / Signature</label>
+          <div class="line"></div>
+        </div>
+        <div>
+          <label>Date</label>
+          <div class="line"></div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      TeleDNPnow Acne Intake Template. For clinical documentation support only. This form does not replace provider judgment, emergency care, or in-person evaluation when indicated.
+    </footer>
+  </div>
+
+  <script>
+    const searchInput = document.getElementById("formSearchInput");
+    const searchButton = document.getElementById("formSearchButton");
+    const clearButton = document.getElementById("formSearchClear");
+    const statusEl = document.getElementById("formSearchStatus");
+    const resultsEl = document.getElementById("formSearchResults");
+    let currentMatch = null;
+
+    const getSearchableItems = () =>
+      Array.from(
+        document.querySelectorAll(
+          "section:not(.form-search), .question, .checks label, tbody tr, .note",
+        ),
+      );
+
+    const getItemTitle = (item) => {
+      if (item.matches("section")) {
+        return item.querySelector("h2")?.textContent?.trim() || "Section";
+      }
+
+      if (item.matches(".question")) {
+        return item.querySelector("label")?.textContent?.trim() || item.textContent.trim();
+      }
+
+      if (item.matches("tr")) {
+        return item.querySelector("td")?.textContent?.trim() || item.textContent.trim();
+      }
+
+      return item.textContent.trim();
+    };
+
+    const clearSearch = () => {
+      getSearchableItems().forEach((item) => {
+        item.classList.remove("search-match", "search-current");
+      });
+      currentMatch = null;
+      resultsEl.innerHTML = "";
+      statusEl.textContent =
+        "Type a word or phrase to find matching sections, questions, or checklist items.";
+    };
+
+    const focusMatch = (item) => {
+      if (currentMatch) {
+        currentMatch.classList.remove("search-current");
+      }
+      currentMatch = item;
+      item.classList.add("search-current");
+      item.scrollIntoView({ behavior: "smooth", block: "center" });
+    };
+
+    const runSearch = () => {
+      const query = searchInput.value.trim().toLowerCase();
+      clearSearch();
+
+      if (!query) {
+        return;
+      }
+
+      const matches = getSearchableItems().filter((item) =>
+        item.textContent.toLowerCase().includes(query),
+      );
+
+      matches.forEach((item) => item.classList.add("search-match"));
+
+      if (!matches.length) {
+        statusEl.textContent = `No matches found for "${searchInput.value.trim()}".`;
+        return;
+      }
+
+      statusEl.textContent = `${matches.length} match${
+        matches.length === 1 ? "" : "es"
+      } found. Click a result to jump to it.`;
+
+      const limitedMatches = matches.slice(0, 20);
+      limitedMatches.forEach((item, index) => {
+        const resultButton = document.createElement("button");
+        resultButton.type = "button";
+        resultButton.className = "search-result";
+        resultButton.textContent = `${index + 1}. ${getItemTitle(item)}`;
+        resultButton.addEventListener("click", () => focusMatch(item));
+        resultsEl.appendChild(resultButton);
+      });
+
+      focusMatch(matches[0]);
+    };
+
+    searchButton.addEventListener("click", runSearch);
+    clearButton.addEventListener("click", () => {
+      searchInput.value = "";
+      clearSearch();
+      searchInput.focus();
+    });
+    searchInput.addEventListener("keydown", (event) => {
+      if (event.key === "Enter") {
+        event.preventDefault();
+        runSearch();
+      }
+    });
+    const copyChatGPTButton = document.getElementById("copySummaryForChatGPT");
+    const copySummaryStatus = document.getElementById("copySummaryStatus");
+
+    const getClosestSectionTitle = (element) =>
+      element.closest("section")?.querySelector("h2")?.textContent?.trim() ||
+      "Acne Intake";
+
+    const getControlLabel = (element) => {
+      if (element.type === "checkbox") {
+        return element.closest("label")?.textContent?.trim() || "Selected item";
+      }
+
+      const label = element.closest(".question")?.querySelector("label");
+      if (label) {
+        return label.textContent.trim();
+      }
+
+      const row = element.closest("tr");
+      if (row) {
+        return row.querySelector("td")?.textContent?.trim() || "Provider note";
+      }
+
+      return element.getAttribute("placeholder") || element.name || "Entry";
+    };
+
+    const collectSummaryItems = () => {
+      const controls = Array.from(
+        document.querySelectorAll("input, select, textarea"),
+      ).filter((control) => control.closest(".form-search") === null);
+
+      const items = [];
+      const groupedCheckboxes = new Map();
+
+      controls.forEach((control) => {
+        if (control.type === "button" || control.type === "submit") {
+          return;
+        }
+
+        if (control.type === "checkbox") {
+          if (!control.checked) {
+            return;
+          }
+
+          const sectionTitle = getClosestSectionTitle(control);
+          const groupLabel =
+            control.closest(".question")?.querySelector("label")?.textContent?.trim() ||
+            sectionTitle;
+          const key = `${sectionTitle}: ${groupLabel}`;
+          groupedCheckboxes.set(key, [
+            ...(groupedCheckboxes.get(key) || []),
+            getControlLabel(control),
+          ]);
+          return;
+        }
+
+        const value = control.value?.trim();
+        if (!value) {
+          return;
+        }
+
+        items.push({
+          label: `${getClosestSectionTitle(control)}: ${getControlLabel(control)}`,
+          value,
+        });
+      });
+
+      groupedCheckboxes.forEach((values, label) => {
+        items.push({ label, value: values.join(", ") });
+      });
+
+      return items;
+    };
+
+    const buildChatGPTPrompt = () => {
+      const items = collectSummaryItems();
+      return items.length
+        ? items.map((item) => `- ${item.label}: ${item.value}`).join("\n")
+        : "- No form data entered yet.";
+    };
+
+    copyChatGPTButton.addEventListener("click", async () => {
+      const prompt = buildChatGPTPrompt();
+
+      try {
+        await navigator.clipboard.writeText(prompt);
+      } catch (error) {
+        const fallback = document.createElement("textarea");
+        fallback.value = prompt;
+        document.body.appendChild(fallback);
+        fallback.select();
+        document.execCommand("copy");
+        fallback.remove();
+      }
+
+      copySummaryStatus.textContent = "Copied. Paste into ChatGPT.";
+      window.setTimeout(() => {
+        copySummaryStatus.textContent = "";
+      }, 4000);
+    });
+
+  </script>
+</body>
+</html>

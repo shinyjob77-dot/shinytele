@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Allergy Diagnostic Tool</title>
+  <style>
+    body {
+      font-family: Arial;
+      margin: 20px;
+      background: #f8f9fa;
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    .section {
+      background: white;
+      padding: 15px;
+      margin-bottom: 20px;
+      border-radius: 8px;
+    }
+
+    button {
+      padding: 10px 20px;
+      background: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .result {
+      background: #e9ecef;
+      padding: 15px;
+      border-radius: 8px;
+      margin-top: 20px;
+      font-weight: bold;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+    }
+
+    th,
+    td {
+      border: 1px solid #c7d0d8;
+      padding: 10px;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      background: #343a40;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <h1>Allergy Diagnostic Tool</h1>
+  <div class="section">
+    <h2>Symptoms</h2>
+    <label><input type="checkbox" id="itch"> Itching (skin/nose/eyes)</label><br>
+    <label><input type="checkbox" id="sneeze"> Sneezing</label><br>
+    <label><input type="checkbox" id="rhinorrhea"> Runny nose</label><br>
+    <label><input type="checkbox" id="hives"> Hives (urticaria)</label><br>
+    <label><input type="checkbox" id="swelling"> Angioedema (lip/face swelling)</label><br>
+    <label><input type="checkbox" id="wheeze"> Wheezing / shortness of breath</label><br>
+    <label><input type="checkbox" id="vomiting"> Vomiting / GI symptoms</label><br>
+    <label><input type="checkbox" id="hypotension"> Dizziness / low BP</label><br>
+    <label><input type="checkbox" id="chronic"> Symptoms &gt;6 weeks</label><br>
+    <label><input type="checkbox" id="triggerFood"> Triggered by food</label><br>
+    <label><input type="checkbox" id="triggerEnv"> Triggered by pollen/dust</label><br>
+    <label><input type="checkbox" id="triggerIrritant"> Triggered by odors/temp</label><br>
+    <br><br>
+    <button onclick="diagnose()">Get Diagnosis</button>
+    <div id="output" class="result"></div>
+  </div>
+
+  <script>
+    function resultTable(diagnosis, icd10, plan) {
+      return `
+        <table>
+          <tr>
+            <th>Diagnosis</th>
+            <th>ICD-10 Code</th>
+            <th>Clinical Guidance</th>
+          </tr>
+          <tr>
+            <td>${diagnosis}</td>
+            <td>${icd10}</td>
+            <td>${plan}</td>
+          </tr>
+        </table>
+      `;
+    }
+
+    function diagnose() {
+      let itch = document.getElementById("itch").checked;
+      let sneeze = document.getElementById("sneeze").checked;
+      let rhinorrhea = document.getElementById("rhinorrhea").checked;
+      let hives = document.getElementById("hives").checked;
+      let swelling = document.getElementById("swelling").checked;
+      let wheeze = document.getElementById("wheeze").checked;
+      let vomiting = document.getElementById("vomiting").checked;
+      let hypotension = document.getElementById("hypotension").checked;
+      let chronic = document.getElementById("chronic").checked;
+      let triggerFood = document.getElementById("triggerFood").checked;
+      let triggerEnv = document.getElementById("triggerEnv").checked;
+      let triggerIrritant = document.getElementById("triggerIrritant").checked;
+      let result = "";
+
+      /* Anaphylaxis (highest priority) */
+      if ((hives || swelling) && (wheeze || hypotension || vomiting)) {
+        result = resultTable(
+          "Possible ANAPHYLAXIS",
+          "T78.2XXA; T78.00XA if food-related; T78.3XXA if angioedema",
+          "Give epinephrine immediately and seek emergency care."
+        );
+      }
+
+      /* Food allergy */
+      else if (triggerFood && (hives || vomiting || swelling)) {
+        result = resultTable(
+          "Likely IgE-MEDIATED FOOD ALLERGY",
+          "Z91.018; T78.1XXA if adverse food reaction; T78.00XA if food anaphylaxis",
+          "Avoid trigger and consider epinephrine prescription."
+        );
+      }
+
+      /* Chronic urticaria */
+      else if (hives && chronic) {
+        result = resultTable(
+          "Likely CHRONIC URTICARIA",
+          "L50.8; L50.9 if unspecified urticaria",
+          "High-dose antihistamines; consider omalizumab if refractory."
+        );
+      }
+
+      /* Acute urticaria */
+      else if (hives) {
+        result = resultTable(
+          "Likely ACUTE URTICARIA",
+          "L50.0 allergic urticaria; L50.9 unspecified urticaria",
+          "Oral antihistamines; short steroid course if severe."
+        );
+      }
+
+      /* Allergic rhinitis */
+      else if ((itch || sneeze) && rhinorrhea && triggerEnv) {
+        result = resultTable(
+          "Likely ALLERGIC RHINITIS",
+          "J30.9; J30.1 if pollen-related; J30.2 if seasonal; J30.89 if other allergic rhinitis",
+          "Intranasal steroid + antihistamine."
+        );
+      }
+
+      /* Nonallergic rhinitis */
+      else if (rhinorrhea && triggerIrritant && !itch) {
+        result = resultTable(
+          "Likely NONALLERGIC RHINITIS",
+          "J31.0 chronic rhinitis; J30.0 vasomotor rhinitis if applicable",
+          "Ipratropium nasal spray."
+        );
+      }
+
+      /* Mixed or unclear */
+      else {
+        result = resultTable(
+          "Unclear diagnosis",
+          "Use symptom-specific ICD-10 code after clinical assessment",
+          "Consider allergy testing (IgE or skin testing) and further evaluation."
+        );
+      }
+
+      document.getElementById("output").innerHTML = result;
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Allergy Diagnostic & Treatment Tool</title>
+  <style>
+    body {
+      font-family: Arial;
+      margin: 20px;
+      background: #f8f9fa;
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    .section {
+      background: white;
+      padding: 15px;
+      margin-bottom: 20px;
+      border-radius: 8px;
+    }
+
+    button {
+      padding: 10px 20px;
+      background: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .result {
+      background: #e9ecef;
+      padding: 15px;
+      border-radius: 8px;
+      margin-top: 20px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 14px;
+      background: white;
+    }
+
+    th,
+    td {
+      border: 1px solid #c7d0d8;
+      padding: 10px;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      background: #343a40;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <h1>Allergy Diagnostic + Treatment Tool</h1>
+  <div class="section">
+    <h2>Symptoms</h2>
+    <label><input type="checkbox" id="itch"> Itching</label><br>
+    <label><input type="checkbox" id="sneeze"> Sneezing</label><br>
+    <label><input type="checkbox" id="rhinorrhea"> Runny nose</label><br>
+    <label><input type="checkbox" id="hives"> Hives</label><br>
+    <label><input type="checkbox" id="swelling"> Angioedema</label><br>
+    <label><input type="checkbox" id="wheeze"> Wheezing</label><br>
+    <label><input type="checkbox" id="vomiting"> Vomiting</label><br>
+    <label><input type="checkbox" id="hypotension"> Dizziness / low BP</label><br>
+    <label><input type="checkbox" id="chronic"> Symptoms &gt;6 weeks</label><br>
+    <label><input type="checkbox" id="triggerFood"> Food trigger</label><br>
+    <label><input type="checkbox" id="triggerEnv"> Environmental trigger</label><br>
+    <label><input type="checkbox" id="triggerIrritant"> Irritant trigger</label><br>
+    <br><br>
+    <button onclick="diagnose()">Generate Plan</button>
+    <div id="output" class="result"></div>
+  </div>
+
+  <script>
+    function formatResult(diagnosis, icd10, content) {
+      return `
+        <table>
+          <tr>
+            <th>Diagnosis</th>
+            <th>ICD-10 Code</th>
+            <th>Plan</th>
+          </tr>
+          <tr>
+            <td><b>${diagnosis}</b></td>
+            <td>${icd10}</td>
+            <td>${content}</td>
+          </tr>
+        </table>
+      `;
+    }
+
+    function diagnose() {
+      let itch = document.getElementById("itch").checked;
+      let sneeze = document.getElementById("sneeze").checked;
+      let rhinorrhea = document.getElementById("rhinorrhea").checked;
+      let hives = document.getElementById("hives").checked;
+      let swelling = document.getElementById("swelling").checked;
+      let wheeze = document.getElementById("wheeze").checked;
+      let vomiting = document.getElementById("vomiting").checked;
+      let hypotension = document.getElementById("hypotension").checked;
+      let chronic = document.getElementById("chronic").checked;
+      let triggerFood = document.getElementById("triggerFood").checked;
+      let triggerEnv = document.getElementById("triggerEnv").checked;
+      let triggerIrritant = document.getElementById("triggerIrritant").checked;
+      let result = "";
+
+      /* ANAPHYLAXIS */
+      if ((hives || swelling) && (wheeze || hypotension || vomiting)) {
+        result = formatResult(
+          "ANAPHYLAXIS (EMERGENCY)",
+          "T78.2XXA; T78.00XA if food-related; T78.3XXA if angioedema",
+          `
+            <b>Treatment:</b><br>
+            - Epinephrine 0.3-0.5 mg IM (lateral thigh) immediately<br>
+            - Repeat every 5-15 minutes if needed<br>
+            - Oxygen + IV fluids<br><br>
+            <b>Adjuncts:</b><br>
+            - Diphenhydramine 25-50 mg PO/IV<br>
+            - Albuterol for bronchospasm<br><br>
+            <b>Plan:</b><br>
+            - Call EMS immediately<br>
+            - Observe at least 4-6 hours<br>
+            - Prescribe 2 epinephrine auto-injectors
+          `
+        );
+      }
+
+      /* FOOD ALLERGY */
+      else if (triggerFood && (hives || vomiting || swelling)) {
+        result = formatResult(
+          "IgE-MEDIATED FOOD ALLERGY",
+          "Z91.018; T78.00XA if food anaphylaxis; T78.1XXA if other adverse food reaction",
+          `
+            <b>Treatment:</b><br>
+            - Epinephrine 0.3 mg IM if systemic symptoms<br>
+            - Cetirizine 10 mg daily for mild symptoms<br><br>
+            <b>Plan:</b><br>
+            - Strict allergen avoidance<br>
+            - Prescribe epinephrine auto-injector<br>
+            - Refer for allergy testing
+          `
+        );
+      }
+
+      /* CHRONIC URTICARIA */
+      else if (hives && chronic) {
+        result = formatResult(
+          "CHRONIC URTICARIA",
+          "L50.8; L50.9 if unspecified urticaria",
+          `
+            <b>Treatment:</b><br>
+            - Cetirizine 10 mg daily, increase up to 40 mg/day if clinically appropriate<br>
+            - Omalizumab 150-300 mg SC monthly if refractory<br><br>
+            <b>Labs:</b><br>
+            - CBC, ESR/CRP, TSH
+          `
+        );
+      }
+
+      /* ACUTE URTICARIA */
+      else if (hives) {
+        result = formatResult(
+          "ACUTE URTICARIA",
+          "L50.0 allergic urticaria; L50.9 unspecified urticaria",
+          `
+            <b>Treatment:</b><br>
+            - Cetirizine 10 mg daily<br>
+            - Prednisone 40-60 mg daily x 3-5 days if severe<br><br>
+            <b>Note:</b><br>
+            Evaluate for anaphylaxis triggers.
+          `
+        );
+      }
+
+      /* ALLERGIC RHINITIS */
+      else if ((itch || sneeze) && rhinorrhea && triggerEnv) {
+        result = formatResult(
+          "ALLERGIC RHINITIS",
+          "J30.9; J30.1 if pollen-related; J30.2 if seasonal; J30.89 if other allergic rhinitis",
+          `
+            <b>Treatment:</b><br>
+            - Fluticasone 1-2 sprays/nostril daily<br>
+            - Cetirizine 10 mg daily<br><br>
+            <b>Next Steps:</b><br>
+            - Consider allergen testing<br>
+            - Consider immunotherapy if persistent
+          `
+        );
+      }
+
+      /* NONALLERGIC RHINITIS */
+      else if (rhinorrhea && triggerIrritant && !itch) {
+        result = formatResult(
+          "NONALLERGIC RHINITIS",
+          "J31.0 chronic rhinitis; J30.0 vasomotor rhinitis if applicable",
+          `
+            <b>Treatment:</b><br>
+            - Ipratropium nasal spray 2 sprays/nostril BID-TID<br><br>
+            <b>Note:</b><br>
+            Avoid triggers such as odors and temperature changes.
+          `
+        );
+      }
+
+      /* DEFAULT */
+      else {
+        result = formatResult(
+          "UNCLEAR DIAGNOSIS",
+          "Use symptom-specific ICD-10 code after clinical assessment",
+          `
+            <b>Next Steps:</b><br>
+            - Consider IgE testing or skin testing<br>
+            - Review medication exposures<br>
+            - Consider referral to allergy specialist
+          `
+        );
+      }
+
+      document.getElementById("output").innerHTML = result;
+    }
+  </script>
+</body>
+</html>

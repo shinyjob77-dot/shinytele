@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TeleDNPnow Patient Intake Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f9fc;
+      margin: 0;
+      padding: 0;
+      color: #1f2937;
+    }
+
+    .container {
+      max-width: 950px;
+      margin: 30px auto;
+      background: #ffffff;
+      padding: 30px;
+      border-radius: 16px;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+    }
+
+    h1 {
+      text-align: center;
+      color: #0f6f8f;
+      margin-bottom: 5px;
+    }
+
+    .subtitle {
+      text-align: center;
+      color: #4b5563;
+      margin-bottom: 30px;
+    }
+
+    h2 {
+      color: #0f6f8f;
+      border-bottom: 2px solid #dbeafe;
+      padding-bottom: 6px;
+      margin-top: 30px;
+    }
+
+    label {
+      font-weight: bold;
+      display: block;
+      margin-top: 14px;
+    }
+
+    input, textarea, select {
+      width: 100%;
+      padding: 10px;
+      margin-top: 6px;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      font-size: 15px;
+      box-sizing: border-box;
+    }
+
+    textarea {
+      min-height: 90px;
+      resize: vertical;
+    }
+
+    .row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .visit-buttons {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+      margin-top: 15px;
+    }
+
+    .visit-buttons label {
+      background: #e0f2fe;
+      color: #075985;
+      padding: 12px;
+      border-radius: 10px;
+      text-align: center;
+      cursor: pointer;
+      border: 1px solid #bae6fd;
+      font-weight: bold;
+      margin-top: 0;
+    }
+
+    .visit-buttons input {
+      width: auto;
+      margin-right: 6px;
+    }
+
+    .checkbox-group label {
+      font-weight: normal;
+      display: block;
+      margin-top: 8px;
+    }
+
+    .checkbox-group input {
+      width: auto;
+      margin-right: 8px;
+    }
+
+    .notice {
+      background: #fff7ed;
+      border-left: 5px solid #f97316;
+      padding: 15px;
+      border-radius: 8px;
+      margin-top: 15px;
+      line-height: 1.5;
+    }
+
+    .consent-box {
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      padding: 15px;
+      border-radius: 10px;
+      margin-top: 15px;
+    }
+
+    .submit-btn {
+      background: #0f6f8f;
+      color: white;
+      border: none;
+      padding: 15px 25px;
+      border-radius: 10px;
+      font-size: 17px;
+      font-weight: bold;
+      margin-top: 30px;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    .submit-btn:hover {
+      background: #075985;
+    }
+
+    .small-text {
+      font-size: 13px;
+      color: #6b7280;
+      margin-top: 8px;
+    }
+
+    @media (max-width: 700px) {
+      .row {
+        grid-template-columns: 1fr;
+      }
+
+      .container {
+        margin: 10px;
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>TeleDNPnow Patient Intake Form</h1>
+    <p class="subtitle">Convenient, affordable self-pay telehealth care for Arizona patients.</p>
+
+    <form action="#" method="post">
+      <h2>1. Patient Information</h2>
+      <div class="row">
+        <div>
+          <label>First Name</label>
+          <input type="text" name="firstName" placeholder="Enter first name" required />
+        </div>
+        <div>
+          <label>Last Name</label>
+          <input type="text" name="lastName" placeholder="Enter last name" required />
+        </div>
+      </div>
+
+      <div class="row">
+        <div>
+          <label>Date of Birth</label>
+          <input type="date" name="dob" required />
+        </div>
+        <div>
+          <label>Gender</label>
+          <select name="gender">
+            <option value="">Select</option>
+            <option>Female</option>
+            <option>Male</option>
+            <option>Other</option>
+            <option>Prefer not to say</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="row">
+        <div>
+          <label>Phone Number</label>
+          <input type="tel" name="phone" placeholder="(000) 000-0000" required />
+        </div>
+        <div>
+          <label>Email Address</label>
+          <input type="email" name="email" placeholder="name@email.com" required />
+        </div>
+      </div>
+
+      <label>Current Address</label>
+      <input type="text" name="address" placeholder="Street, city, state, ZIP" />
+
+      <label>Are you physically located in Arizona at the time of this telehealth visit?</label>
+      <select name="azLocation" required>
+        <option value="">Select</option>
+        <option>Yes</option>
+        <option>No</option>
+      </select>
+      <p class="small-text">TeleDNPnow is currently accepting Arizona patients only.</p>
+
+      <h2>2. Select Visit Type</h2>
+      <div class="visit-buttons">
+        <label><input type="checkbox" name="visitType" value="Quick Care" /> Quick Care</label>
+        <label><input type="checkbox" name="visitType" value="Primary Care" /> Primary Care</label>
+        <label><input type="checkbox" name="visitType" value="Chronic Care" /> Chronic Care</label>
+        <label><input type="checkbox" name="visitType" value="Prescription Refill" /> Prescription Refill</label>
+        <label><input type="checkbox" name="visitType" value="Women Health" /> Women’s Health</label>
+        <label><input type="checkbox" name="visitType" value="Weight Loss" /> Weight Loss</label>
+        <label><input type="checkbox" name="visitType" value="Skin Dermatology" /> Skin & Dermatology</label>
+        <label><input type="checkbox" name="visitType" value="STD Sexual Health" /> Sexual Health / STD</label>
+        <label><input type="checkbox" name="visitType" value="Lab Review" /> Lab/Test Review</label>
+        <label><input type="checkbox" name="visitType" value="Mental Health Screening" /> Mental Health Screening</label>
+      </div>
+
+      <h2>3. Reason for Visit</h2>
+      <label>What is your main concern today?</label>
+      <textarea name="chiefComplaint" placeholder="Describe your symptoms or reason for visit"></textarea>
+
+      <label>When did symptoms start?</label>
+      <input type="text" name="symptomStart" placeholder="Example: 2 days ago, 1 week ago" />
+
+      <label>What have you tried so far?</label>
+      <textarea name="treatmentTried" placeholder="Medications, home remedies, previous visits, etc."></textarea>
+
+      <h2>4. Current Vitals / Home Monitoring</h2>
+      <div class="row">
+        <div>
+          <label>Blood Pressure</label>
+          <input type="text" name="bp" placeholder="Example: 120/80" />
+        </div>
+        <div>
+          <label>Heart Rate</label>
+          <input type="text" name="heartRate" placeholder="Example: 76" />
+        </div>
+      </div>
+
+      <div class="row">
+        <div>
+          <label>Temperature</label>
+          <input type="text" name="temperature" placeholder="Example: 98.6°F" />
+        </div>
+        <div>
+          <label>Pulse Ox / Oxygen Level</label>
+          <input type="text" name="pulseOx" placeholder="Example: 98%" />
+        </div>
+      </div>
+
+      <div class="row">
+        <div>
+          <label>Weight</label>
+          <input type="text" name="weight" placeholder="Example: 180 lb" />
+        </div>
+        <div>
+          <label>Height</label>
+          <input type="text" name="height" placeholder="Example: 5'5&quot;" />
+        </div>
+      </div>
+
+      <p class="small-text">Some patients may need to purchase a BP machine, thermometer, pulse oximeter, weight scale, measuring tape, or glucose monitor if needed for long-term telehealth care.</p>
+
+      <h2>5. Medical History</h2>
+      <label>Past Medical Conditions</label>
+      <textarea name="medicalHistory" placeholder="Example: hypertension, diabetes, asthma, thyroid disease"></textarea>
+
+      <label>Past Surgeries</label>
+      <textarea name="surgicalHistory" placeholder="List surgeries and approximate dates"></textarea>
+
+      <label>Current Medications</label>
+      <textarea name="medications" placeholder="Medication name, dose, frequency"></textarea>
+
+      <label>Medication Allergies</label>
+      <textarea name="allergies" placeholder="List medication/food allergies and reaction"></textarea>
+
+      <h2>6. Preferred Pharmacy</h2>
+      <label>Pharmacy Name</label>
+      <input type="text" name="pharmacyName" placeholder="Example: CVS, Walgreens, Walmart" />
+
+      <label>Pharmacy Address / Cross Streets</label>
+      <input type="text" name="pharmacyAddress" placeholder="Enter pharmacy location" />
+
+      <label>Pharmacy Phone Number</label>
+      <input type="tel" name="pharmacyPhone" placeholder="Pharmacy phone number" />
+
+      <h2>7. Symptom Checklist</h2>
+      <div class="checkbox-group">
+        <label><input type="checkbox" name="symptoms" value="Fever" /> Fever</label>
+        <label><input type="checkbox" name="symptoms" value="Cough" /> Cough</label>
+        <label><input type="checkbox" name="symptoms" value="Shortness of breath" /> Shortness of breath</label>
+        <label><input type="checkbox" name="symptoms" value="Chest pain" /> Chest pain</label>
+        <label><input type="checkbox" name="symptoms" value="Headache" /> Headache</label>
+        <label><input type="checkbox" name="symptoms" value="Nausea vomiting" /> Nausea / vomiting</label>
+        <label><input type="checkbox" name="symptoms" value="Rash" /> Rash / skin concern</label>
+        <label><input type="checkbox" name="symptoms" value="Urinary symptoms" /> Urinary symptoms</label>
+        <label><input type="checkbox" name="symptoms" value="Abdominal pain" /> Abdominal pain</label>
+        <label><input type="checkbox" name="symptoms" value="Dizziness" /> Dizziness</label>
+      </div>
+
+      <h2>8. Prescription Refill Request</h2>
+      <label>Medication(s) Requested for Refill</label>
+      <textarea name="refillRequest" placeholder="Medication name, dose, how often taken, last refill date"></textarea>
+      <div class="notice">
+        TeleDNPnow does not prescribe narcotic pain medications, controlled substances, chronic opioid therapy, stimulants, or certain behavioral health medications through telehealth visits.
+      </div>
+
+      <h2>9. Women’s Health / Sexual Health</h2>
+      <label>Are you currently pregnant or possibly pregnant?</label>
+      <select name="pregnancyStatus">
+        <option value="">Select</option>
+        <option>No</option>
+        <option>Yes</option>
+        <option>Unsure</option>
+        <option>Not applicable</option>
+      </select>
+
+      <label>Women’s health or sexual health concerns</label>
+      <textarea name="womenSexualHealth" placeholder="Birth control, vaginal symptoms, STD/STI concerns, urinary symptoms, menstrual concerns, etc."></textarea>
+
+      <h2>10. Weight Loss Management</h2>
+      <label>What is your weight loss goal?</label>
+      <textarea name="weightLossGoal" placeholder="Describe your goal and previous weight loss attempts"></textarea>
+
+      <label>Have you used weight loss medication before?</label>
+      <select name="weightLossMedication">
+        <option value="">Select</option>
+        <option>No</option>
+        <option>Yes</option>
+      </select>
+
+      <label>If yes, please list medication names and any side effects.</label>
+      <textarea name="weightLossMedicationDetails"></textarea>
+
+      <h2>11. Mental Health Screening</h2>
+      <label>Over the past 2 weeks, have you felt down, depressed, or hopeless?</label>
+      <select name="depressionScreen">
+        <option value="">Select</option>
+        <option>Not at all</option>
+        <option>Several days</option>
+        <option>More than half the days</option>
+        <option>Nearly every day</option>
+      </select>
+
+      <label>Over the past 2 weeks, have you felt nervous, anxious, or on edge?</label>
+      <select name="anxietyScreen">
+        <option value="">Select</option>
+        <option>Not at all</option>
+        <option>Several days</option>
+        <option>More than half the days</option>
+        <option>Nearly every day</option>
+      </select>
+
+      <label>Do you have thoughts of harming yourself or others?</label>
+      <select name="safetyQuestion">
+        <option value="">Select</option>
+        <option>No</option>
+        <option>Yes</option>
+      </select>
+      <div class="notice">
+        If you are having suicidal thoughts, thoughts of harming yourself or others, severe depression, psychosis, or a mental health crisis, call 911, go to the nearest emergency room, or call/text 988 immediately.
+      </div>
+
+      <h2>12. Uploads / Additional Information</h2>
+      <label>Upload photo, lab report, or document if applicable</label>
+      <input type="file" name="uploads" multiple />
+
+      <label>Additional information you want the provider to know</label>
+      <textarea name="additionalInfo"></textarea>
+
+      <h2>13. Emergency Contact</h2>
+      <div class="row">
+        <div>
+          <label>Emergency Contact Name</label>
+          <input type="text" name="emergencyName" />
+        </div>
+        <div>
+          <label>Emergency Contact Phone</label>
+          <input type="tel" name="emergencyPhone" />
+        </div>
+      </div>
+
+      <h2>14. Consent & Acknowledgment</h2>
+      <div class="consent-box">
+        <div class="checkbox-group">
+          <label><input type="checkbox" required /> I understand TeleDNPnow provides telehealth services for non-emergency medical concerns only.</label>
+          <label><input type="checkbox" required /> I understand some conditions may require onsite evaluation, physical exam, labs, imaging, specialist referral, urgent care, or emergency care.</label>
+          <label><input type="checkbox" required /> I understand TeleDNPnow is currently accepting Arizona patients only.</label>
+          <label><input type="checkbox" required /> I understand this is a self-pay service and payment may be collected by secure card payment before or at the time of visit.</label>
+          <label><input type="checkbox" required /> I understand TeleDNPnow uses CharmHealth EHR and secure payment processing. Sensitive personal or payment information is not stored directly on this website.</label>
+          <label><input type="checkbox" required /> I confirm the information I provided is accurate to the best of my knowledge.</label>
+        </div>
+      </div>
+
+      <label>Patient Signature / Typed Name</label>
+      <input type="text" name="signature" placeholder="Type full legal name" required />
+
+      <label>Date</label>
+      <input type="date" name="signatureDate" required />
+
+      <button type="submit" class="submit-btn">Submit Intake Form</button>
+    </form>
+  </div>
+</body>
+</html>

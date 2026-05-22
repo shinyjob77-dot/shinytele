@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>TeleDNPnow W-9 Draft</title>
+    <style>
+      :root {
+        color: #111827;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        background: #eef5f8;
+        color: #111827;
+      }
+
+      .toolbar {
+        align-items: center;
+        background: #0f4c81;
+        color: #fff;
+        display: flex;
+        gap: 12px;
+        justify-content: space-between;
+        padding: 12px 18px;
+      }
+
+      .toolbar strong {
+        font-size: 16px;
+      }
+
+      button {
+        background: #fff;
+        border: 0;
+        border-radius: 6px;
+        color: #0f4c81;
+        cursor: pointer;
+        font-weight: 700;
+        padding: 9px 14px;
+      }
+
+      .page {
+        background: #fff;
+        margin: 22px auto;
+        max-width: 8.5in;
+        min-height: 11in;
+        padding: 0.35in;
+        width: 8.5in;
+      }
+
+      .form-header {
+        border-bottom: 3px solid #111827;
+        display: grid;
+        grid-template-columns: 1.2fr 2fr 1fr;
+        gap: 10px;
+        padding-bottom: 8px;
+      }
+
+      .form-id {
+        border-right: 1px solid #111827;
+        padding-right: 8px;
+      }
+
+      .form-id .big {
+        font-size: 26px;
+        font-weight: 800;
+        line-height: 1;
+      }
+
+      .form-title {
+        text-align: center;
+      }
+
+      h1 {
+        font-size: 18px;
+        line-height: 1.1;
+        margin: 0 0 4px;
+      }
+
+      .small {
+        font-size: 10px;
+        line-height: 1.3;
+      }
+
+      .requester {
+        border-left: 1px solid #111827;
+        padding-left: 8px;
+      }
+
+      .row {
+        border-bottom: 1px solid #111827;
+        min-height: 43px;
+        padding: 5px 0;
+      }
+
+      .label {
+        font-size: 10px;
+        font-weight: 700;
+        margin-bottom: 3px;
+      }
+
+      .value {
+        min-height: 20px;
+        padding: 2px 4px;
+      }
+
+      [contenteditable="true"] {
+        outline: 1px dashed transparent;
+      }
+
+      [contenteditable="true"]:focus {
+        outline-color: #0f4c81;
+      }
+
+      .classification {
+        display: grid;
+        gap: 7px;
+        grid-template-columns: repeat(4, 1fr);
+        padding: 4px 0;
+      }
+
+      .check-item {
+        align-items: center;
+        display: flex;
+        font-size: 11px;
+        gap: 5px;
+        min-height: 20px;
+      }
+
+      input[type="checkbox"] {
+        height: 14px;
+        width: 14px;
+      }
+
+      .split {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .split > div:first-child {
+        border-right: 1px solid #111827;
+        padding-right: 12px;
+      }
+
+      .split > div:last-child {
+        padding-left: 12px;
+      }
+
+      .tin-box {
+        border: 1px solid #111827;
+        display: inline-flex;
+        font-size: 18px;
+        font-weight: 700;
+        letter-spacing: 2px;
+        margin-top: 4px;
+        padding: 8px 10px;
+      }
+
+      .part-title {
+        align-items: center;
+        background: #111827;
+        color: #fff;
+        display: flex;
+        gap: 10px;
+        font-size: 12px;
+        font-weight: 700;
+        margin-top: 8px;
+        padding: 4px 8px;
+      }
+
+      .certification {
+        font-size: 10px;
+        line-height: 1.35;
+        margin: 6px 0;
+      }
+
+      .signature-grid {
+        display: grid;
+        gap: 14px;
+        grid-template-columns: 1.7fr 0.8fr;
+        margin-top: 12px;
+      }
+
+      .signature-line {
+        border-bottom: 1px solid #111827;
+        min-height: 30px;
+      }
+
+      .note {
+        background: #f3f8fb;
+        border: 1px solid #c7dce8;
+        border-radius: 6px;
+        font-size: 11px;
+        line-height: 1.35;
+        margin-top: 12px;
+        padding: 9px;
+      }
+
+      @media print {
+        body {
+          background: #fff;
+        }
+
+        .toolbar {
+          display: none;
+        }
+
+        .page {
+          box-shadow: none;
+          margin: 0;
+          max-width: none;
+          min-height: auto;
+          padding: 0.25in;
+          width: auto;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="toolbar">
+      <strong>TeleDNPnow W-9 Draft</strong>
+      <button type="button" onclick="window.print()">Print / Save as PDF</button>
+    </div>
+
+    <main class="page">
+      <section class="form-header" aria-label="Form W-9 header">
+        <div class="form-id">
+          <div class="small">Form</div>
+          <div class="big">W-9</div>
+          <div class="small">(Rev. March 2024)</div>
+          <div class="small">Department of the Treasury<br />Internal Revenue Service</div>
+        </div>
+        <div class="form-title">
+          <h1>Request for Taxpayer Identification Number and Certification</h1>
+          <div class="small">Give form to the requester. Do not send to the IRS.</div>
+          <div class="small">Go to www.irs.gov/FormW9 for instructions and the latest information.</div>
+        </div>
+        <div class="requester small">
+          <strong>Requester:</strong><br />
+          AHCCCS / APEP<br />
+          Document name: Request For TIN And Certification
+        </div>
+      </section>
+
+      <section class="row">
+        <div class="label">
+          1. Name of entity/individual. An entry is required. For a disregarded entity, verify IRS instructions before signing.
+        </div>
+        <div class="value" contenteditable="true">TELEDNPNOW PLLC</div>
+      </section>
+
+      <section class="row">
+        <div class="label">2. Business name/disregarded entity name, if different from above.</div>
+        <div class="value" contenteditable="true">TELEDNPNOW PLLC</div>
+      </section>
+
+      <section class="row">
+        <div class="label">
+          3a. Federal tax classification. Check the appropriate box. Verify with your IRS EIN letter or tax preparer before signing.
+        </div>
+        <div class="classification">
+          <label class="check-item"><input type="checkbox" checked /> Individual/sole proprietor or single-member LLC</label>
+          <label class="check-item"><input type="checkbox" /> C corporation</label>
+          <label class="check-item"><input type="checkbox" /> S corporation</label>
+          <label class="check-item"><input type="checkbox" /> Partnership</label>
+          <label class="check-item"><input type="checkbox" /> Trust/estate</label>
+          <label class="check-item"><input type="checkbox" /> LLC; tax class:
+            <span contenteditable="true" style="border-bottom: 1px solid #111827; min-width: 40px; padding: 1px 10px;"></span>
+          </label>
+          <label class="check-item"><input type="checkbox" /> Other:
+            <span contenteditable="true" style="border-bottom: 1px solid #111827; min-width: 90px; padding: 1px 10px;"></span>
+          </label>
+        </div>
+      </section>
+
+      <section class="row split">
+        <div>
+          <div class="label">4. Exemptions, if any.</div>
+          <div class="value" contenteditable="true">Not applicable</div>
+        </div>
+        <div>
+          <div class="label">Requester name and address, optional.</div>
+          <div class="value" contenteditable="true">AHCCCS Provider Enrollment / APEP</div>
+        </div>
+      </section>
+
+      <section class="row">
+        <div class="label">5. Address, number, street, and apt. or suite no.</div>
+        <div class="value" contenteditable="true">2923 N Hawthorn Dr</div>
+      </section>
+
+      <section class="row">
+        <div class="label">6. City, state, and ZIP code</div>
+        <div class="value" contenteditable="true">Florence, AZ 85132-6872</div>
+      </section>
+
+      <section class="row">
+        <div class="label">7. List account number(s) here, optional.</div>
+        <div class="value" contenteditable="true">NPI 1073440673</div>
+      </section>
+
+      <section class="part-title">
+        <span>Part I</span>
+        <span>Taxpayer Identification Number (TIN)</span>
+      </section>
+
+      <section class="row split">
+        <div>
+          <div class="label">Social security number</div>
+          <div class="small">Leave blank when using the company EIN.</div>
+          <div class="tin-box">&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;&nbsp;</div>
+        </div>
+        <div>
+          <div class="label">Employer identification number</div>
+          <div class="tin-box" contenteditable="true">42-2063615</div>
+        </div>
+      </section>
+
+      <section class="part-title">
+        <span>Part II</span>
+        <span>Certification</span>
+      </section>
+
+      <div class="certification">
+        Under penalties of perjury, I certify that: (1) The number shown on this form is my correct taxpayer identification number;
+        (2) I am not subject to backup withholding because I am exempt from backup withholding, or I have not been notified by the IRS
+        that I am subject to backup withholding, or the IRS has notified me that I am no longer subject to backup withholding; (3) I am a
+        U.S. citizen or other U.S. person; and (4) the FATCA code entered on this form, if any, is correct.
+      </div>
+
+      <section class="signature-grid">
+        <div>
+          <div class="label">Signature of U.S. person</div>
+          <div class="signature-line"></div>
+        </div>
+        <div>
+          <div class="label">Date</div>
+          <div class="signature-line"></div>
+        </div>
+      </section>
+
+      <div class="note">
+        This is a prepared draft for TELEDNPNOW PLLC based on information provided during enrollment. Before uploading to AHCCCS/APEP,
+        review the tax classification, print or save as PDF, then sign and date it. AHCCCS states the Request For TIN And Certification
+        must be signed/executed within the last year.
+      </div>
+    </main>
+  </body>
+</html>

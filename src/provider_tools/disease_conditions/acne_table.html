@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Acne Clinical Guide | TeleDNPnow</title>
+  <script>
+    if (window.localStorage.getItem("telednpnowProviderAuthorized") !== "yes") {
+      window.location.replace("/#provider-login-required");
+    }
+  </script>
+  <style>
+    :root {
+      --blue: #0b6fa4;
+      --light-blue: #eaf7fc;
+      --soft-blue: #d8eef7;
+      --dark: #1f2933;
+      --gray: #5f6b7a;
+      --border: #cfd9e2;
+      --green: #e7f7ec;
+      --yellow: #fff8df;
+      --red: #fdecec;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f7fbfd;
+      color: var(--dark);
+      line-height: 1.45;
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 28px;
+    }
+
+    header {
+      background: linear-gradient(135deg, #ffffff, var(--light-blue));
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 28px;
+      margin-bottom: 24px;
+      box-shadow: 0 8px 22px rgba(11, 111, 164, 0.08);
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      color: var(--blue);
+      font-size: 30px;
+    }
+
+    h2 {
+      color: var(--blue);
+      margin-top: 30px;
+      border-left: 5px solid var(--blue);
+      padding-left: 10px;
+    }
+
+    .subtitle {
+      color: var(--gray);
+      font-size: 16px;
+      margin: 0;
+    }
+
+    .notice {
+      background: #fff;
+      border-left: 5px solid var(--blue);
+      padding: 14px 16px;
+      border-radius: 10px;
+      margin: 18px 0;
+      color: var(--gray);
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.05);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 1350px;
+      font-size: 13px;
+    }
+
+    th {
+      background: var(--blue);
+      color: white;
+      text-align: left;
+      padding: 12px;
+      vertical-align: top;
+      position: sticky;
+      top: 0;
+      z-index: 1;
+    }
+
+    td {
+      border-bottom: 1px solid var(--border);
+      border-right: 1px solid var(--border);
+      padding: 12px;
+      vertical-align: top;
+    }
+
+    tr:nth-child(even) td {
+      background: #fbfdfe;
+    }
+
+    .condition {
+      font-weight: bold;
+      color: var(--blue);
+      font-size: 14px;
+    }
+
+    .icd {
+      background: var(--light-blue);
+      border-radius: 8px;
+      padding: 7px;
+      display: inline-block;
+      font-weight: bold;
+      color: #074e75;
+      margin-top: 6px;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 4px 8px;
+      border-radius: 999px;
+      font-weight: bold;
+      font-size: 12px;
+      margin: 2px 0;
+    }
+
+    .good { background: var(--green); color: #166534; }
+    .caution { background: var(--yellow); color: #92400e; }
+    .refer { background: var(--red); color: #991b1b; }
+
+    ul {
+      margin: 6px 0 0 18px;
+      padding: 0;
+    }
+
+    .section-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 18px;
+      margin-top: 20px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.04);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+    }
+
+    .small {
+      font-size: 12px;
+      color: var(--gray);
+    }
+
+    .print-button {
+      margin-top: 16px;
+      background: var(--blue);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      padding: 10px 16px;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    .close-button {
+      margin: 16px 0 0 10px;
+      background: #ffffff;
+      color: var(--blue);
+      border: 1px solid var(--blue);
+      border-radius: 10px;
+      padding: 10px 16px;
+      font-size: 14px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .guide-search {
+      position: sticky;
+      top: 0;
+      z-index: 5;
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 16px;
+      margin: 18px 0;
+      box-shadow: 0 8px 20px rgba(11, 111, 164, 0.1);
+    }
+
+    .guide-search label {
+      display: block;
+      color: var(--blue);
+      font-size: 16px;
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+
+    .search-row {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto auto;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .guide-search input {
+      width: 100%;
+      min-height: 44px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 0 12px;
+      font-size: 14px;
+    }
+
+    .guide-search button {
+      min-height: 44px;
+      border: 1px solid var(--blue);
+      border-radius: 10px;
+      padding: 0 14px;
+      color: #ffffff;
+      background: var(--blue);
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .guide-search button.secondary {
+      color: var(--blue);
+      background: #ffffff;
+    }
+
+    .search-status {
+      color: var(--gray);
+      font-size: 13px;
+      margin-top: 8px;
+    }
+
+    .search-results {
+      display: grid;
+      gap: 8px;
+      max-height: 220px;
+      overflow: auto;
+      margin-top: 10px;
+    }
+
+    .search-result {
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 10px;
+      color: #074e75;
+      background: var(--light-blue);
+      text-align: left;
+    }
+
+    .search-match {
+      outline: 3px solid rgba(11, 111, 164, 0.28);
+      background: #fffdf0 !important;
+      scroll-margin-top: 110px;
+    }
+
+    .search-current {
+      outline-color: #b42318;
+    }
+
+    @media print {
+      body { background: white; }
+      .container { max-width: none; padding: 10px; }
+      header, .section-card, .table-wrap { box-shadow: none; }
+      .print-button, .close-button, .guide-search { display: none; }
+      th { position: static; }
+      table { font-size: 10px; min-width: 1200px; }
+      h1 { font-size: 22px; }
+    }
+
+    @media (max-width: 760px) {
+      .search-row {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>TeleDNPnow Acne Clinical Guide</h1>
+      <p class="subtitle">Provider-focused reference for acne differential diagnosis, ICD-10 codes, treatment choices, insurance/prior authorization considerations, medication cost estimates, telehealth suitability, and referral triggers.</p>
+      <button class="print-button" onclick="window.print()">Print / Save as PDF</button>
+      <button class="close-button" onclick="window.close(); if (!window.closed) { history.back(); }">Close Page</button>
+    </header>
+
+    <div class="notice">
+      <strong>Clinical note:</strong> This guide is for provider reference and educational support only. Treatment should be individualized based on history, exam/photos, allergies, pregnancy status, contraindications, local practice standards, and current payer formulary requirements. Approximate costs vary by pharmacy, coupon, insurance plan, and region.
+    </div>
+
+    <section class="guide-search" aria-label="Search acne clinical guide">
+      <label for="guideSearchInput">Search this guide</label>
+      <div class="search-row">
+        <input
+          id="guideSearchInput"
+          type="search"
+          placeholder="Search conditions, ICD codes, medications, PA notes, costs, or referral triggers"
+          autocomplete="off"
+        />
+        <button type="button" id="guideSearchButton">Search</button>
+        <button type="button" class="secondary" id="guideSearchClear">Clear</button>
+      </div>
+      <div class="search-status" id="guideSearchStatus">
+        Type a word or phrase to find matching rows, sections, medications, or ICD codes.
+      </div>
+      <div class="search-results" id="guideSearchResults"></div>
+    </section>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Condition / Differential Diagnosis</th>
+            <th>ICD-10 Code(s)</th>
+            <th>Key Clinical Clues</th>
+            <th>Differentiating Features</th>
+            <th>First-Line Treatment</th>
+            <th>Medication Options & Typical Dose</th>
+            <th>Insurance Approval / Prior Authorization Patterns</th>
+            <th>Approximate Medication Cost</th>
+            <th>Telehealth Suitability</th>
+            <th>Referral / Red Flags</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><div class="condition">Mild Comedonal Acne Vulgaris</div><div class="icd">ICD: L70.0, L70.8</div></td>
+            <td><strong>L70.0</strong> Acne vulgaris<br><strong>L70.8</strong> Other acne</td>
+            <td>Open and closed comedones, few inflammatory papules, often forehead/T-zone.</td>
+            <td>Blackheads/whiteheads; minimal redness; no painful nodules.</td>
+            <td>Topical retinoid +/- benzoyl peroxide; gentle cleanser and non-comedogenic moisturizer.</td>
+            <td>
+              <ul>
+                <li>Adapalene 0.1% gel nightly</li>
+                <li>Tretinoin 0.025-0.05% cream nightly</li>
+                <li>Benzoyl peroxide 2.5-5% daily</li>
+              </ul>
+            </td>
+            <td>Generics usually preferred. Brand retinoids may need failure of OTC adapalene or generic tretinoin.</td>
+            <td>Adapalene OTC about $12-25/month; tretinoin generic about $20-80/month cash.</td>
+            <td><span class="badge good">Excellent</span><br>Works well with clear photos.</td>
+            <td>No improvement after 8-12 weeks; worsening irritation; uncertain diagnosis.</td>
+          </tr>
+
+          <tr>
+            <td><div class="condition">Moderate Inflammatory Acne</div><div class="icd">ICD: L70.0</div></td>
+            <td><strong>L70.0</strong> Acne vulgaris</td>
+            <td>Papules, pustules, inflammatory lesions on face, chest, or back.</td>
+            <td>Red inflamed lesions; may have comedones plus pustules.</td>
+            <td>Topical retinoid + benzoyl peroxide +/- topical antibiotic.</td>
+            <td>
+              <ul>
+                <li>Benzoyl peroxide wash AM</li>
+                <li>Clindamycin 1% gel/solution AM</li>
+                <li>Tretinoin or adapalene PM</li>
+              </ul>
+            </td>
+            <td>Combination products may be denied unless separate generics tried first. Document duration and OTC failures.</td>
+            <td>Clindamycin topical about $15-40/month; combination products about $50-200 cash.</td>
+            <td><span class="badge good">Excellent</span></td>
+            <td>Scarring, painful lesions, rapid worsening, treatment failure.</td>
+          </tr>
+
+          <tr>
+            <td><div class="condition">Moderate-Severe Inflammatory Acne</div><div class="icd">ICD: L70.0</div></td>
+            <td><strong>L70.0</strong> Acne vulgaris</td>
+            <td>Widespread papules/pustules, back/chest involvement, higher scarring risk.</td>
+            <td>More extensive inflammation; may be painful and persistent.</td>
+            <td>Add short course oral antibiotic while continuing topical therapy.</td>
+            <td>
+              <ul>
+                <li>Doxycycline 100 mg daily to BID x 8-12 weeks</li>
+                <li>Minocycline 50-100 mg BID</li>
+                <li>Continue benzoyl peroxide to reduce resistance</li>
+              </ul>
+            </td>
+            <td>Oral doxycycline/minocycline generally covered. Document moderate/severe inflammatory acne and prior topical therapy.</td>
+            <td>Doxycycline often about $10-40/month generic cash.</td>
+            <td><span class="badge good">Good</span><br>Requires counseling on photosensitivity and pregnancy avoidance.</td>
+            <td>Scarring, severe pain, suspected infection, no response after 12 weeks.</td>
+          </tr>
+
+          <tr>
+            <td><div class="condition">Hormonal Acne / Female Pattern Acne</div><div class="icd">ICD: L70.0; E28.2 if PCOS</div></td>
+            <td><strong>L70.0</strong> Acne vulgaris<br><strong>E28.2</strong> PCOS, if associated</td>
+            <td>Jawline/chin acne, adult female, cyclic flares around menses.</td>
+            <td>May be associated with irregular periods, hirsutism, or PCOS history.</td>
+            <td>Topical acne therapy plus hormonal therapy when appropriate.</td>
+            <td>
+              <ul>
+                <li>Spironolactone 25-100 mg daily</li>
+                <li>Combined oral contraceptive if appropriate</li>
+                <li>Topical retinoid + benzoyl peroxide</li>
+              </ul>
+            </td>
+            <td>Spironolactone usually covered; document hormonal distribution and failed topical therapy. OCP coverage varies.</td>
+            <td>Spironolactone about $5-20/month generic cash.</td>
+            <td><span class="badge good">Good</span><br>Screen pregnancy status and contraindications.</td>
+            <td>Irregular menses, hirsutism, infertility concerns, rapid virilization - consider endocrine/gynecology referral.</td>
+          </tr>
+
+          <tr>
+            <td><div class="condition">Nodulocystic / Severe Acne</div><div class="icd">ICD: L70.0, L70.8</div></td>
+            <td><strong>L70.0</strong> Acne vulgaris<br><strong>L70.8</strong> Other acne</td>
+            <td>Deep painful nodules/cysts, scarring, significant psychosocial distress.</td>
+            <td>Deep lesions rather than superficial pustules; high scar risk.</td>
+            <td>Early dermatology referral; consider isotretinoin evaluation.</td>
+            <td>
+              <ul>
+                <li>Isotretinoin 0.5-1 mg/kg/day under appropriate monitoring</li>
+                <li>Interim doxycycline/topicals may be used if appropriate</li>
+              </ul>
+            </td>
+            <td>Often requires PA, failed topical + oral therapy documentation, pregnancy prevention requirements, labs, and specialist involvement.</td>
+            <td>Generic isotretinoin often about $150-400/month cash; plan-specific copays vary.</td>
+            <td><span class="badge caution">Limited</span><br>Monitoring and iPLEDGE-related requirements apply.</td>
+            <td><span class="badge refer">Refer</span><br>Severe scarring, cysts, depression related to acne, isotretinoin candidate.</td>
+          </tr>
+
+          <tr>
+            <td><div class="condition">Rosacea</div><div class="icd">ICD: L71.9</div></td>
+            <td><strong>L71.9</strong> Rosacea, unspecified</td>
+            <td>Central facial redness, flushing, papules/pustules on cheeks/nose.</td>
+            <td>No comedones; triggers include heat, alcohol, spicy foods, sun.</td>
+            <td>Trigger avoidance, gentle skin care, topical anti-inflammatory therapy.</td>
+            <td>
+              <ul>
+                <li>Metronidazole gel/cream</li>
+                <li>Azelaic acid 15-20%</li>
+                <li>Doxycycline for inflammatory papules if needed</li>
+              </ul>
+            </td>
+            <td>Metronidazole usually covered. Brand topical ivermectin/azelaic acid may require PA or step therapy.</td>
+            <td>Metronidazole about $20-100/month; azelaic acid varies widely.</td>
+            <td><span class="badge good">Good</span></td>
+            <td>Eye pain, vision changes, severe ocular symptoms - urgent eye/derm evaluation.</td>
+          </tr>
+
+          <tr>
+            <td><div class="condition">Bacterial Folliculitis</div><div class="icd">ICD: L73.9, L73.8</div></td>
+            <td><strong>L73.9</strong> Follicular disorder, unspecified<br><strong>L73.8</strong> Other follicular disorders</td>
+            <td>Follicle-centered pustules, often after shaving, sweating, occlusion.</td>
+            <td>Lesions centered on hair follicles; may be tender.</td>
+            <td>Antibacterial wash, topical antibiotic; oral antibiotic if extensive.</td>
+            <td>
+              <ul>
+                <li>Benzoyl peroxide wash</li>
+                <li>Topical clindamycin</li>
+                <li>Oral cephalexin/doxycycline depending on presentation</li>
+              </ul>
+            </td>
+            <td>Most generics covered. Culture may help recurrent or resistant cases.</td>
+            <td>Usually low cost; common generics often $10-40.</td>
+            <td><span class="badge good">Good</span></td>
+            <td>Fever, spreading redness, abscess, cellulitis, immunocompromised patient.</td>
+          </tr>
+
+          <tr>
+            <td><div class="condition">Malassezia Folliculitis "Fungal Acne"</div><div class="icd">ICD: B36.0, L73.9</div></td>
+            <td><strong>B36.0</strong> Other superficial mycoses<br><strong>L73.9</strong> Folliculitis</td>
+            <td>Monomorphic itchy papules/pustules, often chest/back/forehead.</td>
+            <td>Often itchy; worsens with sweat/heat; lacks typical comedones.</td>
+            <td>Topical antifungal therapy and reduce occlusive products.</td>
+            <td>
+              <ul>
+                <li>Ketoconazole 2% shampoo as wash</li>
+                <li>Ketoconazole cream</li>
+                <li>Oral fluconazole only when clinically appropriate</li>
+              </ul>
+            </td>
+            <td>Ketoconazole usually covered; oral antifungals require appropriate diagnosis and interaction review.</td>
+            <td>Ketoconazole often $10-30 cash.</td>
+            <td><span class="badge good">Good</span></td>
+            <td>Persistent/recurrent rash, unclear diagnosis, widespread disease.</td>
+          </tr>
+
+          <tr>
+            <td><div class="condition">Perioral Dermatitis</div><div class="icd">ICD: L71.0</div></td>
+            <td><strong>L71.0</strong> Perioral dermatitis</td>
+            <td>Papules around mouth, nose, or eyes; burning/tightness possible.</td>
+            <td>Spares vermillion border; often worsened by topical steroids.</td>
+            <td>Stop topical steroids; gentle skin care; topical or oral therapy.</td>
+            <td>
+              <ul>
+                <li>Metronidazole topical</li>
+                <li>Erythromycin topical</li>
+                <li>Doxycycline for moderate/severe cases</li>
+              </ul>
+            </td>
+            <td>Usually covered with generic medications.</td>
+            <td>Low to moderate cost depending on medication.</td>
+            <td><span class="badge good">Good</span></td>
+            <td>Eye involvement, severe spread, steroid withdrawal flare needing specialist care.</td>
+          </tr>
+
+          <tr>
+            <td><div class="condition">Steroid Acne</div><div class="icd">ICD: L70.8</div></td>
+            <td><strong>L70.8</strong> Other acne</td>
+            <td>Sudden uniform papules after systemic or topical steroid exposure.</td>
+            <td>Monomorphic eruption; temporal relationship to steroid use.</td>
+            <td>Discontinue/reduce steroid if medically appropriate; standard acne treatment.</td>
+            <td>
+              <ul>
+                <li>Benzoyl peroxide wash</li>
+                <li>Topical retinoid</li>
+                <li>Consider oral antibiotic if inflammatory</li>
+              </ul>
+            </td>
+            <td>No special PA; document medication trigger.</td>
+            <td>Variable, usually low with generics.</td>
+            <td><span class="badge good">Good</span></td>
+            <td>Do not abruptly stop required systemic steroids without managing provider involvement.</td>
+          </tr>
+
+          <tr>
+            <td><div class="condition">Medication-Induced Acneiform Eruption</div><div class="icd">ICD: L27.0, L70.8</div></td>
+            <td><strong>L27.0</strong> Generalized skin eruption due to drugs<br><strong>L70.8</strong> Other acne</td>
+            <td>New acneiform eruption after lithium, testosterone, steroids, anticonvulsants, EGFR inhibitors, etc.</td>
+            <td>Timing after medication start; often monomorphic.</td>
+            <td>Review medication list; coordinate with prescriber; treat symptoms.</td>
+            <td>
+              <ul>
+                <li>Topical benzoyl peroxide/retinoid</li>
+                <li>Doxycycline if inflammatory and appropriate</li>
+                <li>Avoid stopping essential medications without coordination</li>
+              </ul>
+            </td>
+            <td>Coverage depends on selected acne medication; document suspected drug trigger.</td>
+            <td>Variable.</td>
+            <td><span class="badge good">Good</span></td>
+            <td>Severe drug rash, mucosal involvement, systemic symptoms - urgent evaluation.</td>
+          </tr>
+
+          <tr>
+            <td><div class="condition">Hidradenitis Suppurativa</div><div class="icd">ICD: L73.2</div></td>
+            <td><strong>L73.2</strong> Hidradenitis suppurativa</td>
+            <td>Recurrent painful nodules/abscesses in axilla, groin, under breasts, buttocks.</td>
+            <td>Sinus tracts, scarring, recurrent drainage; not typical facial acne.</td>
+            <td>Topical clindamycin for mild; oral antibiotics; lifestyle counseling; dermatology for moderate/severe.</td>
+            <td>
+              <ul>
+                <li>Clindamycin 1% topical BID</li>
+                <li>Doxycycline 100 mg daily/BID</li>
+                <li>Biologic therapy under specialist care when severe</li>
+              </ul>
+            </td>
+            <td>Biologics usually require PA, severity staging, failed antibiotics, specialist documentation.</td>
+            <td>Topicals/oral antibiotics low to moderate; biologics very expensive without coverage.</td>
+            <td><span class="badge caution">Partial</span><br>Photos helpful, but in-person exam often needed.</td>
+            <td><span class="badge refer">Refer</span><br>Abscess, sinus tracts, recurrent drainage, severe pain, systemic symptoms.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <section class="section-card">
+      <h2>Acne Visit Documentation Checklist</h2>
+      <div class="grid">
+        <div>
+          <strong>History</strong>
+          <ul>
+            <li>Onset, duration, progression</li>
+            <li>Location: face, chest, back, shoulders</li>
+            <li>Lesion type: comedones, papules, pustules, nodules, cysts</li>
+            <li>Pain, itching, scarring, post-inflammatory hyperpigmentation</li>
+            <li>Triggers: menses, stress, sweating, mask/helmet, cosmetics, hair oils</li>
+          </ul>
+        </div>
+        <div>
+          <strong>Prior Treatment / Insurance Support</strong>
+          <ul>
+            <li>OTC benzoyl peroxide, salicylic acid, adapalene</li>
+            <li>Prescription failures and duration used</li>
+            <li>Document failed OTC treatment for 8+ weeks when accurate</li>
+            <li>Severity: mild, moderate, severe</li>
+            <li>Presence of scarring or nodules</li>
+          </ul>
+        </div>
+        <div>
+          <strong>Safety Screening</strong>
+          <ul>
+            <li>Pregnancy or trying to conceive</li>
+            <li>Breastfeeding</li>
+            <li>Medication allergies</li>
+            <li>Kidney/liver disease when relevant</li>
+            <li>Current medications and interaction risk</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-card">
+      <h2>Telehealth Photo Requirements</h2>
+      <ul>
+        <li>Front face photo in good lighting.</li>
+        <li>Right and left side facial photos.</li>
+        <li>Close-up of affected area.</li>
+        <li>Chest/back photos if involved.</li>
+        <li>Ask patient to avoid heavy makeup/filtering for diagnostic photos.</li>
+      </ul>
+    </section>
+
+    <section class="section-card">
+      <h2>Common Follow-Up Plan</h2>
+      <p>For uncomplicated mild to moderate acne, follow up in <strong>6-8 weeks</strong> with updated photos. Counsel that retinoids and acne regimens often require <strong>8-12 weeks</strong> for visible improvement. Review irritation, dryness, pregnancy status, adherence, and any adverse effects.</p>
+      <p class="small">Disclaimer: This template does not replace clinical judgment, payer-specific policy review, or state/federal prescribing requirements.</p>
+    </section>
+  </div>
+  <script>
+    const searchInput = document.getElementById("guideSearchInput");
+    const searchButton = document.getElementById("guideSearchButton");
+    const clearButton = document.getElementById("guideSearchClear");
+    const statusEl = document.getElementById("guideSearchStatus");
+    const resultsEl = document.getElementById("guideSearchResults");
+    let currentMatch = null;
+
+    const getSearchableItems = () =>
+      Array.from(
+        document.querySelectorAll(
+          "tbody tr, .section-card, .notice",
+        ),
+      );
+
+    const getItemTitle = (item) => {
+      if (item.matches("tr")) {
+        return (
+          item.querySelector(".condition")?.textContent?.trim() ||
+          item.querySelector("td")?.textContent?.trim() ||
+          "Table row"
+        );
+      }
+
+      return item.querySelector("h2")?.textContent?.trim() || item.textContent.trim();
+    };
+
+    const clearSearch = () => {
+      getSearchableItems().forEach((item) => {
+        item.classList.remove("search-match", "search-current");
+      });
+      currentMatch = null;
+      resultsEl.innerHTML = "";
+      statusEl.textContent =
+        "Type a word or phrase to find matching rows, sections, medications, or ICD codes.";
+    };
+
+    const focusMatch = (item) => {
+      if (currentMatch) {
+        currentMatch.classList.remove("search-current");
+      }
+      currentMatch = item;
+      item.classList.add("search-current");
+      item.scrollIntoView({ behavior: "smooth", block: "center" });
+    };
+
+    const runSearch = () => {
+      const query = searchInput.value.trim().toLowerCase();
+      clearSearch();
+
+      if (!query) {
+        return;
+      }
+
+      const matches = getSearchableItems().filter((item) =>
+        item.textContent.toLowerCase().includes(query),
+      );
+
+      matches.forEach((item) => item.classList.add("search-match"));
+
+      if (!matches.length) {
+        statusEl.textContent = `No matches found for "${searchInput.value.trim()}".`;
+        return;
+      }
+
+      statusEl.textContent = `${matches.length} match${
+        matches.length === 1 ? "" : "es"
+      } found. Click a result to jump to it.`;
+
+      matches.slice(0, 20).forEach((item, index) => {
+        const resultButton = document.createElement("button");
+        resultButton.type = "button";
+        resultButton.className = "search-result";
+        resultButton.textContent = `${index + 1}. ${getItemTitle(item)}`;
+        resultButton.addEventListener("click", () => focusMatch(item));
+        resultsEl.appendChild(resultButton);
+      });
+
+      focusMatch(matches[0]);
+    };
+
+    searchButton.addEventListener("click", runSearch);
+    clearButton.addEventListener("click", () => {
+      searchInput.value = "";
+      clearSearch();
+      searchInput.focus();
+    });
+    searchInput.addEventListener("keydown", (event) => {
+      if (event.key === "Enter") {
+        event.preventDefault();
+        runSearch();
+      }
+    });
+  </script>
+</body>
+</html>

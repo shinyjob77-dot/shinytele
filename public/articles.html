@@ -1,0 +1,721 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Health Articles | TeleDNPnow</title>
+    <meta
+      name="description"
+      content="Browse TeleDNPnow patient education articles about telehealth, sick visits, blood pressure, diabetes, medication refills, UTI symptoms, skin concerns, lab results, migraines, and weight loss."
+    />
+    <meta
+      name="keywords"
+      content="TeleDNPnow articles, telehealth education, Arizona telehealth articles, urgent care vs telehealth, UTI telehealth, blood pressure home monitoring, diabetes telehealth, medication refills, weight loss GLP-1"
+    />
+    <meta name="author" content="TeleDNPnow" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://telednpnow.org/articles.html" />
+    <meta name="theme-color" content="#26736c" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="TeleDNPnow" />
+    <meta property="og:title" content="Health Articles | TeleDNPnow" />
+    <meta
+      property="og:description"
+      content="Patient-friendly health articles from TeleDNPnow about common telehealth concerns and when to seek in-person care."
+    />
+    <meta property="og:url" content="https://telednpnow.org/articles.html" />
+    <meta
+      property="og:image"
+      content="https://telednpnow.org/telemedicine-hero.png"
+    />
+    <meta property="og:locale" content="en_US" />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "CollectionPage",
+        "@id": "https://telednpnow.org/articles.html#webpage",
+        "url": "https://telednpnow.org/articles.html",
+        "name": "Health Articles | TeleDNPnow",
+        "description": "A TeleDNPnow article directory linking to patient education pages about telehealth, common symptoms, chronic care, medication refills, and when to seek urgent or emergency care.",
+        "publisher": {
+          "@type": "MedicalClinic",
+          "name": "TeleDNPnow",
+          "url": "https://telednpnow.org/",
+          "telephone": "+1-480-626-5571",
+          "email": "care@telednpnow.org"
+        }
+      }
+    </script>
+
+    <style>
+      :root {
+        --ink: #10201f;
+        --muted: #53615f;
+        --green: #26736c;
+        --soft: #eef7f5;
+        --line: #c8d8df;
+        --white: #ffffff;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        color: var(--ink);
+        background: #f7faf8;
+        font-family: Arial, Helvetica, sans-serif;
+        line-height: 1.6;
+      }
+
+      .page {
+        width: min(1120px, calc(100% - 32px));
+        margin: 0 auto;
+        padding: 28px 0 56px;
+      }
+
+      .topbar,
+      .hero,
+      .article-link,
+      .notice {
+        border: 1px solid rgba(16, 32, 31, 0.1);
+        border-radius: 8px;
+        background: var(--white);
+        box-shadow: 0 16px 42px rgba(24, 45, 43, 0.07);
+      }
+
+      .topbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        padding: 14px 18px;
+        margin-bottom: 22px;
+      }
+
+      .brand {
+        color: var(--ink);
+        font-weight: 900;
+        text-decoration: none;
+      }
+
+      .button,
+      .article-link a {
+        display: inline-flex;
+        align-items: center;
+        min-height: 44px;
+        border: 1px solid #1f5f59;
+        border-radius: 8px;
+        padding: 0 16px;
+        color: var(--white);
+        background: var(--green);
+        font-weight: 800;
+        text-decoration: none;
+      }
+
+      .hero {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(280px, 0.72fr);
+        gap: 24px;
+        align-items: center;
+        padding: clamp(22px, 4vw, 42px);
+        margin-bottom: 24px;
+      }
+
+      .eyebrow {
+        width: fit-content;
+        border: 1px solid rgba(38, 115, 108, 0.18);
+        border-radius: 8px;
+        padding: 8px 12px;
+        color: var(--green);
+        background: var(--soft);
+        font-size: 0.85rem;
+        font-weight: 900;
+        text-transform: uppercase;
+      }
+
+      h1,
+      h2,
+      p {
+        margin: 0;
+      }
+
+      h1 {
+        margin-top: 14px;
+        max-width: 760px;
+        font-size: clamp(2.35rem, 5.8vw, 4.25rem);
+        line-height: 1;
+      }
+
+      h2 {
+        font-size: clamp(1.25rem, 2.8vw, 1.65rem);
+        line-height: 1.2;
+      }
+
+      p {
+        color: var(--muted);
+        font-size: 1.02rem;
+      }
+
+      .intro {
+        margin-top: 16px;
+        max-width: 720px;
+      }
+
+      .hero img {
+        width: 100%;
+        max-height: 390px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        object-fit: cover;
+        background: var(--soft);
+      }
+
+      .articles-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
+      }
+
+      .article-link {
+        display: grid;
+        gap: 14px;
+        align-content: start;
+        padding: 22px;
+      }
+
+      .article-link a {
+        width: fit-content;
+      }
+
+      .notice {
+        margin-top: 24px;
+        border-left: 5px solid var(--green);
+        padding: 20px;
+        background: var(--soft);
+      }
+
+      @media (max-width: 780px) {
+        .topbar,
+        .hero {
+          align-items: flex-start;
+          grid-template-columns: 1fr;
+        }
+
+        .topbar {
+          flex-direction: column;
+        }
+
+        .articles-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="page">
+      <header class="topbar">
+        <a class="brand" href="/">TeleDNPnow</a>
+        <a class="button" href="/">Back to Home</a>
+      </header>
+
+      <section class="hero">
+        <div>
+          <div class="eyebrow">Patient Education</div>
+          <h1>Health Articles</h1>
+          <p class="intro">
+            Browse TeleDNPnow health education articles about telehealth care,
+            common symptoms, chronic conditions, medication refills, lab
+            results, and when in-person care may be needed.
+          </p>
+        </div>
+        <img
+          src="/telemedicine-hero.png"
+          alt="TeleDNPnow telehealth visit with Dr. Shiny Job"
+        />
+      </section>
+
+      <section class="articles-grid" aria-label="TeleDNPnow health articles">
+        <article class="article-link">
+          <h2>When to Go to Urgent Care vs Telehealth</h2>
+          <p>
+            Learn when telehealth may be helpful, when urgent care is more
+            appropriate, and when emergency care is needed.
+          </p>
+          <a href="/article/when_to_go_to_urgent_care_vs_telehealth.html"
+            >Read Article</a
+          >
+        </article>
+
+        <article class="article-link">
+          <h2>Diabetes Follow-Up by Telehealth</h2>
+          <p>
+            Understand how telehealth can support diabetes follow-up, home
+            glucose readings, A1C review, and medication safety.
+          </p>
+          <a href="/article/diabetes_follow-up_by_telehealth.html"
+            >Read Article</a
+          >
+        </article>
+
+        <article class="article-link">
+          <h2>Type 2 Diabetes and When Telehealth Can Help</h2>
+          <p>
+            Learn how telehealth can support Type 2 diabetes follow-up, blood
+            sugar logs, A1C review, medication safety, and labs.
+          </p>
+          <a href="/article/type2_diabetes.html">Read Article</a>
+        </article>
+
+        <article class="article-link">
+          <h2>Chronic Condition Management and When Telehealth Can Help</h2>
+          <p>
+            Learn how telehealth can support chronic care follow-up, home
+            monitoring, medication review, and lab discussion.
+          </p>
+          <a href="/article/chronic_condition_management.html">Read Article</a>
+        </article>
+
+        <article class="article-link">
+          <h2>AWV and When Telehealth Can Help</h2>
+          <p>
+            Learn what an Annual Wellness Visit includes, what it does not
+            replace, and when telehealth can support prevention planning.
+          </p>
+          <a href="/article/AWV.html">Read Article</a>
+        </article>
+
+        <article class="article-link">
+          <h2>Arthritis and When Telehealth Can Help</h2>
+          <p>
+            Learn common arthritis symptoms, medication safety, home-care
+            support, and when joint pain needs in-person evaluation.
+          </p>
+          <a href="/article/arthritis.html">Read Article</a>
+        </article>
+
+        <article class="article-link">
+          <h2>Back Pain and When Telehealth Can Help</h2>
+          <p>
+            Learn common back pain symptoms, home care, medication safety, and
+            when weakness or bladder/bowel changes need urgent care.
+          </p>
+          <a href="/article/back_pain.html">Read Article</a>
+        </article>
+
+        <article class="article-link">
+          <h2>Asthma and When Telehealth Can Help</h2>
+          <p>
+            Learn common asthma symptoms, trigger tracking, inhaler safety, and
+            when breathing symptoms need urgent care.
+          </p>
+          <a href="/article/Asthma.html">Read Article</a>
+        </article>
+
+        <article class="article-link">
+          <h2>Allergies and When Telehealth Can Help</h2>
+          <p>
+            Learn common allergy symptoms, medication safety, seasonal allergy
+            support, and when allergic reactions need emergency care.
+          </p>
+          <a href="/article/allergies.html">Read Article</a>
+        </article>
+
+        <article class="article-link">
+          <h2>Antihistamines and When Telehealth Can Help</h2>
+          <p>
+            Learn how antihistamines may help allergies and hives, side effects,
+            medication safety, and emergency warning signs.
+          </p>
+          <a href="/article/antihistamines.html">Read Article</a>
+        </article>
+
+        <article class="article-link">
+          <h2>High Blood Pressure and Home Monitoring</h2>
+          <p>
+            Learn why home blood pressure readings matter and how telehealth can
+            help with monitoring and follow-up.
+          </p>
+          <a href="/article/high_blood_pressure.html">Read Article</a>
+        </article>
+
+        <article class="article-link">
+          <h2>Hypertension and When Telehealth Can Help</h2>
+          <p>
+            Learn how telehealth can help with high blood pressure follow-up,
+            home monitoring, medication review, and warning signs.
+          </p>
+          <a href="/article/hypertension.html">Read Article</a>
+        </article>
+
+        <article class="article-link">
+          <h2>Beta Blockers and When Telehealth Can Help</h2>
+          <p>
+            Learn common beta blocker uses, home heart rate and blood pressure
+            monitoring, side effects, and safety warnings.
+          </p>
+          <a href="/article/beta_blockers.html">Read Article</a>
+        </article>
+
+        <article class="article-link">
+          <h2>Antidepressants and When Telehealth Can Help</h2>
+          <p>
+            Learn common antidepressant uses, side effects, medication safety,
+            urgent warning signs, and when referral support is needed.
+          </p>
+          <a href="/article/antidepressants.html">Read Article</a>
+        </article>
+
+        <article class="article-link">
+          <h2>Anxiety Medication and When Telehealth Can Help</h2>
+          <p>
+            Learn common anxiety medication options, safety concerns, side
+            effects, crisis warning signs, and when telehealth may help.
+          </p>
+          <a href="/article/anxiety_medication.html">Read Article</a>
+        </article>
+
+        <article class="article-link">
+          <h2>High Blood Pressure Follow-Up</h2>
+          <p>
+            Patient-friendly guidance on blood pressure follow-up, medication
+            review, lifestyle support, and warning signs.
+          </p>
+          <a href="/article/high_blood_pressure_follow_up.html"
+            >Read Article</a
+          >
+        </article>
+
+        <article class="article-link">
+          <h2>UTI Symptoms and When Telehealth Can Help</h2>
+          <p>
+            Learn common UTI symptoms, when telehealth may help, and when
+            in-person or urgent care may be needed.
+          </p>
+          <a href="/article/urinary_tract_infection.html">Read Article</a>
+        </article>
+
+        <article class="article-link">
+          <h2>URIs and When Telehealth Can Help</h2>
+          <p>
+            Learn common upper respiratory infection symptoms, home care,
+            medication safety, and when breathing symptoms need urgent care.
+          </p>
+          <a href="/article/URIs.html">Read Article</a>
+        </article>
+
+        <article class="article-link">
+          <h2>Cold & Flu and When Telehealth Can Help</h2>
+          <p>
+            Learn cold and flu symptoms, home care, testing guidance, antiviral
+            timing, and when respiratory symptoms need urgent care.
+          </p>
+          <a href="/article/cold_flu.html">Read Article</a>
+        </article>
+
+        <article class="article-link">
+          <h2>COVID-19 and When Telehealth Can Help</h2>
+          <p>
+            Learn COVID-19 symptoms, testing guidance, treatment timing,
+            medication safety, and when breathing symptoms need urgent care.
+          </p>
+          <a href="/article/COVID_19.html">Read Article</a>
+        </article>
+
+        <article class="article-link">
+          <h2>Strep Throat and When Telehealth Can Help</h2>
+          <p>
+            Learn strep throat symptoms, why testing matters, antibiotic safety,
+            and when sore throat symptoms need urgent care.
+          </p>
+          <a href="/article/strep_throat.html">Read Article</a>
+        </article>
+
+        <article class="article-link">
+          <h2>Sinus Infection and When Telehealth Can Help</h2>
+          <p>
+            Learn sinus infection symptoms, viral vs bacterial sinusitis, home
+            care, and when sinus symptoms need in-person care.
+          </p>
+          <a href="/article/sinus_infection.html">Read Article</a>
+        </article>
+
+        <article class="article-link">
+          <h2>Urinary Tract Infections and When Telehealth Can Help</h2>
+          <p>
+            Learn common urinary tract infection symptoms, when urine testing
+            may be needed, and when telehealth or urgent care may help.
+          </p>
+          <a href="/article/urinary_tract_infections.html">Read Article</a>
+        </article>
+
+        <article class="article-link">
+          <h2>Medication Refills by Telehealth</h2>
+          <p>
+            Learn what medication refill visits may include and which refills
+            may not be appropriate for telehealth.
+          </p>
+          <a href="/article/medication_refills.html">Read Article</a>
+        </article>
+
+        <article class="article-link">
+          <h2>Antibiotics and When Telehealth Can Help</h2>
+          <p>
+            Learn when antibiotics may help, when they do not treat viruses,
+            medication safety, side effects, and resistance.
+          </p>
+          <a href="/article/antibiotics.html">Read Article</a>
+        </article>
+
+        <article class="article-link">
+          <h2>Antivirals and When Telehealth Can Help</h2>
+          <p>
+            Learn when antivirals may help, why timing matters, medication
+            safety checks, and when urgent care is needed.
+          </p>
+          <a href="/article/antivirals.html">Read Article</a>
+        </article>
+
+        <article class="article-link">
+          <h2>Weight Loss Options and GLP-1 Medications</h2>
+          <p>
+            Understand medical weight loss visits, lifestyle support, GLP-1
+            medication discussions, and safety considerations.
+          </p>
+          <a href="/article/weight_loss_options_and_GLP-1.html"
+            >Read Article</a
+          >
+        </article>
+
+        <article class="article-link">
+          <h2>Rash, Acne, and Skin Concerns</h2>
+          <p>
+            Learn how telehealth may help with common skin concerns and when an
+            in-person exam may be necessary.
+          </p>
+          <a href="/article/rash_acne_and_skin_concerns.html">Read Article</a>
+        </article>
+
+        <article class="article-link">
+          <h2>Skin Infections and When Telehealth Can Help</h2>
+          <p>
+            Learn common skin infection signs, when telehealth may help, and
+            when urgent or in-person care is needed.
+          </p>
+          <a href="/article/skin_infections.html">Read Article</a>
+        </article>
+
+        <article class="article-link">
+          <h2>Rash and When Telehealth Can Help</h2>
+          <p>
+            Learn common rash symptoms, when telehealth may help, and when a
+            rash needs urgent or in-person evaluation.
+          </p>
+          <a href="/article/rash.html">Read Article</a>
+        </article>
+
+        <article class="article-link">
+          <h2>Eczema and When Telehealth Can Help</h2>
+          <p>
+            Learn eczema symptoms, flare-up triggers, skin-care basics, and
+            when telehealth may help with non-emergency eczema concerns.
+          </p>
+          <a href="/article/eczema.html">Read Article</a>
+        </article>
+
+        <article class="article-link">
+          <h2>Boils and When Telehealth Can Help</h2>
+          <p>
+            Learn common boil symptoms, when telehealth may help, and when a
+            painful skin bump may need urgent or in-person care.
+          </p>
+          <a href="/article/boils.html">Read Article</a>
+        </article>
+
+        <article class="article-link">
+          <h2>Dandruff and When Telehealth Can Help</h2>
+          <p>
+            Learn common dandruff symptoms, scalp-care basics, and when itchy or
+            flaky scalp concerns may need medical evaluation.
+          </p>
+          <a href="/article/dandruff.html">Read Article</a>
+        </article>
+
+        <article class="article-link">
+          <h2>Ringworm and When Telehealth Can Help</h2>
+          <p>
+            Learn common ringworm symptoms, how fungal rashes spread, and when
+            telehealth or in-person care may be appropriate.
+          </p>
+          <a href="/article/ringworm.html">Read Article</a>
+        </article>
+
+        <article class="article-link">
+          <h2>Rosacea and When Telehealth Can Help</h2>
+          <p>
+            Learn common rosacea symptoms, facial redness triggers, and when
+            telehealth or in-person care may be appropriate.
+          </p>
+          <a href="/article/rosacea.html">Read Article</a>
+        </article>
+
+        <article class="article-link">
+          <h2>Cellulitis and When Telehealth Can Help</h2>
+          <p>
+            Learn common cellulitis symptoms, why timely care matters, and when
+            urgent or in-person evaluation is needed.
+          </p>
+          <a href="/article/cellulitis.html">Read Article</a>
+        </article>
+
+        <article class="article-link">
+          <h2>Contact Dermatitis and When Telehealth Can Help</h2>
+          <p>
+            Learn common contact dermatitis symptoms, possible skin triggers,
+            and when telehealth or in-person care may help.
+          </p>
+          <a href="/article/contact_dermatitis.html">Read Article</a>
+        </article>
+
+        <article class="article-link">
+          <h2>Hair Loss and When Telehealth Can Help</h2>
+          <p>
+            Learn common causes of hair loss, when lab testing may be needed,
+            and when telehealth or dermatology care may help.
+          </p>
+          <a href="/article/hair_loss.html">Read Article</a>
+        </article>
+
+        <article class="article-link">
+          <h2>Gynecology and When Telehealth Can Help</h2>
+          <p>
+            Learn which common women’s health concerns may begin with
+            telehealth and when in-person gynecology care is needed.
+          </p>
+          <a href="/article/gynecology.html">Read Article</a>
+        </article>
+
+        <article class="article-link">
+          <h2>Birth Control and When Telehealth Can Help</h2>
+          <p>
+            Learn how telehealth may help with birth control counseling,
+            refills, method questions, and safety screening.
+          </p>
+          <a href="/article/birth+control.html">Read Article</a>
+        </article>
+
+        <article class="article-link">
+          <h2>Premature Ejaculation and When Telehealth Can Help</h2>
+          <p>
+            Learn common causes, treatment discussions, and when private
+            telehealth or urology care may help.
+          </p>
+          <a href="/article/premature_ejaculation.html">Read Article</a>
+        </article>
+
+        <article class="article-link">
+          <h2>Erectile Dysfunction and When Telehealth Can Help</h2>
+          <p>
+            Learn common causes of ED, medication safety, and when private
+            telehealth or urology care may help.
+          </p>
+          <a href="/article/erectile_dysfunction.html">Read Article</a>
+        </article>
+
+        <article class="article-link">
+          <h2>Menopause and When Telehealth Can Help</h2>
+          <p>
+            Learn common menopause symptoms, treatment discussions, and when
+            telehealth or in-person care may be appropriate.
+          </p>
+          <a href="/article/menopause.html">Read Article</a>
+        </article>
+
+        <article class="article-link">
+          <h2>Yeast Infections and When Telehealth Can Help</h2>
+          <p>
+            Learn common yeast infection symptoms, when testing may be needed,
+            and when telehealth or in-person care may help.
+          </p>
+          <a href="/article/yeast_infections.html">Read Article</a>
+        </article>
+
+        <article class="article-link">
+          <h2>Bacterial Vaginosis and When Telehealth Can Help</h2>
+          <p>
+            Learn common BV symptoms, when testing may be needed, and when
+            telehealth or in-person care may help.
+          </p>
+          <a href="/article/bacterial_vaginosis.html">Read Article</a>
+        </article>
+
+        <article class="article-link">
+          <h2>Lab Results: What Do They Mean?</h2>
+          <p>
+            Review common lab result questions and how telehealth can help you
+            understand next steps.
+          </p>
+          <a href="/article/lab_results_what_do_they_mean.html"
+            >Read Article</a
+          >
+        </article>
+
+        <article class="article-link">
+          <h2>Hemorrhoids and When Telehealth Can Help</h2>
+          <p>
+            Learn common hemorrhoid symptoms, home care basics, and when rectal
+            bleeding or severe pain needs in-person care.
+          </p>
+          <a href="/article/hemorrhoids.html">Read Article</a>
+        </article>
+
+        <article class="article-link">
+          <h2>Food Poisoning and When Telehealth Can Help</h2>
+          <p>
+            Learn food poisoning symptoms, hydration basics, medication safety,
+            and when vomiting or diarrhea needs urgent care.
+          </p>
+          <a href="/article/food_poisoning.html">Read Article</a>
+        </article>
+
+        <article class="article-link">
+          <h2>Diarrhea and When Telehealth Can Help</h2>
+          <p>
+            Learn diarrhea causes, hydration basics, medication safety, and when
+            dehydration or blood in stool needs urgent care.
+          </p>
+          <a href="/article/diarrhea.html">Read Article</a>
+        </article>
+
+        <article class="article-link">
+          <h2>What Is a Migraine?</h2>
+          <p>
+            Learn common migraine symptoms, possible triggers, prevention
+            support, and when to seek medical evaluation.
+          </p>
+          <a href="/article/article_migraine.html">Read Article</a>
+        </article>
+
+        <article class="article-link">
+          <h2>Migraine and When Telehealth Can Help</h2>
+          <p>
+            Learn migraine symptoms, trigger tracking, medication safety, and
+            warning signs that need urgent care.
+          </p>
+          <a href="/article/migraine.html">Read Article</a>
+        </article>
+      </section>
+
+      <section class="notice">
+        <p>
+          These articles are for education only and do not replace medical
+          advice, diagnosis, or treatment. If you are experiencing a medical
+          emergency, call 911 or go to the nearest emergency room immediately.
+        </p>
+      </section>
+    </main>
+  </body>
+</html>

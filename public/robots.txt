@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+Disallow: /telednpnow-w9-draft.html
+Disallow: /telednpnow-cms-460-draft.html
+Disallow: /telednpnow-prescription-pad.html
+Disallow: /telednpnow-referral-form.html
+Disallow: /disease_conditions/
+
+Sitemap: https://telednpnow.org/sitemap.xml
