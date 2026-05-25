@@ -895,14 +895,18 @@ function MarketingChatBot({ onBookVisit }) {
     }
 
     try {
+      const controller = new AbortController();
+      const timeoutId = window.setTimeout(() => controller.abort(), 12000);
       const response = await fetch("/.netlify/functions/telednpnow-ai-chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
+        signal: controller.signal,
         body: JSON.stringify({
           question,
           knowledgeContext: teleDnpKnowledgeContext,
         }),
       });
+      window.clearTimeout(timeoutId);
       const responseText = await response.text();
       const data = responseText ? JSON.parse(responseText) : {};
 
