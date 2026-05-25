@@ -35,7 +35,8 @@ import referralFormHtml from "./provider_tools/disease_conditions/telednpnow-ref
 
 const charmHealthLinks = {
   booking: "https://phr.charmtracker.com/",
-  portal: "https://phr.charmtracker.com/",
+  portal:
+    "https://accounts.charmtracker.com/signin?hide_signup=true&hide_secure=true&hide_gsignup=true&servicename=charmphr&serviceurl=https%3A%2F%2Fphr2.charmtracker.com%2Fmain.do",
   intake: "https://phr.charmtracker.com/",
   payment: "https://phr.charmtracker.com/",
 };
