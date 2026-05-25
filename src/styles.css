@@ -2634,6 +2634,28 @@ p {
   max-width: none;
 }
 
+.chatbot-ai-links {
+  display: grid;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.chatbot-ai-links a {
+  background: #ffffff;
+  border: 1px solid #c8d8df;
+  border-radius: 8px;
+  color: #26736c;
+  font-size: 0.88rem;
+  font-weight: 900;
+  padding: 9px 10px;
+}
+
+.chatbot-ai-links a:hover,
+.chatbot-ai-links a:focus-visible {
+  background: #f7faf8;
+  border-color: #26736c;
+}
+
 .chatbot-actions {
   display: grid;
   gap: 8px;
@@ -2917,6 +2939,26 @@ p {
 
   .chatbot-actions,
   .chatbot-link-row {
-    grid-template-columns: 1fr;
+    display: none;
+  }
+
+  .chatbot-message {
+    display: none;
+  }
+
+  .chatbot-panel {
+    gap: 10px;
+  }
+
+  .chatbot-ai-form {
+    padding: 0 12px 12px;
+  }
+
+  .chatbot-ai-form textarea {
+    min-height: 96px;
+  }
+
+  .chatbot-ai-answer {
+    margin: 0 12px 12px;
   }
 }

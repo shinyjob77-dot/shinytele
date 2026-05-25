@@ -1,6 +1,10 @@
 import { Fragment, StrictMode, useEffect, useRef, useState } from "react";
 import { createRoot } from "react-dom/client";
 import {
+  findChatKnowledgeAnswer,
+  teleDnpKnowledgeContext,
+} from "./chatKnowledgeBase";
+import {
   Activity,
   CalendarCheck,
   CheckCircle2,
@@ -831,6 +835,7 @@ function MarketingChatBot({ onBookVisit }) {
   const [activeTopic, setActiveTopic] = useState("welcome");
   const [aiQuestion, setAiQuestion] = useState("");
   const [aiAnswer, setAiAnswer] = useState("");
+  const [aiLinks, setAiLinks] = useState([]);
   const [isAiLoading, setIsAiLoading] = useState(false);
   const [aiError, setAiError] = useState("");
 
@@ -879,12 +884,24 @@ function MarketingChatBot({ onBookVisit }) {
     setIsAiLoading(true);
     setAiError("");
     setAiAnswer("");
+    setAiLinks([]);
+
+    const libraryAnswer = findChatKnowledgeAnswer(question);
+    if (libraryAnswer) {
+      setAiAnswer(libraryAnswer.answer);
+      setAiLinks(libraryAnswer.links || []);
+      setIsAiLoading(false);
+      return;
+    }
 
     try {
       const response = await fetch("/.netlify/functions/telednpnow-ai-chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ question }),
+        body: JSON.stringify({
+          question,
+          knowledgeContext: teleDnpKnowledgeContext,
+        }),
       });
       const responseText = await response.text();
       const data = responseText ? JSON.parse(responseText) : {};
@@ -900,6 +917,7 @@ function MarketingChatBot({ onBookVisit }) {
         data.answer ||
           "The AI chat did not return an answer. Please try again or call TeleDNPnow at (480) 626-5571.",
       );
+      setAiLinks(data.links || []);
     } catch (error) {
       setAiError(
         error.message ||
@@ -952,6 +970,15 @@ function MarketingChatBot({ onBookVisit }) {
           {(aiAnswer || aiError) && (
             <div className={aiError ? "chatbot-ai-answer error" : "chatbot-ai-answer"}>
               <p>{aiError || aiAnswer}</p>
+              {aiLinks.length > 0 && (
+                <div className="chatbot-ai-links">
+                  {aiLinks.map((link) => (
+                    <a key={link.url} href={link.url}>
+                      {link.label}
+                    </a>
+                  ))}
+                </div>
+              )}
             </div>
           )}
           <div className="chatbot-actions" aria-label="Chatbot topics">

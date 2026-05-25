@@ -65,9 +65,11 @@ exports.handler = async (event) => {
   }
 
   let question = "";
+  let knowledgeContext = "";
   try {
     const body = JSON.parse(event.body || "{}");
     question = String(body.question || "").trim().slice(0, 900);
+    knowledgeContext = String(body.knowledgeContext || "").trim().slice(0, 12000);
   } catch {
     return {
       statusCode: 400,
@@ -98,7 +100,12 @@ exports.handler = async (event) => {
         input: [
           {
             role: "system",
-            content: [{ type: "input_text", text: TELE_DNP_CONTEXT }],
+            content: [
+              {
+                type: "input_text",
+                text: `${TELE_DNP_CONTEXT}\n\nWebsite knowledge library:\n${knowledgeContext}`,
+              },
+            ],
           },
           {
             role: "user",
