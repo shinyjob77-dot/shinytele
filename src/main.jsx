@@ -826,6 +826,183 @@ function FloatingSocialLinks() {
   );
 }
 
+function MarketingChatBot({ onBookVisit }) {
+  const [isOpen, setIsOpen] = useState(false);
+  const [activeTopic, setActiveTopic] = useState("welcome");
+  const [aiQuestion, setAiQuestion] = useState("");
+  const [aiAnswer, setAiAnswer] = useState("");
+  const [isAiLoading, setIsAiLoading] = useState(false);
+  const [aiError, setAiError] = useState("");
+
+  const topics = {
+    welcome: {
+      title: "How can I help?",
+      body: "I can help with TeleDNPnow services, self-pay prices, booking, and patient portal access. I cannot diagnose or treat medical conditions.",
+    },
+    services: {
+      title: "TeleDNPnow services",
+      body: "TeleDNPnow offers telehealth visits for sick visits, primary care follow-up, medication refills, women's health, chronic care support, skin concerns, lab review, sexual health/STI concerns, mental health screening, and weight loss management.",
+    },
+    pricing: {
+      title: "Self-pay prices",
+      body: "No insurance? No worries. Brief sick visit: $40. Initial primary care telehealth visit: $60. Follow-up visit: $40. Weight loss initial consult: $70. Medication refill visit: $30.",
+    },
+    booking: {
+      title: "Book a visit",
+      body: "You can schedule a telehealth visit online. Use Book Visit to open the appointment calendar, or use the patient portal if you already have a CharmHealth account.",
+    },
+    portal: {
+      title: "Patient portal",
+      body: "TeleDNPnow uses CharmHealth/CharmTracker as the secure EHR patient portal for registration, visit information, and patient communication.",
+    },
+    emergency: {
+      title: "Emergency warning",
+      body: "TeleDNPnow is for non-emergency care only. If you have chest pain, severe shortness of breath, stroke symptoms, suicidal thoughts, or any life-threatening symptom, call 911 or go to the nearest emergency room.",
+    },
+    contact: {
+      title: "Contact TeleDNPnow",
+      body: "Phone: (480) 626-5571. Email: care@telednpnow.org. TeleDNPnow currently accepts Arizona patients only.",
+    },
+  };
+
+  const active = topics[activeTopic];
+
+  const askAiQuestion = async (event) => {
+    event.preventDefault();
+    const question = aiQuestion.trim();
+
+    if (!question) {
+      setAiError("Please type a question first.");
+      return;
+    }
+
+    setIsAiLoading(true);
+    setAiError("");
+    setAiAnswer("");
+
+    try {
+      const response = await fetch("/.netlify/functions/telednpnow-ai-chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ question }),
+      });
+      const responseText = await response.text();
+      const data = responseText ? JSON.parse(responseText) : {};
+
+      if (!response.ok) {
+        throw new Error(
+          data?.answer ||
+            "The AI chat is not connected yet. On localhost, use Netlify Dev to test AI chat. On the live site, add OPENAI_API_KEY in Netlify.",
+        );
+      }
+
+      setAiAnswer(
+        data.answer ||
+          "The AI chat did not return an answer. Please try again or call TeleDNPnow at (480) 626-5571.",
+      );
+    } catch (error) {
+      setAiError(
+        error.message ||
+          "The AI chat is temporarily unavailable. Please call TeleDNPnow at (480) 626-5571.",
+      );
+    } finally {
+      setIsAiLoading(false);
+    }
+  };
+
+  return (
+    <div className={`marketing-chatbot ${isOpen ? "is-open" : ""}`}>
+      {isOpen && (
+        <section className="chatbot-panel" aria-label="TeleDNPnow chat assistant">
+          <div className="chatbot-header">
+            <div>
+              <span>TeleDNPnow Assistant</span>
+              <strong>{active.title}</strong>
+            </div>
+            <button
+              type="button"
+              onClick={() => setIsOpen(false)}
+              aria-label="Close chat assistant"
+            >
+              Close
+            </button>
+          </div>
+          <div className="chatbot-message">
+            <p>{active.body}</p>
+          </div>
+          <form className="chatbot-ai-form" onSubmit={askAiQuestion}>
+            <label htmlFor="tele-ai-question">
+              Ask a general question
+            </label>
+            <textarea
+              id="tele-ai-question"
+              value={aiQuestion}
+              onChange={(event) => setAiQuestion(event.target.value)}
+              placeholder="Example: How much is a sick visit? How do I book?"
+              rows="3"
+            />
+            <button type="submit" disabled={isAiLoading}>
+              {isAiLoading ? "Answering..." : "Ask AI"}
+            </button>
+            <small>
+              Please do not enter private medical details. For personal care,
+              book a visit or use the secure patient portal.
+            </small>
+          </form>
+          {(aiAnswer || aiError) && (
+            <div className={aiError ? "chatbot-ai-answer error" : "chatbot-ai-answer"}>
+              <p>{aiError || aiAnswer}</p>
+            </div>
+          )}
+          <div className="chatbot-actions" aria-label="Chatbot topics">
+            <button type="button" onClick={() => setActiveTopic("services")}>
+              Services
+            </button>
+            <button type="button" onClick={() => setActiveTopic("pricing")}>
+              Prices
+            </button>
+            <button type="button" onClick={() => setActiveTopic("booking")}>
+              Booking
+            </button>
+            <button type="button" onClick={() => setActiveTopic("portal")}>
+              Patient Portal
+            </button>
+            <button type="button" onClick={() => setActiveTopic("emergency")}>
+              Emergency?
+            </button>
+            <button type="button" onClick={() => setActiveTopic("contact")}>
+              Contact
+            </button>
+          </div>
+          <div className="chatbot-link-row">
+            <button type="button" onClick={onBookVisit}>
+              Book Visit
+              <ChevronRight size={16} aria-hidden="true" />
+            </button>
+            <a
+              href={charmHealthLinks.portal}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Portal Login
+              <ChevronRight size={16} aria-hidden="true" />
+            </a>
+          </div>
+        </section>
+      )}
+      <button
+        className="chatbot-toggle"
+        type="button"
+        aria-expanded={isOpen}
+        onClick={() => setIsOpen((open) => !open)}
+      >
+        <MessageCircle size={20} aria-hidden="true" />
+        Chat
+      </button>
+    </div>
+  );
+}
+
 function App() {
   const signatureCanvasRef = useRef(null);
   const currentPath = window.location.pathname;
@@ -1428,7 +1605,7 @@ function App() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            REGISTER/PATIENT PORTAL
+            Register / Patient Portal
           </a>
           <a href="#telemedicine-disclaimer">Telemedicine Disclaimer</a>
           <a href="#contact">Contact</a>
@@ -1457,7 +1634,7 @@ function App() {
           </button>
           <div>
             <span className="section-kicker">Manual login</span>
-            <h3>Patient login entry</h3>
+            <h3>Provider login entry</h3>
             <p>
               This is a manual-entry screen only. It does not connect to a
               patient portal, database, or EHR.
@@ -1602,7 +1779,7 @@ function App() {
           <div className="trust-row" aria-label="Care highlights">
             <span>
               <CheckCircle2 size={18} aria-hidden="true" />
-              Same-week appointments
+              Same-day appointment
             </span>
             <span>
               <CheckCircle2 size={18} aria-hidden="true" />
@@ -3131,6 +3308,7 @@ function App() {
         </div>
       </footer>
 
+      <MarketingChatBot onBookVisit={showBookingFrame} />
       <FloatingSocialLinks />
 
       {isPracticeVideoOpen && (
