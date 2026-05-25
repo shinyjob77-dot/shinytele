@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Anxiety Intake Form</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    h2, h3 { margin-top: 20px; }
+    label { display: block; margin-top: 8px; }
+    input[type="text"], textarea { width: 100%; padding: 6px; margin-top: 4px; }
+    table { border-collapse: collapse; width: 100%; margin-top: 10px; }
+    th, td { border: 1px solid #333; padding: 6px; text-align: left; }
+    th { background-color: #f2f2f2; }
+  </style>
+</head>
+<body>
+  <h2>Anxiety Intake Evaluation Form</h2>
+  <h3>Patient Information</h3>
+  <label>Name: <input type="text"></label>
+  <label>DOB: <input type="text"></label>
+  <label>Date: <input type="text"></label>
+  <label>Phone: <input type="text"></label>
+  <h3>Chief Complaint</h3>
+  <textarea rows="2"></textarea>
+  <h3>History of Present Illness</h3>
+  <label>Onset: <input type="text"></label>
+  <label>Duration: <input type="text"></label>
+  <label>Severity (0-10): <input type="text"></label>
+  <label>Triggers: <input type="text"></label>
+  <label>Relieving factors: <input type="text"></label>
+  <h3>Anxiety Symptoms (check all that apply)</h3>
+  <label><input type="checkbox"> Excessive worry</label>
+  <label><input type="checkbox"> Restlessness</label>
+  <label><input type="checkbox"> Fatigue</label>
+  <label><input type="checkbox"> Poor concentration</label>
+  <label><input type="checkbox"> Irritability</label>
+  <label><input type="checkbox"> Muscle tension</label>
+  <label><input type="checkbox"> Sleep disturbance</label>
+  <label><input type="checkbox"> Palpitations / chest discomfort</label>
+  <label><input type="checkbox"> Shortness of breath</label>
+  <label><input type="checkbox"> Dizziness / sweating</label>
+  <h3>Panic Symptoms</h3>
+  <label><input type="checkbox"> Sudden intense fear</label>
+  <label><input type="checkbox"> Palpitations</label>
+  <label><input type="checkbox"> Chest pain</label>
+  <label><input type="checkbox"> Feeling of dying/losing control</label>
+  <h3>Medical History</h3>
+  <label><input type="checkbox"> Thyroid disease</label>
+  <label><input type="checkbox"> Cardiac disease</label>
+  <label><input type="checkbox"> Respiratory disease</label>
+  <h3>Medications</h3>
+  <textarea rows="2"></textarea>
+  <h3>GAD-7 Anxiety Questionnaire</h3>
+  <p>0 = Not at all | 1 = Several days | 2 = More than half the days | 3 = Nearly every day</p>
+  <table>
+    <tr><th>Question</th><th>Score (0-3)</th></tr>
+    <tr><td>1. Feeling nervous, anxious, or on edge</td><td></td></tr>
+    <tr><td>2. Not being able to stop or control worrying</td><td></td></tr>
+    <tr><td>3. Worrying too much about different things</td><td></td></tr>
+    <tr><td>4. Trouble relaxing</td><td></td></tr>
+    <tr><td>5. Being so restless that it is hard to sit still</td><td></td></tr>
+    <tr><td>6. Becoming easily annoyed or irritable</td><td></td></tr>
+    <tr><td>7. Feeling afraid as if something awful might happen</td><td></td></tr>
+  </table>
+  <label>Total Score: <input type="text"></label>
+  <h3>PHQ-9 Depression Questionnaire</h3>
+  <p>0 = Not at all | 1 = Several days | 2 = More than half the days | 3 = Nearly every day</p>
+  <table>
+    <tr><th>Question</th><th>Score (0-3)</th></tr>
+    <tr><td>1. Little interest or pleasure in doing things</td><td></td></tr>
+    <tr><td>2. Feeling down, depressed, or hopeless</td><td></td></tr>
+    <tr><td>3. Trouble falling/staying asleep, or sleeping too much</td><td></td></tr>
+    <tr><td>4. Feeling tired or having little energy</td><td></td></tr>
+    <tr><td>5. Poor appetite or overeating</td><td></td></tr>
+    <tr><td>6. Feeling bad about yourself or that you are a failure</td><td></td></tr>
+    <tr><td>7. Trouble concentrating</td><td></td></tr>
+    <tr><td>8. Moving/speaking slowly or being fidgety/restless</td><td></td></tr>
+    <tr><td>9. Thoughts that you would be better off dead or hurting yourself</td><td></td></tr>
+  </table>
+  <label>Total Score: <input type="text"></label>
+  <h3>Suicide Risk (if PHQ-9 #9 > 0)</h3>
+  <label><input type="checkbox"> Passive thoughts</label>
+  <label><input type="checkbox"> Active thoughts</label>
+  <label><input type="checkbox"> Plan</label>
+  <label><input type="checkbox"> Intent</label>
+  <h3>Differential Diagnosis</h3>
+  <label><input type="checkbox"> Generalized Anxiety Disorder</label>
+  <label><input type="checkbox"> Panic Disorder</label>
+  <label><input type="checkbox"> Social Anxiety Disorder</label>
+  <label><input type="checkbox"> PTSD</label>
+  <label><input type="checkbox"> OCD</label>
+  <label><input type="checkbox"> Substance-induced anxiety</label>
+  <label><input type="checkbox"> Medical cause</label>
+  <label><input type="checkbox"> Depression with anxiety</label>
+  <h3>Labs / Diagnostics</h3>
+  <label><input type="checkbox"> TSH / Free T4</label>
+  <label><input type="checkbox"> CBC / CMP</label>
+  <label><input type="checkbox"> ECG</label>
+  <label><input type="checkbox"> Urine drug screen</label>
+  <h3>Plan</h3>
+  <textarea rows="3"></textarea>
+  <h3>Provider Notes</h3>
+  <textarea rows="4"></textarea>
+</body>
+</html>

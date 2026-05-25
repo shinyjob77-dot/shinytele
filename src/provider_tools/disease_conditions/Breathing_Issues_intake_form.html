@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Breathing Difficulty / Shortness of Breath Intake Form</title>
+  <style>
+    :root {
+      --blue: #0f74b5;
+      --light-blue: #eaf6fc;
+      --dark: #1f2937;
+      --gray: #6b7280;
+      --border: #d1d5db;
+      --red: #b91c1c;
+      --red-bg: #fee2e2;
+      --green: #047857;
+      --green-bg: #d1fae5;
+      --yellow-bg: #fef3c7;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f8fafc;
+      color: var(--dark);
+      line-height: 1.5;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 30px auto;
+      background: #ffffff;
+      padding: 28px;
+      border-radius: 14px;
+      box-shadow: 0 8px 24px rgba(15, 116, 181, 0.12);
+    }
+
+    header {
+      border-bottom: 4px solid var(--blue);
+      padding-bottom: 16px;
+      margin-bottom: 24px;
+    }
+
+    h1 {
+      color: var(--blue);
+      margin: 0 0 6px;
+      font-size: 28px;
+    }
+
+    h2 {
+      color: var(--blue);
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 6px;
+      margin-top: 30px;
+    }
+
+    h3 {
+      color: #075985;
+      margin-top: 18px;
+    }
+
+    .subtitle {
+      color: var(--gray);
+      font-size: 15px;
+    }
+
+    .notice {
+      background: var(--yellow-bg);
+      border-left: 5px solid #f59e0b;
+      padding: 12px 16px;
+      border-radius: 8px;
+      margin: 16px 0;
+      font-size: 14px;
+    }
+
+    .emergency {
+      background: var(--red-bg);
+      border-left: 5px solid var(--red);
+      padding: 14px 16px;
+      border-radius: 8px;
+      margin: 16px 0 24px;
+    }
+
+    .emergency strong { color: var(--red); }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    label {
+      font-weight: 600;
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    input[type="text"], input[type="date"], input[type="number"], select, textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 14px;
+      box-sizing: border-box;
+      background: #fff;
+    }
+
+    textarea { min-height: 90px; resize: vertical; }
+
+    .field { margin-bottom: 14px; }
+
+    .check-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .check-item {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 9px;
+      background: #f9fafb;
+      font-size: 14px;
+    }
+
+    .check-item input { margin-right: 7px; }
+
+    .section-card {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px;
+      margin: 16px 0;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 12px;
+      font-size: 13px;
+    }
+
+    th {
+      background: var(--blue);
+      color: white;
+      padding: 10px;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    td {
+      border: 1px solid var(--border);
+      padding: 10px;
+      vertical-align: top;
+    }
+
+    tr:nth-child(even) td { background: #f8fafc; }
+
+    .result-box {
+      background: var(--light-blue);
+      border: 1px solid #bae6fd;
+      border-radius: 12px;
+      padding: 16px;
+      margin-top: 16px;
+    }
+
+    .button-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 24px;
+    }
+
+    button {
+      border: none;
+      border-radius: 8px;
+      padding: 11px 16px;
+      font-size: 14px;
+      cursor: pointer;
+      font-weight: 700;
+    }
+
+    .primary { background: var(--blue); color: white; }
+    .secondary { background: #e5e7eb; color: var(--dark); }
+    .danger { background: var(--red); color: white; }
+
+    .footer-note {
+      color: var(--gray);
+      font-size: 12px;
+      margin-top: 24px;
+      border-top: 1px solid var(--border);
+      padding-top: 14px;
+    }
+
+    @media print {
+      body { background: white; }
+      .container { box-shadow: none; margin: 0; max-width: none; }
+      button { display: none; }
+    }
+
+    @media (max-width: 800px) {
+      .grid, .grid-3, .check-grid { grid-template-columns: 1fr; }
+      .container { margin: 0; border-radius: 0; padding: 18px; }
+      table { font-size: 12px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Breathing Difficulty / Shortness of Breath Intake Form</h1>
+      <div class="subtitle">Provider-focused telehealth intake form for asthma, COPD, vocal cord dysfunction, heart failure, GERD, and anxiety/dysfunctional breathing differential screening.</div>
+    </header>
+
+    <div class="emergency">
+      <strong>Emergency Warning:</strong> If the patient has severe respiratory distress, oxygen saturation &lt;92%, blue lips, chest pain, confusion, fainting, or cannot speak full sentences, advise immediate emergency care / 911.
+    </div>
+
+    <div class="notice">
+      This form supports clinical documentation and decision-making. It does not replace provider evaluation, physical exam, diagnostic testing, or emergency care when indicated.
+    </div>
+
+    <h2>1. Patient Information</h2>
+    <div class="grid">
+      <div class="field"><label>Patient Name</label><input type="text" /></div>
+      <div class="field"><label>Date of Birth</label><input type="date" /></div>
+      <div class="field"><label>Date of Visit</label><input type="date" /></div>
+      <div class="field"><label>Visit Type</label><select><option>Telehealth</option><option>In-person referral recommended</option><option>Urgent / ER referral</option></select></div>
+    </div>
+
+    <h2>2. Chief Complaint</h2>
+    <div class="field">
+      <label>Patient's Main Concern</label>
+      <textarea placeholder="Example: Shortness of breath, wheezing, chest tightness, cough, trouble breathing when lying flat..."></textarea>
+    </div>
+
+    <div class="grid-3">
+      <div class="field"><label>Symptom Onset</label><input type="text" placeholder="Today, 3 days, 2 weeks..." /></div>
+      <div class="field"><label>Course</label><select><option>Getting better</option><option>Getting worse</option><option>Staying the same</option><option>Intermittent</option></select></div>
+      <div class="field"><label>Severity</label><select><option>Mild</option><option>Moderate</option><option>Severe</option></select></div>
+    </div>
+
+    <h2>3. Breathing / Respiratory Symptom Checklist</h2>
+    <div class="check-grid">
+      <label class="check-item"><input type="checkbox" /> Shortness of breath</label>
+      <label class="check-item"><input type="checkbox" /> Wheezing</label>
+      <label class="check-item"><input type="checkbox" /> Chest tightness</label>
+      <label class="check-item"><input type="checkbox" /> Dry cough</label>
+      <label class="check-item"><input type="checkbox" /> Productive cough</label>
+      <label class="check-item"><input type="checkbox" /> Nighttime cough</label>
+      <label class="check-item"><input type="checkbox" /> Exercise-triggered symptoms</label>
+      <label class="check-item"><input type="checkbox" /> Allergy-triggered symptoms</label>
+      <label class="check-item"><input type="checkbox" /> Smoke/cold air trigger</label>
+      <label class="check-item"><input type="checkbox" /> Fever</label>
+      <label class="check-item"><input type="checkbox" /> Nasal congestion/postnasal drip</label>
+      <label class="check-item"><input type="checkbox" /> Throat tightness</label>
+      <label class="check-item"><input type="checkbox" /> Inspiratory stridor</label>
+      <label class="check-item"><input type="checkbox" /> Heartburn/reflux</label>
+      <label class="check-item"><input type="checkbox" /> Regurgitation</label>
+      <label class="check-item"><input type="checkbox" /> Anxiety/panic feeling</label>
+      <label class="check-item"><input type="checkbox" /> Dizziness/lightheadedness</label>
+      <label class="check-item"><input type="checkbox" /> Hyperventilation</label>
+      <label class="check-item"><input type="checkbox" /> Orthopnea: worse lying flat</label>
+      <label class="check-item"><input type="checkbox" /> Leg/ankle swelling</label>
+      <label class="check-item"><input type="checkbox" /> Weight gain/fluid retention</label>
+    </div>
+
+    <h2>4. Red Flag Screening</h2>
+    <div class="check-grid">
+      <label class="check-item"><input type="checkbox" /> Oxygen saturation &lt;92%</label>
+      <label class="check-item"><input type="checkbox" /> Severe chest pain</label>
+      <label class="check-item"><input type="checkbox" /> Blue lips/cyanosis</label>
+      <label class="check-item"><input type="checkbox" /> Cannot speak full sentences</label>
+      <label class="check-item"><input type="checkbox" /> Confusion/altered mental status</label>
+      <label class="check-item"><input type="checkbox" /> Fainting/syncope</label>
+      <label class="check-item"><input type="checkbox" /> Rapidly worsening symptoms</label>
+      <label class="check-item"><input type="checkbox" /> No relief with rescue inhaler</label>
+      <label class="check-item"><input type="checkbox" /> History of severe asthma/COPD exacerbation</label>
+    </div>
+
+    <h2>5. Vitals / Home Measurements</h2>
+    <div class="grid-3">
+      <div class="field"><label>Oxygen Saturation (%)</label><input type="number" placeholder="Example: 97" /></div>
+      <div class="field"><label>Heart Rate</label><input type="number" placeholder="bpm" /></div>
+      <div class="field"><label>Respiratory Rate</label><input type="number" placeholder="breaths/min" /></div>
+      <div class="field"><label>Blood Pressure</label><input type="text" placeholder="Example: 120/80" /></div>
+      <div class="field"><label>Temperature</label><input type="text" placeholder="Example: 98.6°F" /></div>
+      <div class="field"><label>Peak Flow, if available</label><input type="text" /></div>
+    </div>
+
+    <h2>6. Relevant Medical History</h2>
+    <div class="check-grid">
+      <label class="check-item"><input type="checkbox" /> Asthma</label>
+      <label class="check-item"><input type="checkbox" /> COPD</label>
+      <label class="check-item"><input type="checkbox" /> Allergies</label>
+      <label class="check-item"><input type="checkbox" /> GERD</label>
+      <label class="check-item"><input type="checkbox" /> Anxiety/panic disorder</label>
+      <label class="check-item"><input type="checkbox" /> Heart failure</label>
+      <label class="check-item"><input type="checkbox" /> Vocal cord dysfunction</label>
+      <label class="check-item"><input type="checkbox" /> Smoking/vaping history</label>
+      <label class="check-item"><input type="checkbox" /> Recent URI/COVID/flu symptoms</label>
+    </div>
+
+    <div class="grid">
+      <div class="field"><label>Smoking / Vaping History</label><textarea placeholder="Current, former, pack years, vaping, marijuana..."></textarea></div>
+      <div class="field"><label>Known Triggers</label><textarea placeholder="Exercise, cold air, pollen, pets, mold, smoke, foods, reflux, stress..."></textarea></div>
+      <div class="field"><label>Current Medications</label><textarea placeholder="Include inhalers, allergy meds, BP meds, anxiety meds, GERD meds..."></textarea></div>
+      <div class="field"><label>Medication Allergies</label><textarea></textarea></div>
+    </div>
+
+    <h2>7. Differential Diagnosis Screening Table</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Condition</th>
+          <th>ICD-10</th>
+          <th>Key Features / Clues</th>
+          <th>Labs / Tests</th>
+          <th>Common Medications / Dosing</th>
+          <th>Referral / Escalation</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Asthma</strong></td>
+          <td>J45.909, J45.901</td>
+          <td>Episodic wheeze, SOB, cough, triggers, reversible airflow obstruction.</td>
+          <td>Spirometry with bronchodilator response, PEF monitoring, FeNO, CBC eosinophils, IgE, allergy testing, CXR.</td>
+          <td>Albuterol 2 puffs 90 mcg q4-6h PRN; Budesonide 180-360 mcg BID; Fluticasone 100-250 mcg BID; Budesonide-formoterol 80/4.5 mcg 2 puffs BID or PRN; Tiotropium 2.5 mcg 2 puffs daily; Montelukast 10 mg daily; Prednisone 40-60 mg daily x5-10 days.</td>
+          <td>Allergy/Pulmonology if uncontrolled, recurrent exacerbations, need for biologic, or unclear diagnosis.</td>
+        </tr>
+        <tr>
+          <td><strong>COPD</strong></td>
+          <td>J44.9</td>
+          <td>Chronic cough, smoking history, persistent dyspnea, decreased breath sounds.</td>
+          <td>Spirometry, ABG if severe, CXR.</td>
+          <td>Albuterol 2 puffs q4-6h PRN; Tiotropium 18 mcg daily; Salmeterol 50 mcg BID; Fluticasone-salmeterol 250/50 mcg BID; Prednisone 40 mg daily x5 days for exacerbation.</td>
+          <td>Pulmonology if severe symptoms, frequent exacerbations, oxygen need, or diagnostic uncertainty.</td>
+        </tr>
+        <tr>
+          <td><strong>Vocal Cord Dysfunction</strong></td>
+          <td>J38.3</td>
+          <td>Throat tightness, inspiratory stridor, normal lungs, often mistaken for asthma.</td>
+          <td>Laryngoscopy, spirometry often normal.</td>
+          <td>No routine pharmacologic therapy; Ipratropium nasal spray 2 sprays each nostril BID if trigger-related.</td>
+          <td>ENT/Pulmonology; speech therapy and breathing retraining.</td>
+        </tr>
+        <tr>
+          <td><strong>Heart Failure</strong></td>
+          <td>I50.9</td>
+          <td>Orthopnea, edema, crackles, JVD, fluid overload, SOB lying flat.</td>
+          <td>BNP, CMP, CXR, echocardiogram.</td>
+          <td>Furosemide 20-40 mg daily titrate; Lisinopril 5-20 mg daily; Metoprolol succinate 25-200 mg daily; Spironolactone 12.5-25 mg daily.</td>
+          <td>Cardiology; urgent evaluation if hypoxia, chest pain, pulmonary edema, or worsening fluid overload.</td>
+        </tr>
+        <tr>
+          <td><strong>GERD</strong></td>
+          <td>K21.9</td>
+          <td>Heartburn, regurgitation, cough after meals or lying down, often normal lung exam.</td>
+          <td>Trial PPI +/- EGD if refractory.</td>
+          <td>Omeprazole 20-40 mg daily; Famotidine 20 mg BID.</td>
+          <td>GI if refractory, dysphagia, GI bleeding, weight loss, or persistent symptoms.</td>
+        </tr>
+        <tr>
+          <td><strong>Anxiety / Dysfunctional Breathing</strong></td>
+          <td>F41.9</td>
+          <td>Hyperventilation, dizziness, chest tightness, panic symptoms, normal lung exam.</td>
+          <td>Clinical diagnosis +/- TSH, CBC to rule out medical causes.</td>
+          <td>Sertraline 25-100 mg daily; Escitalopram 5-20 mg daily; Hydroxyzine 25-50 mg PRN.</td>
+          <td>Behavioral health/therapy if persistent, severe panic, safety concerns, or functional impairment.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>8. Provider Assessment</h2>
+    <div class="grid">
+      <div class="field">
+        <label>Most Likely Diagnosis</label>
+        <select>
+          <option>Asthma</option>
+          <option>COPD</option>
+          <option>Vocal Cord Dysfunction</option>
+          <option>Heart Failure</option>
+          <option>GERD</option>
+          <option>Anxiety / Dysfunctional Breathing</option>
+          <option>Other / Needs evaluation</option>
+        </select>
+      </div>
+      <div class="field"><label>ICD-10 Code</label><input type="text" placeholder="Example: J45.909" /></div>
+    </div>
+
+    <div class="field">
+      <label>Assessment Notes</label>
+      <textarea placeholder="Clinical impression, differential diagnosis, severity, supporting symptoms, negative findings..."></textarea>
+    </div>
+
+    <h2>9. Plan / Orders / Follow-Up</h2>
+    <div class="check-grid">
+      <label class="check-item"><input type="checkbox" /> ER / urgent care referral</label>
+      <label class="check-item"><input type="checkbox" /> Spirometry recommended</label>
+      <label class="check-item"><input type="checkbox" /> Chest X-ray ordered/recommended</label>
+      <label class="check-item"><input type="checkbox" /> CBC / CMP / TSH</label>
+      <label class="check-item"><input type="checkbox" /> BNP / cardiac workup</label>
+      <label class="check-item"><input type="checkbox" /> Allergy testing referral</label>
+      <label class="check-item"><input type="checkbox" /> Pulmonology referral</label>
+      <label class="check-item"><input type="checkbox" /> Cardiology referral</label>
+      <label class="check-item"><input type="checkbox" /> ENT referral</label>
+      <label class="check-item"><input type="checkbox" /> GI referral</label>
+      <label class="check-item"><input type="checkbox" /> Behavioral health referral</label>
+      <label class="check-item"><input type="checkbox" /> Follow-up visit</label>
+    </div>
+
+    <div class="grid">
+      <div class="field"><label>Medication Plan</label><textarea placeholder="Medication name, dose, frequency, duration, inhaler education..."></textarea></div>
+      <div class="field"><label>Patient Education / Safety Instructions</label><textarea placeholder="Return precautions, inhaler technique, trigger avoidance, when to seek emergency care..."></textarea></div>
+    </div>
+
+    <div class="result-box">
+      <strong>Telehealth Suitability Reminder:</strong> Mild/stable asthma, GERD-related cough, vocal cord dysfunction screening, and anxiety-related breathing concerns may be suitable for telehealth. Acute severe SOB, hypoxia, chest pain, suspected heart failure exacerbation, or rapidly worsening respiratory symptoms require urgent in-person evaluation.
+    </div>
+
+    <div class="button-row">
+      <button class="primary" onclick="window.print()">Print / Save as PDF</button>
+      <button class="secondary" onclick="document.querySelectorAll('input, textarea').forEach(e => { if(e.type === 'checkbox') e.checked = false; else e.value = ''; }); document.querySelectorAll('select').forEach(s => s.selectedIndex = 0);">Clear Form</button>
+      <button class="danger" onclick="alert('Emergency red flags: severe distress, O2 <92%, blue lips, chest pain, confusion, cannot speak full sentences, fainting, or rapid worsening symptoms. Refer to ER/911.')">Show Emergency Red Flags</button>
+    </div>
+
+    <div class="footer-note">
+      Educational/provider documentation tool only. Medication dosing should be individualized based on age, pregnancy status, comorbidities, contraindications, formulary coverage, and current clinical guidelines. Controlled medication prescribing and emergency care decisions must follow state, federal, and organizational policies.
+    </div>
+  </div>
+</body>
+</html>

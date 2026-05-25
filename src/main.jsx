@@ -21,6 +21,10 @@ import "./styles.css";
 import acneClinicalGuideHtml from "./provider_tools/disease_conditions/acne_table.html?raw";
 import acneDiagnosisHtml from "./provider_tools/disease_conditions/acne_diagnosis.html?raw";
 import abdominalPainAutomatedHtml from "./provider_tools/disease_conditions/Abdominal_pain_Automated.html?raw";
+import anxietyHtml from "./provider_tools/disease_conditions/Anxiety.html?raw";
+import anxietyIntakeFormHtml from "./provider_tools/disease_conditions/Anxiety_intake_form.html?raw";
+import breathingIssuesHtml from "./provider_tools/disease_conditions/Breathing_issues.html?raw";
+import breathingIssuesIntakeHtml from "./provider_tools/disease_conditions/Breathing_Issues_intake_form.html?raw";
 import acneIntakeHtml from "./provider_tools/disease_conditions/telemedicine_acne_intake.html?raw";
 import allergyHtml from "./provider_tools/disease_conditions/Allergy.html?raw";
 import allergyAutomaticHtml from "./provider_tools/disease_conditions/Allergy_automatic.html?raw";
@@ -39,6 +43,29 @@ const charmHealthLinks = {
 const practiceIntroVideo = "/tele_back_final_IMG_5838_presenter_eleven_website.mp4";
 const quickSickPresenterImage =
   "/tele_blue_empowering_right_shiny_presenter_bottom_center.png";
+
+const socialLinks = [
+  {
+    name: "Facebook",
+    href: "https://www.facebook.com/profile.php?id=61590194727278",
+    icon: "facebook",
+  },
+  {
+    name: "YouTube",
+    href: "https://www.youtube.com/@TeleDNPnow",
+    icon: "youtube",
+  },
+  {
+    name: "TikTok",
+    href: "https://www.tiktok.com/@telednp",
+    icon: "tiktok",
+  },
+  {
+    name: "LinkedIn",
+    href: "https://www.linkedin.com/in/shiny-job-487686411/",
+    icon: "linkedin",
+  },
+];
 
 const diseaseConditionTools = [
   {
@@ -65,6 +92,26 @@ const diseaseConditionTools = [
     title: "Abdominal Pain Intake and Clinical Decision Tool",
     slug: "abdominal-pain-automated",
     html: abdominalPainAutomatedHtml,
+  },
+  {
+    title: "Anxiety Intake Evaluation Form",
+    slug: "anxiety-intake-form",
+    html: anxietyIntakeFormHtml,
+  },
+  {
+    title: "Anxiety Differential Diagnosis Table",
+    slug: "anxiety",
+    html: anxietyHtml,
+  },
+  {
+    title: "Breathing Difficulty / Shortness of Breath Intake Form",
+    slug: "breathing-issues-intake-form",
+    html: breathingIssuesIntakeHtml,
+  },
+  {
+    title: "Breathing Difficulty Differential Diagnosis Table",
+    slug: "breathing-issues",
+    html: breathingIssuesHtml,
   },
   {
     title: "Acne Intake Form",
@@ -640,6 +687,14 @@ function QuickSickVisitsPage() {
         <div>
           <strong>TeleDNPnow</strong>
           <p>Care provided by Dr. Shiny Job, DNP, FNP-C.</p>
+          <p className="footer-copyright">
+            ©2026 TeleDNPnow.org. All rights reserved.
+            <a href="/articles.html">Articles</a>
+            <span aria-hidden="true">|</span>
+            <a href="/terms-of-service.html">Terms of Service</a>
+            <span aria-hidden="true">|</span>
+            <a href="/privacy-policy.html">Privacy Policy</a>
+          </p>
         </div>
         <div className="footer-links">
           <a href="tel:+14806265571">(480) 626-5571</a>
@@ -716,6 +771,57 @@ function ProviderDiseaseConditionViewer() {
         )}
       />
     </main>
+  );
+}
+
+function SocialIcon({ icon }) {
+  if (icon === "facebook") {
+    return (
+      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <path d="M14 8.2h2.3V4.4c-.4-.1-1.8-.2-3.4-.2-3.3 0-5.5 2-5.5 5.7v3.2H3.8v4.3h3.6v10.4h4.4V17.4h3.6l.6-4.3h-4.2V10.3c0-1.2.3-2.1 2.2-2.1Z" />
+      </svg>
+    );
+  }
+
+  if (icon === "youtube") {
+    return (
+      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <path d="M22.5 7.1a3 3 0 0 0-2.1-2.1C18.5 4.5 12 4.5 12 4.5S5.5 4.5 3.6 5A3 3 0 0 0 1.5 7.1 31 31 0 0 0 1 12a31 31 0 0 0 .5 4.9A3 3 0 0 0 3.6 19c1.9.5 8.4.5 8.4.5s6.5 0 8.4-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 23 12a31 31 0 0 0-.5-4.9ZM9.8 15.3V8.7L15.5 12l-5.7 3.3Z" />
+      </svg>
+    );
+  }
+
+  if (icon === "linkedin") {
+    return (
+      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <path d="M5.2 8.9H1.5v12h3.7v-12ZM3.4 3.1a2.1 2.1 0 1 0 0 4.2 2.1 2.1 0 0 0 0-4.2ZM22.5 14.2c0-3.6-1.9-5.6-4.8-5.6-2.2 0-3.2 1.2-3.8 2.1V8.9h-3.6v12H14v-6.6c0-1.8.3-3.5 2.5-3.5 2.1 0 2.2 2 2.2 3.6v6.5h3.8v-6.7Z" />
+      </svg>
+    );
+  }
+
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <path d="M16.8 2.5c.4 2.4 1.8 4 4.2 4.2v3.8a8 8 0 0 1-4.2-1.2v6.1c0 4-2.7 6.6-6.5 6.6-3.6 0-6.3-2.7-6.3-6.1 0-3.7 2.9-6.3 6.8-6.1v3.9c-1.7-.3-2.8.7-2.8 2.1 0 1.3 1 2.2 2.2 2.2 1.4 0 2.3-.8 2.3-2.7V2.5h4.3Z" />
+    </svg>
+  );
+}
+
+function FloatingSocialLinks() {
+  return (
+    <div className="floating-social-links" aria-label="TeleDNPnow social media links">
+      {socialLinks.map((link) => (
+        <a
+          key={link.name}
+          href={link.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={`Open TeleDNPnow on ${link.name}`}
+          title={link.name}
+        >
+          <SocialIcon icon={link.icon} />
+        </a>
+      ))}
+    </div>
   );
 }
 
@@ -1308,15 +1414,20 @@ function App() {
         </a>
         <nav className="nav-links" aria-label="Main navigation">
           <a href="#services">Services</a>
-          <a href="/quick-sick-visits.html">Quick Sick</a>
-          <a href="#medical-weight-loss-options">
-            Weight Loss
-          </a>
-          <a href="#intake" onClick={() => showCareSection("intake")}>
-            Intake
-          </a>
-          <a href="#consent" onClick={() => showCareSection("consent")}>
-            Consent
+          <button
+            className="nav-menu-button"
+            type="button"
+            onClick={showBookingFrame}
+          >
+            Book Visit
+          </button>
+          <a
+            className="nav-portal-link"
+            href={charmHealthLinks.portal}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            REGISTER/PATIENT PORTAL
           </a>
           <a href="#telemedicine-disclaimer">Telemedicine Disclaimer</a>
           <a href="#contact">Contact</a>
@@ -1329,13 +1440,6 @@ function App() {
           >
             <UserRound size={17} aria-hidden="true" />
             Provider Login
-          </button>
-          <button
-            className="nav-action"
-            type="button"
-            onClick={showBookingFrame}
-          >
-            Book Visit
           </button>
         </div>
       </header>
@@ -2115,6 +2219,20 @@ function App() {
       <section className={careSectionClass("book", "booking-section")} id="book">
         <form className="booking-form">
           <div className="booking-frame-panel full-width" id="charm-booking">
+            <a
+              className="portal-register-button"
+              href={charmHealthLinks.portal}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              REGISTER/PATIENT PORTAL
+              <ChevronRight size={18} aria-hidden="true" />
+            </a>
+            <p className="portal-trust-caption">
+              CharmHealth/CharmTracker is the secure EHR patient portal used by
+              TeleDNPnow for registration, visit information, and patient
+              communication.
+            </p>
             <div className="care-detail-heading">
               <button
                 className="care-heading-trigger"
@@ -2145,10 +2263,21 @@ function App() {
           <div className="secure-payment-panel full-width">
             <div className="payment-content">
               <div className="payment-image-row" aria-label="TeleDNPnow booking and provider images">
-                <img
-                  src="/telemedicine-appointment-request.svg"
-                  alt="Request a telemedicine appointment with steps to choose date and time, provide information, and join the visit"
-                />
+                <button
+                  className="booking-image-button"
+                  type="button"
+                  onClick={showBookingFrame}
+                  aria-label="Open Book Tele Visit calendar"
+                >
+                  <img
+                    src="/telemedicine-appointment-request.svg"
+                    alt="Request a telemedicine appointment with steps to choose date and time, provide information, and join the visit"
+                  />
+                  <span className="booking-image-cta">
+                    BOOK TELE VISIT
+                    <ChevronRight size={17} aria-hidden="true" />
+                  </span>
+                </button>
                 <img
                   src="/dr-shiny-job-logo.png"
                   alt="Dr. Shiny Job, DNP, FNP-C Family Nurse Practitioner"
@@ -2986,12 +3115,22 @@ function App() {
         <div>
           <strong>TeleDNPnow</strong>
           <p>Care provided by Dr. Shiny Job, DNP, FNP-C.</p>
+          <p className="footer-copyright">
+            {"\u00a9"}2026 TeleDNPnow.org. All rights reserved.
+            <a href="/articles.html">Articles</a>
+            <span aria-hidden="true">|</span>
+            <a href="/terms-of-service.html">Terms of Service</a>
+            <span aria-hidden="true">|</span>
+            <a href="/privacy-policy.html">Privacy Policy</a>
+          </p>
         </div>
         <div className="footer-links">
           <a href="tel:+14806265571">(480) 626-5571</a>
           <a href="mailto:care@telednpnow.org">care@telednpnow.org</a>
         </div>
       </footer>
+
+      <FloatingSocialLinks />
 
       {isPracticeVideoOpen && (
         <div
