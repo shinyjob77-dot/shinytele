@@ -2598,6 +2598,13 @@ p {
   width: 100%;
 }
 
+.chatbot-voice-row {
+  align-items: stretch;
+  display: grid;
+  gap: 8px;
+  grid-template-columns: minmax(0, 1fr) 44px;
+}
+
 .chatbot-ai-form button {
   background: #26736c;
   border: 0;
@@ -2606,6 +2613,22 @@ p {
   cursor: pointer;
   font-weight: 900;
   min-height: 40px;
+}
+
+.chatbot-ai-form .chatbot-voice-button {
+  align-items: center;
+  background: #eef7f5;
+  border: 1px solid #9fbab4;
+  color: #173d39;
+  display: inline-flex;
+  justify-content: center;
+  min-height: 74px;
+}
+
+.chatbot-ai-form .chatbot-voice-button.is-listening {
+  background: #8e1f2f;
+  border-color: #8e1f2f;
+  color: #ffffff;
 }
 
 .chatbot-ai-form button:disabled {

@@ -14,6 +14,8 @@ import {
   HeartPulse,
   Laptop,
   MessageCircle,
+  Mic,
+  MicOff,
   Phone,
   ShieldCheck,
   Stethoscope,
@@ -837,7 +839,10 @@ function MarketingChatBot({ onBookVisit }) {
   const [aiAnswer, setAiAnswer] = useState("");
   const [aiLinks, setAiLinks] = useState([]);
   const [isAiLoading, setIsAiLoading] = useState(false);
+  const [isListening, setIsListening] = useState(false);
+  const [voiceStatus, setVoiceStatus] = useState("");
   const [aiError, setAiError] = useState("");
+  const recognitionRef = useRef(null);
 
   const topics = {
     welcome: {
@@ -936,6 +941,60 @@ function MarketingChatBot({ onBookVisit }) {
     }
   };
 
+  const toggleVoiceRecognition = () => {
+    if (isListening) {
+      recognitionRef.current?.stop();
+      setIsListening(false);
+      setVoiceStatus("");
+      return;
+    }
+
+    const SpeechRecognition =
+      window.SpeechRecognition || window.webkitSpeechRecognition;
+
+    if (!SpeechRecognition) {
+      setVoiceStatus("Voice recognition is not supported in this browser. Please type your question.");
+      return;
+    }
+
+    const recognition = new SpeechRecognition();
+    recognition.lang = "en-US";
+    recognition.interimResults = false;
+    recognition.maxAlternatives = 1;
+    recognitionRef.current = recognition;
+
+    recognition.onstart = () => {
+      setIsListening(true);
+      setVoiceStatus("Listening...");
+    };
+
+    recognition.onresult = (event) => {
+      const transcript = event.results?.[0]?.[0]?.transcript || "";
+      if (transcript) {
+        setAiQuestion((current) =>
+          current ? `${current.trim()} ${transcript}` : transcript,
+        );
+        setVoiceStatus("Voice added to the question.");
+      }
+    };
+
+    recognition.onerror = () => {
+      setVoiceStatus("Voice recognition did not hear clearly. Please try again or type your question.");
+    };
+
+    recognition.onend = () => {
+      setIsListening(false);
+    };
+
+    recognition.start();
+  };
+
+  useEffect(() => {
+    return () => {
+      recognitionRef.current?.stop();
+    };
+  }, []);
+
   return (
     <div className={`marketing-chatbot ${isOpen ? "is-open" : ""}`}>
       {isOpen && (
@@ -960,16 +1019,32 @@ function MarketingChatBot({ onBookVisit }) {
             <label htmlFor="tele-ai-question">
               Ask a general question
             </label>
-            <textarea
-              id="tele-ai-question"
-              value={aiQuestion}
-              onChange={(event) => setAiQuestion(event.target.value)}
-              placeholder="Example: How much is a sick visit? How do I book?"
-              rows="3"
-            />
+            <div className="chatbot-voice-row">
+              <textarea
+                id="tele-ai-question"
+                value={aiQuestion}
+                onChange={(event) => setAiQuestion(event.target.value)}
+                placeholder="Example: How much is a sick visit? How do I book?"
+                rows="3"
+              />
+              <button
+                className={isListening ? "chatbot-voice-button is-listening" : "chatbot-voice-button"}
+                type="button"
+                onClick={toggleVoiceRecognition}
+                aria-label={isListening ? "Stop voice recognition" : "Start voice recognition"}
+                title={isListening ? "Stop voice recognition" : "Ask by voice"}
+              >
+                {isListening ? (
+                  <MicOff size={18} aria-hidden="true" />
+                ) : (
+                  <Mic size={18} aria-hidden="true" />
+                )}
+              </button>
+            </div>
             <button type="submit" disabled={isAiLoading}>
               {isAiLoading ? "Answering..." : "Ask AI"}
             </button>
+            {voiceStatus && <small>{voiceStatus}</small>}
             <small>
               Please do not enter private medical details. For personal care,
               book a visit or use the secure patient portal.
