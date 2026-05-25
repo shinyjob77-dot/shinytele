@@ -14,6 +14,20 @@ export const teleDnpVisitTypes = [
   { name: "Medication refill visit", price: "$30", keywords: "medication refill prescription refill routine medicine non-controlled" },
 ];
 
+export const teleDnpWorkingHours = [
+  { day: "Sunday", hours: "11:00 AM-6:00 PM" },
+  { day: "Monday", hours: "Holiday / Closed" },
+  { day: "Tuesday", hours: "Holiday / Closed" },
+  { day: "Wednesday", hours: "9:00 AM-6:00 PM" },
+  { day: "Thursday", hours: "9:00 AM-6:00 PM" },
+  { day: "Friday", hours: "9:00 AM-6:00 PM" },
+  { day: "Saturday", hours: "9:00 AM-6:00 PM" },
+];
+
+const workingHoursText = teleDnpWorkingHours
+  .map((item) => `${item.day}: ${item.hours}`)
+  .join("; ");
+
 export const teleDnpServiceParameters = [
   {
     service: "Quick sick visits",
@@ -237,6 +251,7 @@ export const teleDnpQuickAnswers = [
     keywords: [
       "price",
       "prices",
+      "pricing",
       "cost",
       "costs",
       "how much",
@@ -267,6 +282,8 @@ export const teleDnpQuickAnswers = [
       "charges",
     ],
     phrases: [
+      "services pricing",
+      "service pricing",
       "how much is a visit",
       "how much does it cost",
       "do i need insurance",
@@ -476,6 +493,48 @@ export const teleDnpQuickAnswers = [
     ],
   },
   {
+    title: "Working hours",
+    keywords: [
+      "hours",
+      "hour",
+      "working hours",
+      "business hours",
+      "open",
+      "opening",
+      "opening time",
+      "close",
+      "closing",
+      "closing time",
+      "available",
+      "availability",
+      "today",
+      "tomorrow",
+      "sunday",
+      "monday",
+      "tuesday",
+      "wednesday",
+      "thursday",
+      "friday",
+      "saturday",
+      "weekend",
+      "weekday",
+      "holiday",
+    ],
+    phrases: [
+      "what time are you open",
+      "what are your hours",
+      "opening time",
+      "business hours",
+      "are you open today",
+      "are you open on sunday",
+      "are you open on saturday",
+      "when do you close",
+      "when are appointments available",
+    ],
+    answer: `TeleDNPnow - Telemedicine facility working hours are: ${workingHoursText}. Visits are by appointment and availability may depend on the schedule.`,
+    links: [{ label: "Book Visit", url: bookVisitLink }],
+  },
+  {
     title: "Provider information",
     keywords: [
       "provider",
@@ -621,11 +680,18 @@ const normalizeText = (value) =>
     .replace(/\s+/g, " ")
     .trim();
 
+const toKeywordList = (keywords) => {
+  if (Array.isArray(keywords)) return keywords;
+  if (typeof keywords === "string") return keywords.split(/\s+/);
+  return [];
+};
+
 const scoreEntry = (question, entry) => {
   const normalizedQuestion = normalizeText(question);
   const words = normalizedQuestion.split(" ").filter((word) => word.length > 2);
+  const keywords = toKeywordList(entry.keywords);
   const haystack = normalizeText(
-    `${entry.title} ${(entry.keywords || []).join?.(" ") || entry.keywords || ""} ${(entry.phrases || []).join(" ")} ${entry.answer || ""}`,
+    `${entry.title} ${keywords.join(" ")} ${(entry.phrases || []).join(" ")} ${entry.answer || ""}`,
   );
 
   const phraseScore = (entry.phrases || []).reduce((score, phrase) => {
@@ -633,7 +699,7 @@ const scoreEntry = (question, entry) => {
     return score;
   }, 0);
 
-  const keywordScore = (entry.keywords || []).reduce((score, keyword) => {
+  const keywordScore = keywords.reduce((score, keyword) => {
     const normalizedKeyword = normalizeText(keyword);
     if (!normalizedKeyword) return score;
     if (normalizedQuestion === normalizedKeyword) return score + 8;
@@ -708,6 +774,7 @@ export function findChatKnowledgeAnswer(question) {
 
 export const teleDnpKnowledgeContext = [
   `Safety: ${standardSafetyText}`,
+  `Working hours: ${workingHoursText}`,
   `Visit prices: ${teleDnpVisitTypes
     .map((visit) => `${visit.name} ${visit.price}`)
     .join("; ")}`,

@@ -2517,7 +2517,8 @@ p {
   box-shadow: 0 20px 54px rgba(16, 32, 31, 0.2);
   display: grid;
   gap: 14px;
-  overflow: hidden;
+  max-height: min(720px, calc(100vh - 96px));
+  overflow-y: auto;
 }
 
 .chatbot-header {
@@ -2570,9 +2571,14 @@ p {
 }
 
 .chatbot-ai-form {
+  background: #ffffff;
+  border-bottom: 1px solid #c8d8df;
   display: grid;
   gap: 8px;
   padding: 0 14px;
+  position: sticky;
+  top: 0;
+  z-index: 2;
 }
 
 .chatbot-ai-form label {

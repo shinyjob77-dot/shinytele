@@ -886,12 +886,16 @@ function MarketingChatBot({ onBookVisit }) {
     setAiAnswer("");
     setAiLinks([]);
 
-    const libraryAnswer = findChatKnowledgeAnswer(question);
-    if (libraryAnswer) {
-      setAiAnswer(libraryAnswer.answer);
-      setAiLinks(libraryAnswer.links || []);
-      setIsAiLoading(false);
-      return;
+    try {
+      const libraryAnswer = findChatKnowledgeAnswer(question);
+      if (libraryAnswer) {
+        setAiAnswer(libraryAnswer.answer);
+        setAiLinks(libraryAnswer.links || []);
+        setIsAiLoading(false);
+        return;
+      }
+    } catch {
+      setAiError("");
     }
 
     try {
