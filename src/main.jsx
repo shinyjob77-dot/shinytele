@@ -1044,8 +1044,8 @@ function MarketingChatBot({ onBookVisit }) {
             <button type="submit" disabled={isAiLoading}>
               {isAiLoading ? "Answering..." : "Ask AI"}
             </button>
-            {voiceStatus && <small>{voiceStatus}</small>}
-            <small>
+            {voiceStatus && <small className="chatbot-voice-status">{voiceStatus}</small>}
+            <small className="chatbot-privacy-note">
               Please do not enter private medical details. For personal care,
               book a visit or use the secure patient portal.
             </small>

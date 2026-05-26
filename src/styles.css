@@ -2994,6 +2994,11 @@ p {
     min-height: 74px;
   }
 
+  .chatbot-voice-status,
+  .chatbot-privacy-note {
+    display: none;
+  }
+
   .chatbot-ai-answer {
     margin: 0 12px 12px;
   }
