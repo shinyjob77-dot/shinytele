@@ -336,11 +336,6 @@ const medicalWeightLossOptions = [
     details:
       "May be considered to help reduce appetite and cravings as part of a monitored weight-loss plan when clinically appropriate.",
   },
-  {
-    title: "Bupropion + Naltrexone therapy",
-    details:
-      "May help with appetite control and cravings as part of a supervised weight-loss plan after review of medical history and medication safety.",
-  },
 ];
 
 const depressionQuestions = [
@@ -2184,6 +2179,7 @@ function App() {
                     <p>
                       Our telehealth clinic offers personalized weight-loss treatment
                       plans based on your health history, goals, and clinical needs.
+                      FDA approved treatment will be offered.
                     </p>
                   </div>
                   <a className="secondary-button" href="/medical_weight_loss_options.html">
