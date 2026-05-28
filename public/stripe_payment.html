@@ -1,0 +1,312 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Stripe Self-Pay Visit Payments | TeleDNPnow</title>
+    <meta
+      name="description"
+      content="Pay TeleDNPnow self-pay telehealth visit fees securely by card through Stripe hosted checkout."
+    />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://telednpnow.org/stripe_payment.html" />
+    <meta property="og:title" content="Stripe Self-Pay Visit Payments | TeleDNPnow" />
+    <meta
+      property="og:description"
+      content="Secure self-pay telehealth visit payments for TeleDNPnow."
+    />
+    <meta property="og:image" content="https://telednpnow.org/seo-preview.png" />
+    <style>
+      :root {
+        --ink: #10201f;
+        --muted: #52615f;
+        --brand: #26736c;
+        --brand-dark: #17514c;
+        --accent: #8d2f3f;
+        --line: rgba(16, 32, 31, 0.13);
+        --paper: #f7faf8;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        background: var(--paper);
+        color: var(--ink);
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      .page {
+        width: min(1080px, calc(100% - 32px));
+        margin: 0 auto;
+        padding: 34px 0 48px;
+      }
+
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        color: var(--ink);
+        font-size: 1.1rem;
+        font-weight: 900;
+        text-decoration: none;
+      }
+
+      .brand-mark {
+        display: grid;
+        width: 38px;
+        height: 38px;
+        place-items: center;
+        border-radius: 8px;
+        background: var(--brand);
+        color: #fff;
+      }
+
+      .hero {
+        display: grid;
+        gap: 16px;
+        margin-top: 26px;
+        padding: 30px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: #fff;
+        box-shadow: 0 18px 48px rgba(24, 45, 43, 0.08);
+      }
+
+      h1,
+      h2,
+      p {
+        margin: 0;
+      }
+
+      h1 {
+        max-width: 800px;
+        font-size: clamp(2.15rem, 5vw, 3.8rem);
+        line-height: 1;
+      }
+
+      p {
+        color: var(--muted);
+        font-size: 1.02rem;
+        line-height: 1.65;
+      }
+
+      .notice {
+        border-left: 4px solid var(--brand);
+        border-radius: 8px;
+        background: rgba(38, 115, 108, 0.08);
+        padding: 14px 16px;
+        color: var(--ink);
+        font-weight: 800;
+      }
+
+      .payment-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 14px;
+        margin-top: 18px;
+      }
+
+      .payment-card {
+        display: grid;
+        gap: 12px;
+        padding: 18px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: #fff;
+      }
+
+      .payment-card h2 {
+        font-size: 1.12rem;
+      }
+
+      .price {
+        color: var(--accent);
+        font-size: 1.8rem;
+        font-weight: 900;
+      }
+
+      .button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 46px;
+        border: 0;
+        border-radius: 8px;
+        background: var(--brand);
+        color: #fff;
+        cursor: pointer;
+        font-weight: 900;
+        padding: 0 16px;
+        text-decoration: none;
+      }
+
+      .button:hover {
+        background: var(--brand-dark);
+      }
+
+      .button.secondary {
+        border: 1px solid var(--line);
+        background: #fff;
+        color: var(--brand);
+      }
+
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 18px;
+      }
+
+      .status {
+        min-height: 24px;
+        color: var(--accent);
+        font-weight: 900;
+      }
+
+      @media (max-width: 560px) {
+        .hero {
+          padding: 22px;
+        }
+
+        .button {
+          width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="page">
+      <a class="brand" href="/" aria-label="TeleDNPnow home">
+        <span class="brand-mark" aria-hidden="true">TN</span>
+        <span>TeleDNPnow</span>
+      </a>
+
+      <section class="hero">
+        <h1>Secure self-pay visit payment through Stripe.</h1>
+        <p>
+          Use this page to pay TeleDNPnow self-pay visit fees by card through
+          Stripe hosted checkout. Card numbers are not collected or stored on
+          this website.
+        </p>
+        <p class="notice">
+          TeleDNPnow provides non-emergency telehealth services. Payment does
+          not replace medical evaluation and does not guarantee a prescription
+          or specific treatment.
+        </p>
+      </section>
+
+      <section class="payment-grid" aria-label="Stripe payment options">
+        <article class="payment-card">
+          <h2>Quick sick visits</h2>
+          <p class="price">$40</p>
+          <p>For focused, non-emergency acute concerns by telehealth.</p>
+          <button class="button" type="button" data-pay="quickSickVisits">Pay by Card</button>
+        </article>
+
+        <article class="payment-card">
+          <h2>Primary care</h2>
+          <p class="price">$50</p>
+          <p>For primary care concerns, health review, and care planning.</p>
+          <button class="button" type="button" data-pay="primaryCare">Pay by Card</button>
+        </article>
+
+        <article class="payment-card">
+          <h2>Women's health</h2>
+          <p class="price">$50</p>
+          <p>For confidential women's health concerns and routine follow-up.</p>
+          <button class="button" type="button" data-pay="womensHealth">Pay by Card</button>
+        </article>
+
+        <article class="payment-card">
+          <h2>Chronic care</h2>
+          <p class="price">$50</p>
+          <p>For chronic condition follow-up and medication review support.</p>
+          <button class="button" type="button" data-pay="chronicCare">Pay by Card</button>
+        </article>
+
+        <article class="payment-card">
+          <h2>Medication Refills</h2>
+          <p class="price">$30</p>
+          <p>For clinically appropriate non-controlled medication refill review.</p>
+          <button class="button" type="button" data-pay="medicationRefill">Pay by Card</button>
+        </article>
+
+        <article class="payment-card">
+          <h2>Lab Review</h2>
+          <p class="price">$20</p>
+          <p>For lab or diagnostic result review and next-step discussion.</p>
+          <button class="button" type="button" data-pay="labReview">Pay by Card</button>
+        </article>
+
+        <article class="payment-card">
+          <h2>Mental Health Screening</h2>
+          <p class="price">$20</p>
+          <p>For screening, education, and guidance for emotional wellness concerns.</p>
+          <button class="button" type="button" data-pay="mentalHealthScreening">Pay by Card</button>
+        </article>
+
+        <article class="payment-card">
+          <h2>Skin & Dermatology</h2>
+          <p class="price">$40</p>
+          <p>For common skin concerns, rash, acne, and dermatology questions.</p>
+          <button class="button" type="button" data-pay="skinDermatology">Pay by Card</button>
+        </article>
+
+        <article class="payment-card">
+          <h2>Medical weight loss initial</h2>
+          <p class="price">$90</p>
+          <p>For medical weight-loss evaluation and treatment planning.</p>
+          <button class="button" type="button" data-pay="medicalWeightLossInitial">Pay by Card</button>
+        </article>
+
+        <article class="payment-card">
+          <h2>Medical weight loss follow-up</h2>
+          <p class="price">$40</p>
+          <p>For medical weight-loss follow-up and plan adjustment.</p>
+          <button class="button" type="button" data-pay="medicalWeightLossFollowUp">Pay by Card</button>
+        </article>
+      </section>
+
+      <p id="payment-status" class="status" role="status"></p>
+
+      <div class="actions">
+        <a class="button secondary" href="/">Back to TeleDNPnow</a>
+        <a class="button secondary" href="/pay.html">CharmHealth/Bluefin payment</a>
+      </div>
+    </main>
+
+    <script>
+      const stripePaymentLinks = {
+        quickSickVisits: "",
+        primaryCare: "",
+        womensHealth: "",
+        chronicCare: "",
+        medicationRefill: "",
+        labReview: "",
+        mentalHealthScreening: "",
+        skinDermatology: "",
+        medicalWeightLossInitial: "",
+        medicalWeightLossFollowUp: "",
+      };
+
+      const status = document.querySelector("#payment-status");
+
+      document.addEventListener("click", (event) => {
+        const button = event.target.closest("[data-pay]");
+        if (!button) return;
+
+        const link = stripePaymentLinks[button.dataset.pay];
+        if (!link) {
+          status.textContent =
+            "Stripe payment link is not added yet. Create this payment link in Stripe, then paste it into stripe_payment.html.";
+          return;
+        }
+
+        window.location.href = link;
+      });
+    </script>
+  </body>
+</html>

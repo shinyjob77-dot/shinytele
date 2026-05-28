@@ -44,7 +44,7 @@ const charmHealthLinks = {
   portal:
     "https://accounts.charmtracker.com/signin?hide_signup=true&hide_secure=true&hide_gsignup=true&servicename=charmphr&serviceurl=https%3A%2F%2Fphr2.charmtracker.com%2Fmain.do",
   intake: "https://phr.charmtracker.com/",
-  payment: "https://phr.charmtracker.com/",
+  payment: "/stripe_payment.html",
 };
 
 const practiceIntroVideo = "/tele_back_final_IMG_5838_presenter_eleven_website.mp4";

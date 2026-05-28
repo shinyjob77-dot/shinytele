@@ -6,3 +6,8 @@ dist
 npm-debug.log*
 vite.log
 vite.err.log
+
+# Local Netlify folder
+.netlify
+jolly-store/
+jolly-store/**
