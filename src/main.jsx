@@ -1712,6 +1712,9 @@ function App() {
           >
             Register / Patient Portal
           </a>
+          <a className="nav-portal-link" href="/stripe_payment.html">
+            Pay by Card
+          </a>
           <a href="#telemedicine-disclaimer">Telemedicine Disclaimer</a>
           <a href="#contact">Contact</a>
         </nav>
@@ -2517,6 +2520,10 @@ function App() {
               TeleDNPnow for registration, visit information, and patient
               communication.
             </p>
+            <a className="portal-register-button" href="/stripe_payment.html">
+              PAY SELF-PAY BY CARD
+              <ChevronRight size={18} aria-hidden="true" />
+            </a>
             <div className="care-detail-heading">
               <button
                 className="care-heading-trigger"
