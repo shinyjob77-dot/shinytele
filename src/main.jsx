@@ -13,6 +13,7 @@ import {
   FileText,
   HeartPulse,
   Laptop,
+  Menu,
   MessageCircle,
   Mic,
   MicOff,
@@ -1114,6 +1115,7 @@ function App() {
   const normalizedPath = currentPath.replace(/\/$/, "") || "/";
   const [activeSection, setActiveSection] = useState("book");
   const [isLoginOpen, setIsLoginOpen] = useState(false);
+  const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
   const [providerLogin, setProviderLogin] = useState({
     username: "",
     password: "",
@@ -1609,6 +1611,7 @@ function App() {
   };
 
   const showBookingFrame = () => {
+    setIsMobileNavOpen(false);
     setActiveSection("book");
     setExpandedCareDetails((details) => ({
       ...details,
@@ -1695,8 +1698,24 @@ function App() {
           </span>
           <span>TeleDNPnow</span>
         </a>
-        <nav className="nav-links" aria-label="Main navigation">
-          <a href="#services">Services</a>
+        <button
+          className="mobile-nav-toggle"
+          type="button"
+          onClick={() => setIsMobileNavOpen((isOpen) => !isOpen)}
+          aria-controls="main-navigation"
+          aria-expanded={isMobileNavOpen}
+          aria-label="Open navigation menu"
+        >
+          <Menu size={22} aria-hidden="true" />
+        </button>
+        <nav
+          id="main-navigation"
+          className={`nav-links ${isMobileNavOpen ? "is-open" : ""}`}
+          aria-label="Main navigation"
+        >
+          <a href="#services" onClick={() => setIsMobileNavOpen(false)}>
+            Services
+          </a>
           <button
             className="nav-menu-button"
             type="button"
@@ -1709,130 +1728,28 @@ function App() {
             href={charmHealthLinks.portal}
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() => setIsMobileNavOpen(false)}
           >
             Register / Patient Portal
           </a>
-          <a className="nav-portal-link" href="/stripe_payment.html">
+          <a
+            className="nav-portal-link"
+            href="/stripe_payment.html"
+            onClick={() => setIsMobileNavOpen(false)}
+          >
             Pay by Card
           </a>
-          <a href="#telemedicine-disclaimer">Telemedicine Disclaimer</a>
-          <a href="#contact">Contact</a>
+          <a
+            href="#telemedicine-disclaimer"
+            onClick={() => setIsMobileNavOpen(false)}
+          >
+            Telemedicine Disclaimer
+          </a>
+          <a href="#contact" onClick={() => setIsMobileNavOpen(false)}>
+            Contact
+          </a>
         </nav>
-        <div className="top-actions">
-          <button
-            className="login-action"
-            type="button"
-            onClick={() => setIsLoginOpen((isOpen) => !isOpen)}
-          >
-            <UserRound size={17} aria-hidden="true" />
-            Provider Login
-          </button>
-        </div>
       </header>
-
-      {isLoginOpen && (
-        <section className="manual-login-panel" aria-label="Manual login">
-          <button
-            className="manual-login-close"
-            type="button"
-            onClick={() => setIsLoginOpen(false)}
-            aria-label="Close provider login section"
-          >
-            Close
-          </button>
-          <div>
-            <span className="section-kicker">Manual login</span>
-            <h3>Provider login entry</h3>
-            <p>
-              This is a manual-entry screen only. It does not connect to a
-              patient portal, database, or EHR.
-            </p>
-          </div>
-          <form className="manual-login-form" onSubmit={handleProviderLogin}>
-            <label>
-              Email or username
-              <input
-                type="text"
-                name="manualLoginName"
-                value={providerLogin.username}
-                onChange={(event) =>
-                  setProviderLogin((login) => ({
-                    ...login,
-                    username: event.target.value,
-                    isAuthorized: false,
-                    message: "",
-                  }))
-                }
-              />
-            </label>
-            <label>
-              Password
-              <input
-                type="password"
-                name="manualLoginPassword"
-                value={providerLogin.password}
-                onChange={(event) =>
-                  setProviderLogin((login) => ({
-                    ...login,
-                    password: event.target.value,
-                    isAuthorized: false,
-                    message: "",
-                  }))
-                }
-              />
-            </label>
-            <button type="submit">Login Manually</button>
-          </form>
-          {providerLogin.message && (
-            <p
-              className={
-                providerLogin.isAuthorized
-                  ? "manual-login-status success"
-                  : "manual-login-status"
-              }
-            >
-              {providerLogin.message}
-            </p>
-          )}
-          {providerLogin.isAuthorized && (
-            <div className="provider-tool-links">
-              <div className="provider-tool-search">
-                <label htmlFor="disease-condition-tool">
-                  Provider tool files
-                </label>
-                <div>
-                  <input
-                    id="disease-condition-tool"
-                    list="disease-condition-tools"
-                    type="search"
-                    placeholder="Search or select a file"
-                    value={selectedDiseaseConditionTool}
-                    onChange={(event) =>
-                      setSelectedDiseaseConditionTool(event.target.value)
-                    }
-                  />
-                  <datalist id="disease-condition-tools">
-                    {diseaseConditionTools.map((tool) => (
-                      <option key={tool.slug} value={tool.title} />
-                    ))}
-                  </datalist>
-                  <button
-                    type="button"
-                    onClick={openSelectedDiseaseConditionTool}
-                    disabled={
-                      !diseaseConditionTools.some(
-                        (tool) => tool.title === selectedDiseaseConditionTool,
-                      )
-                    }
-                  >
-                    Open
-                  </button>
-                </div>
-              </div>
-            </div>
-          )}
-        </section>
-      )}
 
       <section className="hero-section" id="home">
         <div className="hero-content">
@@ -3418,7 +3335,118 @@ function App() {
         <div className="footer-links">
           <a href="tel:+14806265571">(480) 626-5571</a>
           <a href="mailto:care@telednpnow.org">care@telednpnow.org</a>
+          <button
+            className="login-action footer-login-action"
+            type="button"
+            onClick={() => setIsLoginOpen((isOpen) => !isOpen)}
+          >
+            <UserRound size={17} aria-hidden="true" />
+            Provider Login
+          </button>
         </div>
+        {isLoginOpen && (
+          <section className="manual-login-panel footer-login-panel" aria-label="Manual login">
+            <button
+              className="manual-login-close"
+              type="button"
+              onClick={() => setIsLoginOpen(false)}
+              aria-label="Close provider login section"
+            >
+              Close
+            </button>
+            <div>
+              <span className="section-kicker">Manual login</span>
+              <h3>Provider login entry</h3>
+              <p>
+                This is a manual-entry screen only. It does not connect to a
+                patient portal, database, or EHR.
+              </p>
+            </div>
+            <form className="manual-login-form" onSubmit={handleProviderLogin}>
+              <label>
+                Email or username
+                <input
+                  type="text"
+                  name="manualLoginName"
+                  value={providerLogin.username}
+                  onChange={(event) =>
+                    setProviderLogin((login) => ({
+                      ...login,
+                      username: event.target.value,
+                      isAuthorized: false,
+                      message: "",
+                    }))
+                  }
+                />
+              </label>
+              <label>
+                Password
+                <input
+                  type="password"
+                  name="manualLoginPassword"
+                  value={providerLogin.password}
+                  onChange={(event) =>
+                    setProviderLogin((login) => ({
+                      ...login,
+                      password: event.target.value,
+                      isAuthorized: false,
+                      message: "",
+                    }))
+                  }
+                />
+              </label>
+              <button type="submit">Login Manually</button>
+            </form>
+            {providerLogin.message && (
+              <p
+                className={
+                  providerLogin.isAuthorized
+                    ? "manual-login-status success"
+                    : "manual-login-status"
+                }
+              >
+                {providerLogin.message}
+              </p>
+            )}
+            {providerLogin.isAuthorized && (
+              <div className="provider-tool-links">
+                <div className="provider-tool-search">
+                  <label htmlFor="disease-condition-tool">
+                    Provider tool files
+                  </label>
+                  <div>
+                    <input
+                      id="disease-condition-tool"
+                      list="disease-condition-tools"
+                      type="search"
+                      placeholder="Search or select a file"
+                      value={selectedDiseaseConditionTool}
+                      onChange={(event) =>
+                        setSelectedDiseaseConditionTool(event.target.value)
+                      }
+                    />
+                    <datalist id="disease-condition-tools">
+                      {diseaseConditionTools.map((tool) => (
+                        <option key={tool.slug} value={tool.title} />
+                      ))}
+                    </datalist>
+                    <button
+                      type="button"
+                      onClick={openSelectedDiseaseConditionTool}
+                      disabled={
+                        !diseaseConditionTools.some(
+                          (tool) => tool.title === selectedDiseaseConditionTool,
+                        )
+                      }
+                    >
+                      Open
+                    </button>
+                  </div>
+                </div>
+              </div>
+            )}
+          </section>
+        )}
       </footer>
 
       <MarketingChatBot onBookVisit={showBookingFrame} />
