@@ -162,6 +162,10 @@ a {
   gap: 10px;
 }
 
+.mobile-nav-toggle {
+  display: none;
+}
+
 .login-action {
   min-height: 46px;
   display: inline-flex;
@@ -2410,6 +2414,12 @@ p {
   border-radius: 8px;
 }
 
+.footer-login-panel {
+  flex-basis: 100%;
+  margin: 0;
+  width: 100%;
+}
+
 .footer strong {
   color: #10201f;
   font-size: 1.1rem;
@@ -2434,11 +2444,19 @@ p {
 }
 
 .footer-links {
+  align-items: flex-end;
+  display: flex;
+  flex-direction: column;
   flex-wrap: wrap;
   justify-content: flex-end;
-  gap: 16px;
+  gap: 8px;
   color: #26736c;
   font-weight: 800;
+}
+
+.footer-login-action {
+  border-color: rgba(38, 115, 108, 0.22);
+  color: #26736c;
 }
 
 .floating-social-links {
@@ -2448,7 +2466,7 @@ p {
   gap: 10px;
   position: fixed;
   right: 22px;
-  z-index: 30;
+  z-index: 35;
 }
 
 .floating-social-links a {
@@ -2742,15 +2760,47 @@ p {
 
 @media (max-width: 900px) {
   .topbar {
-    flex-wrap: wrap;
+    align-items: center;
+    display: grid;
+    gap: 10px;
+    grid-template-columns: minmax(0, 1fr) auto;
+    position: sticky;
+  }
+
+  .mobile-nav-toggle {
+    align-items: center;
+    background: #ffffff;
+    border: 1px solid rgba(38, 115, 108, 0.22);
+    border-radius: 8px;
+    color: #26736c;
+    cursor: pointer;
+    display: inline-flex;
+    height: 44px;
+    justify-content: center;
+    width: 44px;
   }
 
   .nav-links {
-    order: 3;
+    background: #ffffff;
+    border: 1px solid rgba(16, 32, 31, 0.1);
+    border-radius: 8px;
+    box-shadow: 0 16px 34px rgba(24, 45, 43, 0.1);
+    display: none;
+    gap: 8px;
+    grid-column: 1 / -1;
+    padding: 10px;
     width: 100%;
-    justify-content: space-between;
-    gap: 12px;
-    overflow-x: auto;
+  }
+
+  .nav-links.is-open {
+    display: grid;
+  }
+
+  .nav-links a,
+  .nav-menu-button {
+    justify-content: flex-start;
+    min-width: 0;
+    width: 100%;
   }
 
   .hero-section,
@@ -2860,8 +2910,7 @@ p {
   }
 
   .top-actions {
-    order: 2;
-    width: 100%;
+    width: auto;
   }
 
   .login-action,
@@ -2869,6 +2918,11 @@ p {
     flex: 1 1 0;
     min-width: 0;
     padding: 0 10px;
+  }
+
+  .login-action {
+    min-height: 44px;
+    white-space: nowrap;
   }
 
   h1 {
@@ -2945,7 +2999,7 @@ p {
   }
 
   .floating-social-links {
-    bottom: 14px;
+    bottom: 78px;
     gap: 8px;
     right: 14px;
   }
