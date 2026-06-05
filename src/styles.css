@@ -805,6 +805,7 @@ p {
 .disclaimer-section,
 .consent-section,
 .seo-section,
+.seo-link-section,
 .footer {
   width: min(1180px, calc(100% - 32px));
   margin: 0 auto;
@@ -812,6 +813,39 @@ p {
 
 .services-band {
   padding: 80px 0;
+}
+
+.seo-link-section {
+  padding: 20px 0 68px;
+}
+
+.seo-link-section .section-heading p {
+  color: #53615f;
+  line-height: 1.65;
+  max-width: 760px;
+}
+
+.seo-link-grid {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  margin-top: 22px;
+}
+
+.seo-link-grid a {
+  background: #ffffff;
+  border: 1px solid rgba(38, 115, 108, 0.18);
+  border-radius: 8px;
+  color: #1e5f59;
+  font-weight: 800;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.seo-link-grid a:hover,
+.seo-link-grid a:focus-visible {
+  border-color: #8b1e1e;
+  color: #8b1e1e;
 }
 
 .practice-video-section {
