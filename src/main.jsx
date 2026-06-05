@@ -1757,9 +1757,9 @@ function App() {
             <ShieldCheck size={15} aria-hidden="true" />
             Secure virtual care
           </span>
-          <h4>Telehealthcare Made Simple, Convenient, and Personal</h4>
+          <h4>TeleDNPnow Arizona Telehealth Care Made Simple</h4>
           <p>
-            At TeleDNPnow, we believe quality healthcare should be accessible,
+            TeleDNPnow is an Arizona telehealth practice. At TeleDNPnow, we believe quality healthcare should be accessible,
             stress-free, and Affordable. Whether you are feeling sick, managing
             a chronic condition, working toward healthier goals, or weight loss
             management, we provide compassionate telehealth care designed around
@@ -2434,8 +2434,8 @@ function App() {
             </a>
             <p className="portal-trust-caption">
               CharmHealth/CharmTracker is the secure EHR patient portal used by
-              TeleDNPnow for registration, visit information, and patient
-              communication.
+              TeleDNPnow, also found online as TeleDNPnow.org, for registration,
+              visit information, and patient communication.
             </p>
             <a className="portal-register-button" href="/stripe_payment.html">
               PAY SELF-PAY BY CARD
@@ -3322,7 +3322,10 @@ function App() {
       <footer className="footer" id="contact">
         <div>
           <strong>TeleDNPnow</strong>
-          <p>Care provided by Dr. Shiny Job, DNP, FNP-C.</p>
+          <p>
+            TeleDNPnow Arizona telehealth care provided by Dr. Shiny Job, DNP,
+            FNP-C.
+          </p>
           <p className="footer-copyright">
             {"\u00a9"}2026 TeleDNPnow.org. All rights reserved.
             <a href="/articles.html">Articles</a>
