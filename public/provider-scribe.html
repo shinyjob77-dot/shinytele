@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex,nofollow" />
+  <title>Local Practice Scribe | TeleDNPnow</title>
+  <style>
+    :root {
+      --teal: #26736c;
+      --teal-dark: #173f3b;
+      --wine: #8b1e1e;
+      --ink: #17312f;
+      --muted: #5f7471;
+      --line: #d9e8e6;
+      --soft: #f4fbfa;
+      --warning: #fff7e6;
+      --warning-line: #d59122;
+      --white: #ffffff;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--soft);
+      color: var(--ink);
+      line-height: 1.55;
+    }
+
+    header {
+      background: var(--teal);
+      color: var(--white);
+      padding: 28px 20px;
+    }
+
+    .wrap {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    h1,
+    h2,
+    h3 {
+      margin-top: 0;
+      line-height: 1.2;
+    }
+
+    h1 {
+      margin-bottom: 8px;
+      font-size: clamp(28px, 4vw, 42px);
+    }
+
+    header p {
+      max-width: 780px;
+      margin: 0;
+      color: #eefafa;
+      font-size: 17px;
+    }
+
+    main {
+      padding: 24px 0 44px;
+    }
+
+    .notice {
+      border-left: 5px solid var(--warning-line);
+      background: var(--warning);
+      padding: 14px 16px;
+      border-radius: 8px;
+      margin-bottom: 18px;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(340px, 0.95fr);
+      gap: 18px;
+      align-items: start;
+    }
+
+    .panel {
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 18px;
+    }
+
+    label {
+      display: block;
+      font-weight: 700;
+      margin: 14px 0 6px;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      border: 1px solid #bdd4d1;
+      border-radius: 8px;
+      padding: 11px 12px;
+      font: inherit;
+      color: var(--ink);
+      background: var(--white);
+    }
+
+    textarea {
+      min-height: 240px;
+      resize: vertical;
+    }
+
+    .short-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .button-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    button {
+      border: 0;
+      border-radius: 8px;
+      padding: 11px 15px;
+      font: inherit;
+      font-weight: 700;
+      cursor: pointer;
+      background: var(--teal);
+      color: var(--white);
+    }
+
+    button.secondary {
+      background: var(--white);
+      color: var(--teal-dark);
+      border: 1px solid var(--teal);
+    }
+
+    button.danger {
+      background: var(--wine);
+    }
+
+    button:disabled {
+      cursor: not-allowed;
+      opacity: 0.62;
+    }
+
+    .status {
+      min-height: 22px;
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .output {
+      min-height: 620px;
+      white-space: pre-wrap;
+      font-family: "Courier New", Courier, monospace;
+      font-size: 14px;
+      line-height: 1.45;
+    }
+
+    .examples {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .example-button {
+      text-align: left;
+      background: #eef7f6;
+      color: var(--teal-dark);
+      border: 1px solid var(--line);
+      font-weight: 700;
+    }
+
+    .small {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    @media (max-width: 900px) {
+      .layout,
+      .short-grid,
+      .examples {
+        grid-template-columns: 1fr;
+      }
+
+      .output {
+        min-height: 420px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <h1>Local Practice Scribe</h1>
+      <p>Create practice SOAP notes from typed or dictated sample visit details. This page runs in your browser and is intended for fake patient practice only.</p>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="notice">
+      <strong>Privacy reminder:</strong> Do not enter real patient names, DOB, addresses, phone numbers, record numbers, insurance IDs, or other PHI here unless your full HIPAA workflow has been reviewed and approved. This local practice page does not replace clinical judgment or EHR documentation requirements.
+    </section>
+
+    <div class="layout">
+      <section class="panel" aria-label="Visit details">
+        <h2>Visit Input</h2>
+        <div class="short-grid">
+          <div>
+            <label for="visitType">Visit type</label>
+            <select id="visitType">
+              <option>Sick visit</option>
+              <option>Medication refill</option>
+              <option>Lab review</option>
+              <option>Weight loss follow-up</option>
+              <option>Skin concern</option>
+              <option>Women's health</option>
+              <option>Chronic care follow-up</option>
+            </select>
+          </div>
+          <div>
+            <label for="age">Age</label>
+            <input id="age" placeholder="Example: 34" />
+          </div>
+          <div>
+            <label for="sex">Sex</label>
+            <select id="sex">
+              <option>Not specified</option>
+              <option>Female</option>
+              <option>Male</option>
+              <option>Other / not documented</option>
+            </select>
+          </div>
+        </div>
+
+        <label for="chiefComplaint">Chief complaint</label>
+        <input id="chiefComplaint" placeholder="Example: sore throat and cough" />
+
+        <label for="transcript">Transcript or visit notes</label>
+        <textarea id="transcript" placeholder="Type or dictate fake practice visit details here. Example: Patient reports 3 days of nasal congestion, dry cough, sore throat, no chest pain, no shortness of breath..."></textarea>
+
+        <div class="button-row">
+          <button id="startVoice" type="button">Start Dictation</button>
+          <button id="stopVoice" class="secondary" type="button" disabled>Stop</button>
+          <button id="generateNote" type="button">Create SOAP Note</button>
+          <button id="clearAll" class="danger" type="button">Clear</button>
+        </div>
+        <div id="voiceStatus" class="status" role="status"></div>
+
+        <h3>Practice Cases</h3>
+        <p class="small">These are fake examples for testing the scribe format.</p>
+        <div class="examples">
+          <button class="example-button" type="button" data-example="uri">URI / cough</button>
+          <button class="example-button" type="button" data-example="refill">Medication refill</button>
+          <button class="example-button" type="button" data-example="rash">Rash</button>
+          <button class="example-button" type="button" data-example="labs">Lab review</button>
+        </div>
+      </section>
+
+      <section class="panel" aria-label="Generated note">
+        <h2>Draft Note</h2>
+        <textarea id="output" class="output" aria-label="Generated SOAP note" placeholder="Your draft note will appear here. Review and edit before using anywhere."></textarea>
+        <div class="button-row">
+          <button id="copyNote" type="button">Copy Note</button>
+          <button id="downloadNote" class="secondary" type="button">Download .txt</button>
+        </div>
+        <div id="copyStatus" class="status" role="status"></div>
+      </section>
+    </div>
+  </main>
+
+  <script>
+    const fields = {
+      visitType: document.getElementById("visitType"),
+      age: document.getElementById("age"),
+      sex: document.getElementById("sex"),
+      chiefComplaint: document.getElementById("chiefComplaint"),
+      transcript: document.getElementById("transcript"),
+      output: document.getElementById("output"),
+      voiceStatus: document.getElementById("voiceStatus"),
+      copyStatus: document.getElementById("copyStatus")
+    };
+
+    const examples = {
+      uri: {
+        visitType: "Sick visit",
+        age: "29",
+        sex: "Female",
+        chiefComplaint: "Cough, congestion, sore throat",
+        transcript: "Fake practice case. Patient reports 3 days of nasal congestion, dry cough, scratchy throat, and mild fatigue. Denies chest pain, severe shortness of breath, wheezing, fever over 101, confusion, dehydration, pregnancy, or severe one-sided throat swelling. Tried fluids and acetaminophen with mild relief. No known drug allergies reported in this fake case."
+      },
+      refill: {
+        visitType: "Medication refill",
+        age: "52",
+        sex: "Male",
+        chiefComplaint: "Blood pressure medication refill",
+        transcript: "Fake practice case. Patient requests refill of established blood pressure medication. Reports taking medication daily without missed doses. Home blood pressure readings usually around 128 to 136 over 78 to 84. Denies chest pain, severe headache, vision loss, weakness, shortness of breath, swelling, dizziness, or side effects. Last labs were reviewed previously in this fake scenario."
+      },
+      rash: {
+        visitType: "Skin concern",
+        age: "41",
+        sex: "Female",
+        chiefComplaint: "Itchy rash on arms",
+        transcript: "Fake practice case. Patient reports itchy red rash on both forearms for 5 days after trying a new scented lotion. No fever, facial swelling, breathing trouble, mouth sores, eye involvement, rapidly spreading redness, drainage, severe pain, or immunocompromising condition in this fake case. Tried stopping lotion and using cool compresses with partial relief."
+      },
+      labs: {
+        visitType: "Lab review",
+        age: "46",
+        sex: "Male",
+        chiefComplaint: "Review routine labs",
+        transcript: "Fake practice case. Patient presents to review routine wellness labs. Reports no acute symptoms. Wants to discuss mildly elevated LDL and A1c in prediabetes range. Denies chest pain, shortness of breath, polyuria, polydipsia, unexplained weight loss, or acute concerns. Interested in lifestyle plan and follow-up timing."
+      }
+    };
+
+    function sentenceCase(value) {
+      const clean = String(value || "").trim();
+      if (!clean) return "";
+      return clean.charAt(0).toUpperCase() + clean.slice(1);
+    }
+
+    function findPertinentNegatives(text) {
+      const lower = text.toLowerCase();
+      const phrases = [
+        "chest pain",
+        "shortness of breath",
+        "fever",
+        "severe headache",
+        "vision loss",
+        "weakness",
+        "vomiting",
+        "dehydration",
+        "pregnancy",
+        "allergic reaction",
+        "facial swelling",
+        "breathing trouble",
+        "suicidal"
+      ];
+      const found = phrases.filter((phrase) => lower.includes(`denies ${phrase}`) || lower.includes(`no ${phrase}`));
+      return found.length ? found.join(", ") : "See subjective details; pertinent negatives should be verified by provider.";
+    }
+
+    function createAssessment(visitType, complaint) {
+      const topic = `${visitType} ${complaint}`.toLowerCase();
+      if (topic.includes("cough") || topic.includes("congestion") || topic.includes("sore throat") || topic.includes("sick")) {
+        return "Upper respiratory symptoms, telehealth evaluation. Differential may include viral URI, COVID/flu, allergic rhinitis, sinusitis, bronchitis, or other causes depending on full clinical evaluation.";
+      }
+      if (topic.includes("refill") || topic.includes("blood pressure") || topic.includes("hypertension")) {
+        return "Medication refill / chronic condition follow-up. Stability, medication safety, recent vitals, labs, contraindications, and refill appropriateness require provider review.";
+      }
+      if (topic.includes("rash") || topic.includes("skin")) {
+        return "Rash / skin concern by telehealth. Differential may include contact dermatitis, eczema, allergic reaction, infection, fungal rash, or other dermatologic condition depending on exam and photos.";
+      }
+      if (topic.includes("lab")) {
+        return "Lab review visit. Abnormal and normal results should be interpreted in context of history, risk factors, medications, symptoms, and prior trends.";
+      }
+      if (topic.includes("weight")) {
+        return "Weight management follow-up. Progress, medication tolerance, nutrition, activity, contraindications, labs, and goals require provider review.";
+      }
+      return "Telehealth visit. Assessment requires provider review of history, symptoms, available exam findings, risks, and clinical context.";
+    }
+
+    function createPlan(visitType) {
+      const base = [
+        "Provider to review history, allergies, current medications, relevant vitals, available photos/labs, and contraindications.",
+        "Discussed telehealth limitations and when in-person evaluation may be needed.",
+        "Patient education provided in plain language.",
+        "Follow-up plan to be finalized by provider based on clinical judgment."
+      ];
+
+      if (visitType.includes("Sick")) {
+        base.splice(1, 0, "Consider testing guidance and supportive care discussion when appropriate.");
+        base.push("Emergency precautions: chest pain, severe shortness of breath, confusion, dehydration, blue lips, severe worsening symptoms, or other emergency symptoms require 911/ER.");
+      } else if (visitType.includes("Medication")) {
+        base.splice(1, 0, "Confirm medication name, dose, adherence, side effects, recent monitoring, and pharmacy before refill decision.");
+        base.push("Escalation precautions reviewed for severe symptoms or uncontrolled readings.");
+      } else if (visitType.includes("Skin")) {
+        base.splice(1, 0, "Review clear photos when available and assess for red flags such as fever, severe pain, eye/mouth involvement, rapid spread, drainage, or facial swelling.");
+        base.push("In-person care/urgent care precautions reviewed for worsening or concerning skin findings.");
+      } else if (visitType.includes("Lab")) {
+        base.splice(1, 0, "Review each abnormal value, trend, medication relevance, lifestyle factors, and need for repeat labs or referral.");
+      } else if (visitType.includes("Weight")) {
+        base.splice(1, 0, "Review weight trend, nutrition, activity, medication tolerance, contraindications, and monitoring needs.");
+      }
+
+      return base.map((item) => `- ${item}`).join("\n");
+    }
+
+    function generateNote() {
+      const visitType = fields.visitType.value;
+      const age = fields.age.value.trim() || "not documented";
+      const sex = fields.sex.value;
+      const complaint = fields.chiefComplaint.value.trim() || "not documented";
+      const transcript = fields.transcript.value.trim();
+      const today = new Date().toLocaleDateString();
+
+      if (!transcript && complaint === "not documented") {
+        fields.voiceStatus.textContent = "Add a chief complaint or visit notes first.";
+        return;
+      }
+
+      const note = `LOCAL PRACTICE SCRIBE DRAFT - REVIEW REQUIRED
+Date: ${today}
+Visit Type: ${visitType}
+Patient: ${age} year old, ${sex}
+
+CHIEF COMPLAINT
+${sentenceCase(complaint) || "Not documented"}
+
+SUBJECTIVE / HPI
+${transcript || "Not documented. Add visit narrative before using this draft."}
+
+PERTINENT NEGATIVES
+${findPertinentNegatives(transcript)}
+
+OBJECTIVE
+Telehealth visit. Limited exam by video/audio only.
+General appearance, respiratory effort, skin findings, vitals, home readings, photos, and lab values should be documented here if reviewed.
+
+ASSESSMENT
+${createAssessment(visitType, complaint)}
+
+PLAN
+${createPlan(visitType)}
+
+PATIENT INSTRUCTIONS
+- Use the final provider-approved instructions, not this draft alone.
+- Seek urgent or emergency care for red-flag symptoms discussed during the visit.
+- Use secure patient portal for private medical messages and documents.
+
+FOLLOW-UP
+Follow-up interval and escalation plan to be finalized by provider.
+
+SCRIBE DISCLAIMER
+This is a browser-generated practice draft. It may be incomplete or incorrect. Provider must verify, edit, and approve all content before placing anything in the medical record.`;
+
+      fields.output.value = note;
+      fields.voiceStatus.textContent = "Draft created. Please review and edit before use.";
+    }
+
+    let recognition;
+
+    function setupVoice() {
+      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+      if (!SpeechRecognition) {
+        fields.voiceStatus.textContent = "Dictation is not supported in this browser. Chrome or Edge usually works.";
+        return null;
+      }
+
+      const instance = new SpeechRecognition();
+      instance.continuous = true;
+      instance.interimResults = true;
+      instance.lang = "en-US";
+
+      instance.onresult = (event) => {
+        let finalText = "";
+        for (let i = event.resultIndex; i < event.results.length; i += 1) {
+          if (event.results[i].isFinal) {
+            finalText += event.results[i][0].transcript + " ";
+          }
+        }
+        if (finalText.trim()) {
+          fields.transcript.value = `${fields.transcript.value.trim()} ${finalText.trim()}`.trim();
+        }
+      };
+
+      instance.onerror = () => {
+        fields.voiceStatus.textContent = "Dictation stopped or microphone permission was blocked.";
+        document.getElementById("startVoice").disabled = false;
+        document.getElementById("stopVoice").disabled = true;
+      };
+
+      instance.onend = () => {
+        document.getElementById("startVoice").disabled = false;
+        document.getElementById("stopVoice").disabled = true;
+      };
+
+      return instance;
+    }
+
+    document.getElementById("generateNote").addEventListener("click", generateNote);
+
+    document.getElementById("clearAll").addEventListener("click", () => {
+      fields.age.value = "";
+      fields.sex.value = "Not specified";
+      fields.chiefComplaint.value = "";
+      fields.transcript.value = "";
+      fields.output.value = "";
+      fields.voiceStatus.textContent = "Cleared.";
+      fields.copyStatus.textContent = "";
+    });
+
+    document.getElementById("copyNote").addEventListener("click", async () => {
+      if (!fields.output.value.trim()) {
+        fields.copyStatus.textContent = "Create a note first.";
+        return;
+      }
+      await navigator.clipboard.writeText(fields.output.value);
+      fields.copyStatus.textContent = "Copied.";
+    });
+
+    document.getElementById("downloadNote").addEventListener("click", () => {
+      if (!fields.output.value.trim()) {
+        fields.copyStatus.textContent = "Create a note first.";
+        return;
+      }
+      const blob = new Blob([fields.output.value], { type: "text/plain" });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = `practice-scribe-note-${new Date().toISOString().slice(0, 10)}.txt`;
+      link.click();
+      URL.revokeObjectURL(url);
+      fields.copyStatus.textContent = "Download started.";
+    });
+
+    document.getElementById("startVoice").addEventListener("click", () => {
+      recognition = recognition || setupVoice();
+      if (!recognition) return;
+      recognition.start();
+      fields.voiceStatus.textContent = "Listening. Speak your practice note.";
+      document.getElementById("startVoice").disabled = true;
+      document.getElementById("stopVoice").disabled = false;
+    });
+
+    document.getElementById("stopVoice").addEventListener("click", () => {
+      if (recognition) recognition.stop();
+      fields.voiceStatus.textContent = "Dictation stopped.";
+      document.getElementById("startVoice").disabled = false;
+      document.getElementById("stopVoice").disabled = true;
+    });
+
+    document.querySelectorAll("[data-example]").forEach((button) => {
+      button.addEventListener("click", () => {
+        const sample = examples[button.dataset.example];
+        fields.visitType.value = sample.visitType;
+        fields.age.value = sample.age;
+        fields.sex.value = sample.sex;
+        fields.chiefComplaint.value = sample.chiefComplaint;
+        fields.transcript.value = sample.transcript;
+        fields.voiceStatus.textContent = "Practice case loaded.";
+      });
+    });
+  </script>
+</body>
+</html>
