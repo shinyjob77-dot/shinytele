@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="noindex,nofollow" />
-  <title>Local Practice Scribe | TeleDNPnow</title>
+  <title>Practice Scribe | TeleDNPnow</title>
   <style>
     :root {
       --teal: #26736c;
@@ -210,14 +210,14 @@
 <body>
   <header>
     <div class="wrap">
-      <h1>Local Practice Scribe</h1>
-      <p>Create practice SOAP notes from typed or dictated sample visit details. This page runs in your browser and is intended for fake patient practice only.</p>
+      <h1>Practice Scribe</h1>
+      <p>Create draft SOAP notes for office visits, telehealth, phone visits, follow-ups, preventive care, and common primary care concerns.</p>
     </div>
   </header>
 
   <main class="wrap">
     <section class="notice">
-      <strong>Privacy reminder:</strong> Do not enter real patient names, DOB, addresses, phone numbers, record numbers, insurance IDs, or other PHI here unless your full HIPAA workflow has been reviewed and approved. This local practice page does not replace clinical judgment or EHR documentation requirements.
+      <strong>Privacy reminder:</strong> Do not enter real patient names, DOB, addresses, phone numbers, record numbers, insurance IDs, or other PHI here unless your full HIPAA workflow has been reviewed and approved. This practice page does not replace clinical judgment, consent, exam, coding review, or EHR documentation requirements.
     </section>
 
     <div class="layout">
@@ -225,15 +225,38 @@
         <h2>Visit Input</h2>
         <div class="short-grid">
           <div>
+            <label for="visitSetting">Visit setting</label>
+            <select id="visitSetting">
+              <option>Office visit</option>
+              <option>Telehealth video visit</option>
+              <option>Phone visit</option>
+              <option>Urgent / same-day visit</option>
+              <option>Home visit</option>
+              <option>Other / not documented</option>
+            </select>
+          </div>
+          <div>
             <label for="visitType">Visit type</label>
             <select id="visitType">
+              <option>Primary care visit</option>
               <option>Sick visit</option>
+              <option>Annual wellness / preventive visit</option>
+              <option>New patient visit</option>
+              <option>Follow-up visit</option>
+              <option>Chronic care follow-up</option>
               <option>Medication refill</option>
               <option>Lab review</option>
               <option>Weight loss follow-up</option>
               <option>Skin concern</option>
               <option>Women's health</option>
-              <option>Chronic care follow-up</option>
+              <option>Men's health</option>
+              <option>Pediatric visit</option>
+              <option>Geriatric visit</option>
+              <option>Mental health screening</option>
+              <option>Procedure / minor office care</option>
+              <option>Pre-op / clearance visit</option>
+              <option>Hospital / ER follow-up</option>
+              <option>Other visit</option>
             </select>
           </div>
           <div>
@@ -252,10 +275,10 @@
         </div>
 
         <label for="chiefComplaint">Chief complaint</label>
-        <input id="chiefComplaint" placeholder="Example: sore throat and cough" />
+        <input id="chiefComplaint" placeholder="Example: diabetes follow-up, annual physical, cough, rash, medication review" />
 
         <label for="transcript">Transcript or visit notes</label>
-        <textarea id="transcript" placeholder="Type or dictate fake practice visit details here. Example: Patient reports 3 days of nasal congestion, dry cough, sore throat, no chest pain, no shortness of breath..."></textarea>
+        <textarea id="transcript" placeholder="Type or dictate fake practice visit details here. Include history, ROS, vitals, exam findings, labs, medications, allergies, assessment thoughts, patient education, and follow-up plan as available."></textarea>
         <div id="micHelp" class="help-note">
           Phone tip: for microphone dictation, open the secure live page at https://telednpnow.org/provider-scribe.html. If browser dictation is blocked, tap inside this box and use your phone keyboard microphone.
         </div>
@@ -275,6 +298,10 @@
           <button class="example-button" type="button" data-example="refill">Medication refill</button>
           <button class="example-button" type="button" data-example="rash">Rash</button>
           <button class="example-button" type="button" data-example="labs">Lab review</button>
+          <button class="example-button" type="button" data-example="physical">Annual physical</button>
+          <button class="example-button" type="button" data-example="diabetes">Diabetes follow-up</button>
+          <button class="example-button" type="button" data-example="pediatric">Pediatric sick visit</button>
+          <button class="example-button" type="button" data-example="mental">Mental health screen</button>
         </div>
       </section>
 
@@ -293,6 +320,7 @@
   <script>
     const fields = {
       visitType: document.getElementById("visitType"),
+      visitSetting: document.getElementById("visitSetting"),
       age: document.getElementById("age"),
       sex: document.getElementById("sex"),
       chiefComplaint: document.getElementById("chiefComplaint"),
@@ -305,6 +333,7 @@
 
     const examples = {
       uri: {
+        visitSetting: "Office visit",
         visitType: "Sick visit",
         age: "29",
         sex: "Female",
@@ -312,6 +341,7 @@
         transcript: "Fake practice case. Patient reports 3 days of nasal congestion, dry cough, scratchy throat, and mild fatigue. Denies chest pain, severe shortness of breath, wheezing, fever over 101, confusion, dehydration, pregnancy, or severe one-sided throat swelling. Tried fluids and acetaminophen with mild relief. No known drug allergies reported in this fake case."
       },
       refill: {
+        visitSetting: "Office visit",
         visitType: "Medication refill",
         age: "52",
         sex: "Male",
@@ -319,6 +349,7 @@
         transcript: "Fake practice case. Patient requests refill of established blood pressure medication. Reports taking medication daily without missed doses. Home blood pressure readings usually around 128 to 136 over 78 to 84. Denies chest pain, severe headache, vision loss, weakness, shortness of breath, swelling, dizziness, or side effects. Last labs were reviewed previously in this fake scenario."
       },
       rash: {
+        visitSetting: "Office visit",
         visitType: "Skin concern",
         age: "41",
         sex: "Female",
@@ -326,11 +357,44 @@
         transcript: "Fake practice case. Patient reports itchy red rash on both forearms for 5 days after trying a new scented lotion. No fever, facial swelling, breathing trouble, mouth sores, eye involvement, rapidly spreading redness, drainage, severe pain, or immunocompromising condition in this fake case. Tried stopping lotion and using cool compresses with partial relief."
       },
       labs: {
+        visitSetting: "Office visit",
         visitType: "Lab review",
         age: "46",
         sex: "Male",
         chiefComplaint: "Review routine labs",
         transcript: "Fake practice case. Patient presents to review routine wellness labs. Reports no acute symptoms. Wants to discuss mildly elevated LDL and A1c in prediabetes range. Denies chest pain, shortness of breath, polyuria, polydipsia, unexplained weight loss, or acute concerns. Interested in lifestyle plan and follow-up timing."
+      },
+      physical: {
+        visitSetting: "Office visit",
+        visitType: "Annual wellness / preventive visit",
+        age: "38",
+        sex: "Female",
+        chiefComplaint: "Annual physical",
+        transcript: "Fake practice case. Patient presents for annual physical. No acute concerns. Reports balanced diet most days, walks 3 times weekly, sleeps 6 to 7 hours. Denies chest pain, shortness of breath, syncope, severe headaches, abdominal pain, blood in stool, depression symptoms, or safety concerns. Vitals reviewed in office. Preventive screening, vaccines, labs, dental care, eye care, and healthy lifestyle discussed."
+      },
+      diabetes: {
+        visitSetting: "Office visit",
+        visitType: "Chronic care follow-up",
+        age: "61",
+        sex: "Male",
+        chiefComplaint: "Type 2 diabetes follow-up",
+        transcript: "Fake practice case. Patient presents for diabetes follow-up. Reports taking medications as prescribed with no hypoglycemia. Home glucose readings usually 110 to 160. Denies chest pain, shortness of breath, polyuria, polydipsia, foot wounds, numbness progression, vision changes, or medication side effects. Foot check, diet, exercise, A1c goal, kidney monitoring, eye exam, and medication plan reviewed."
+      },
+      pediatric: {
+        visitSetting: "Office visit",
+        visitType: "Pediatric visit",
+        age: "8",
+        sex: "Female",
+        chiefComplaint: "Fever and sore throat",
+        transcript: "Fake practice case. Child presents with parent for 2 days of sore throat, low-grade fever, and decreased appetite. Drinking fluids. Denies trouble breathing, drooling, stiff neck, dehydration, rash, severe abdominal pain, confusion, or persistent vomiting. Parent reports no known medication allergies in this fake case. Exam and testing plan to be documented by provider."
+      },
+      mental: {
+        visitSetting: "Office visit",
+        visitType: "Mental health screening",
+        age: "27",
+        sex: "Female",
+        chiefComplaint: "Anxiety symptoms",
+        transcript: "Fake practice case. Patient reports increased worry, racing thoughts, and poor sleep for 2 months related to work stress. Denies suicidal thoughts, self-harm thoughts, homicidal thoughts, hallucinations, manic symptoms, substance misuse, chest pain, or severe shortness of breath. Screening score, coping supports, therapy options, medication discussion if appropriate, and safety plan reviewed."
       }
     };
 
@@ -355,7 +419,13 @@
         "allergic reaction",
         "facial swelling",
         "breathing trouble",
-        "suicidal"
+        "suicidal",
+        "self-harm",
+        "homicidal",
+        "syncope",
+        "blood in stool",
+        "foot wounds",
+        "vision changes"
       ];
       const found = phrases.filter((phrase) => lower.includes(`denies ${phrase}`) || lower.includes(`no ${phrase}`));
       return found.length ? found.join(", ") : "See subjective details; pertinent negatives should be verified by provider.";
@@ -364,13 +434,13 @@
     function createAssessment(visitType, complaint) {
       const topic = `${visitType} ${complaint}`.toLowerCase();
       if (topic.includes("cough") || topic.includes("congestion") || topic.includes("sore throat") || topic.includes("sick")) {
-        return "Upper respiratory symptoms, telehealth evaluation. Differential may include viral URI, COVID/flu, allergic rhinitis, sinusitis, bronchitis, or other causes depending on full clinical evaluation.";
+        return "Upper respiratory or acute sick symptoms. Differential may include viral URI, COVID/flu, allergic rhinitis, sinusitis, bronchitis, strep pharyngitis, pneumonia, or other causes depending on exam and testing.";
       }
       if (topic.includes("refill") || topic.includes("blood pressure") || topic.includes("hypertension")) {
         return "Medication refill / chronic condition follow-up. Stability, medication safety, recent vitals, labs, contraindications, and refill appropriateness require provider review.";
       }
       if (topic.includes("rash") || topic.includes("skin")) {
-        return "Rash / skin concern by telehealth. Differential may include contact dermatitis, eczema, allergic reaction, infection, fungal rash, or other dermatologic condition depending on exam and photos.";
+        return "Rash / skin concern. Differential may include contact dermatitis, eczema, allergic reaction, infection, fungal rash, inflammatory disease, or other dermatologic condition depending on exam.";
       }
       if (topic.includes("lab")) {
         return "Lab review visit. Abnormal and normal results should be interpreted in context of history, risk factors, medications, symptoms, and prior trends.";
@@ -378,13 +448,25 @@
       if (topic.includes("weight")) {
         return "Weight management follow-up. Progress, medication tolerance, nutrition, activity, contraindications, labs, and goals require provider review.";
       }
-      return "Telehealth visit. Assessment requires provider review of history, symptoms, available exam findings, risks, and clinical context.";
+      if (topic.includes("annual") || topic.includes("preventive") || topic.includes("physical") || topic.includes("wellness")) {
+        return "Preventive / wellness visit. Screening, risk reduction, immunizations, labs, lifestyle counseling, and age-appropriate preventive care require provider review.";
+      }
+      if (topic.includes("diabetes")) {
+        return "Type 2 diabetes follow-up. Glycemic control, complications, medication safety, labs, lifestyle plan, and preventive monitoring require provider review.";
+      }
+      if (topic.includes("mental") || topic.includes("anxiety") || topic.includes("depression")) {
+        return "Mental health screening / behavioral health concern. Symptoms, safety risk, functional impact, screening scores, support system, and treatment options require provider review.";
+      }
+      if (topic.includes("pediatric")) {
+        return "Pediatric visit. Assessment requires age-appropriate history, parent/guardian input, vitals, exam, hydration status, red flags, and follow-up plan.";
+      }
+      return "General clinical visit. Assessment requires provider review of history, symptoms, exam findings, risks, diagnostics, and clinical context.";
     }
 
-    function createPlan(visitType) {
+    function createPlan(visitType, visitSetting) {
       const base = [
-        "Provider to review history, allergies, current medications, relevant vitals, available photos/labs, and contraindications.",
-        "Discussed telehealth limitations and when in-person evaluation may be needed.",
+        "Provider to review history, allergies, current medications, vitals, exam findings, diagnostics, risk factors, and contraindications.",
+        `${visitSetting} limitations, consent, and need for higher level of care reviewed as applicable.`,
         "Patient education provided in plain language.",
         "Follow-up plan to be finalized by provider based on clinical judgment."
       ];
@@ -402,6 +484,17 @@
         base.splice(1, 0, "Review each abnormal value, trend, medication relevance, lifestyle factors, and need for repeat labs or referral.");
       } else if (visitType.includes("Weight")) {
         base.splice(1, 0, "Review weight trend, nutrition, activity, medication tolerance, contraindications, and monitoring needs.");
+      } else if (visitType.includes("Annual") || visitType.includes("preventive")) {
+        base.splice(1, 0, "Review preventive screenings, immunizations, labs, risk factors, lifestyle, dental/vision care, and age-appropriate counseling.");
+      } else if (visitType.includes("Chronic")) {
+        base.splice(1, 0, "Review disease control, medication adherence, side effects, monitoring labs, complications, referrals, and self-management goals.");
+      } else if (visitType.includes("Mental")) {
+        base.splice(1, 0, "Document screening score when used, safety assessment, protective factors, counseling options, medication discussion if appropriate, and crisis precautions.");
+        base.push("Emergency precautions: suicidal thoughts, self-harm thoughts, homicidal thoughts, psychosis, severe withdrawal, or immediate danger require emergency/crisis care.");
+      } else if (visitType.includes("Pediatric")) {
+        base.splice(1, 0, "Confirm guardian involvement, hydration, weight-based dosing needs, school/daycare guidance, immunization relevance, and pediatric red flags.");
+      } else if (visitType.includes("Procedure")) {
+        base.splice(1, 0, "Document consent, indication, site, technique, supplies, tolerance, complications, aftercare, and return precautions.");
       }
 
       return base.map((item) => `- ${item}`).join("\n");
@@ -409,6 +502,7 @@
 
     function generateNote() {
       const visitType = fields.visitType.value;
+      const visitSetting = fields.visitSetting.value;
       const age = fields.age.value.trim() || "not documented";
       const sex = fields.sex.value;
       const complaint = fields.chiefComplaint.value.trim() || "not documented";
@@ -423,6 +517,7 @@
       const note = `LOCAL PRACTICE SCRIBE DRAFT - REVIEW REQUIRED
 Date: ${today}
 Visit Type: ${visitType}
+Visit Setting: ${visitSetting}
 Patient: ${age} year old, ${sex}
 
 CHIEF COMPLAINT
@@ -435,19 +530,19 @@ PERTINENT NEGATIVES
 ${findPertinentNegatives(transcript)}
 
 OBJECTIVE
-Telehealth visit. Limited exam by video/audio only.
-General appearance, respiratory effort, skin findings, vitals, home readings, photos, and lab values should be documented here if reviewed.
+${visitSetting}.
+Vitals, general appearance, focused physical exam, diagnostic results, lab values, imaging, screening scores, procedure details, and relevant clinical observations should be documented here if reviewed/performed.
 
 ASSESSMENT
 ${createAssessment(visitType, complaint)}
 
 PLAN
-${createPlan(visitType)}
+${createPlan(visitType, visitSetting)}
 
 PATIENT INSTRUCTIONS
 - Use the final provider-approved instructions, not this draft alone.
 - Seek urgent or emergency care for red-flag symptoms discussed during the visit.
-- Use secure patient portal for private medical messages and documents.
+- Use secure patient portal or approved office workflow for private medical messages and documents.
 
 FOLLOW-UP
 Follow-up interval and escalation plan to be finalized by provider.
@@ -509,6 +604,7 @@ This is a browser-generated practice draft. It may be incomplete or incorrect. P
 
     document.getElementById("clearAll").addEventListener("click", () => {
       fields.age.value = "";
+      fields.visitSetting.value = "Office visit";
       fields.sex.value = "Not specified";
       fields.chiefComplaint.value = "";
       fields.transcript.value = "";
@@ -560,6 +656,7 @@ This is a browser-generated practice draft. It may be incomplete or incorrect. P
     document.querySelectorAll("[data-example]").forEach((button) => {
       button.addEventListener("click", () => {
         const sample = examples[button.dataset.example];
+        fields.visitSetting.value = sample.visitSetting;
         fields.visitType.value = sample.visitType;
         fields.age.value = sample.age;
         fields.sex.value = sample.sex;
