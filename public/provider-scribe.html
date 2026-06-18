@@ -156,6 +156,16 @@
       font-size: 14px;
     }
 
+    .help-note {
+      background: #eef7f6;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      color: var(--teal-dark);
+      font-size: 14px;
+      margin-top: 10px;
+      padding: 10px 12px;
+    }
+
     .output {
       min-height: 620px;
       white-space: pre-wrap;
@@ -246,6 +256,9 @@
 
         <label for="transcript">Transcript or visit notes</label>
         <textarea id="transcript" placeholder="Type or dictate fake practice visit details here. Example: Patient reports 3 days of nasal congestion, dry cough, sore throat, no chest pain, no shortness of breath..."></textarea>
+        <div id="micHelp" class="help-note">
+          Phone tip: for microphone dictation, open the secure live page at https://telednpnow.org/provider-scribe.html. If browser dictation is blocked, tap inside this box and use your phone keyboard microphone.
+        </div>
 
         <div class="button-row">
           <button id="startVoice" type="button">Start Dictation</button>
@@ -285,6 +298,7 @@
       chiefComplaint: document.getElementById("chiefComplaint"),
       transcript: document.getElementById("transcript"),
       output: document.getElementById("output"),
+      micHelp: document.getElementById("micHelp"),
       voiceStatus: document.getElementById("voiceStatus"),
       copyStatus: document.getElementById("copyStatus")
     };
@@ -449,8 +463,12 @@ This is a browser-generated practice draft. It may be incomplete or incorrect. P
 
     function setupVoice() {
       const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+      if (!window.isSecureContext) {
+        fields.voiceStatus.textContent = "Microphone access is blocked because this page was opened as a local file or non-secure page. Open https://telednpnow.org/provider-scribe.html on your phone, or tap the notes box and use the phone keyboard microphone.";
+        return null;
+      }
       if (!SpeechRecognition) {
-        fields.voiceStatus.textContent = "Dictation is not supported in this browser. Chrome or Edge usually works.";
+        fields.voiceStatus.textContent = "Browser dictation is not supported here. Tap inside the notes box and use your phone keyboard microphone instead.";
         return null;
       }
 
@@ -471,8 +489,10 @@ This is a browser-generated practice draft. It may be incomplete or incorrect. P
         }
       };
 
-      instance.onerror = () => {
-        fields.voiceStatus.textContent = "Dictation stopped or microphone permission was blocked.";
+      instance.onerror = (event) => {
+        fields.voiceStatus.textContent = event.error === "not-allowed"
+          ? "Microphone permission was blocked. On your phone, allow microphone access for this website, or tap the notes box and use the keyboard microphone."
+          : "Dictation stopped. You can tap the notes box and use the phone keyboard microphone if browser dictation is not available.";
         document.getElementById("startVoice").disabled = false;
         document.getElementById("stopVoice").disabled = true;
       };
@@ -548,6 +568,11 @@ This is a browser-generated practice draft. It may be incomplete or incorrect. P
         fields.voiceStatus.textContent = "Practice case loaded.";
       });
     });
+
+    if (!window.isSecureContext) {
+      document.getElementById("startVoice").disabled = true;
+      fields.voiceStatus.textContent = "Open the live HTTPS page on your phone to use microphone dictation: https://telednpnow.org/provider-scribe.html";
+    }
   </script>
 </body>
 </html>
