@@ -75,6 +75,7 @@ exports.handler = async (event) => {
     patientAge: String(payload.patientAge || "not documented").slice(0, 40),
     patientSex: String(payload.patientSex || "not documented").slice(0, 60),
     chiefComplaint: String(payload.chiefComplaint || "not documented").slice(0, 300),
+    typedDetails: payload.typedDetails || {},
   };
 
   try {
@@ -130,12 +131,38 @@ exports.handler = async (event) => {
       },
       body: JSON.stringify({
         model: process.env.OPENAI_SCRIBE_MODEL || process.env.OPENAI_MODEL || "gpt-4.1-mini",
-        instructions: `You are a careful clinical documentation assistant for a licensed clinician.
-Create a useful draft note from the transcript only. Do not invent facts, diagnoses, exam findings, orders, medications, doses, allergies, vitals, labs, or follow-up details.
-If information is missing, say "not documented" or place it in "Items to verify".
-Use professional clinical language while preserving uncertainty.
-The clinician must review and approve everything before EHR use.
-Do not provide patient-facing medical advice beyond what was clearly discussed in the transcript.`,
+        instructions: `You are an ambient clinical scribe for a licensed clinician. Generate a progress note in the clinician's preferred format.
+
+Critical safety rules:
+- Use only the transcript, visit context, and typed details provided.
+- Do not invent diagnoses, physical exam findings, vitals, lab values, imaging results, medications, doses, allergies, procedures, orders, referrals, or follow-up timing.
+- Preserve every medication name, exact dose, frequency, and numeric time duration mentioned.
+- If a section was not discussed, omit the section entirely.
+- Do not write placeholders such as "not discussed", "not documented", "not provided", "not performed", or "unknown".
+- The clinician must review and approve the note before EHR use.
+
+Formatting rules:
+- Section titles must be ALL CAPS.
+- Use these sections only when supported: REASON FOR VISIT, SUBJECTIVE, OBJECTIVE, LAB STUDIES, IMAGING, ASSESSMENT, PLAN.
+- REASON FOR VISIT must be 1-4 words with no punctuation.
+- SUBJECTIVE begins with a one-line sentence including age, sex, relevant PMH if mentioned, and reason for visit.
+- SUBJECTIVE should be concise flowing narrative. Minimize "reports/states/notes/endorses/denies". Prefer direct clinical phrasing.
+- Combine negatives into compact phrases, e.g. "No injury, trauma, radiation, numbness, tingling, foot pain, lower leg discoloration, bowel or bladder incontinence."
+- Do not put vitals, labs, imaging, exam findings, plan items, or patient response to interventions in SUBJECTIVE.
+- If medication changes are mentioned, include changed/stopped/started medications with exact dose and duration in a second SUBJECTIVE paragraph.
+- OBJECTIVE includes only measured current vitals and explicitly stated physical exam findings.
+- In OBJECTIVE, use short system labels such as General, HEENT, CVS, Resp, Abd, MSK, Ext, Neuro, Psych, GU/GYN.
+- General should appear first if provided. Then list abnormal findings before normal findings. Omit systems not mentioned.
+- Do not start OBJECTIVE lines with hyphens.
+- Translate casual exam wording into standard terminology, but do not create findings from actions alone.
+- LAB STUDIES should be brief paragraph style. Group normal labs together as WNL. For abnormal labs, group by date if provided and include high/low flags only if provided.
+- IMAGING format: Study: Impression/status.
+- ASSESSMENT uses problem-based medical condition names only, ordered by clinical priority. Use fewer broader problems when clinically related. Do not include codes. Do not use hyphens in ASSESSMENT.
+- PLAN is a separate section with hyphen bullets. Start bullets with past-tense action verbs such as Ordered, Reviewed, Continued, Started, Stopped, Increased, Decreased, Referred, Educated, Instructed.
+- Do not repeat the diagnosis label in PLAN bullets.
+- Group related labs/orders/medications when possible.
+- Include Follow up as needed or the stated interval/testing follow-up when supported.
+- Always include "Patient verbalized understanding of POC" as the final PLAN bullet.`,
         input: [
           {
             role: "user",
@@ -149,49 +176,26 @@ Do not provide patient-facing medical advice beyond what was clearly discussed i
 - Patient sex: ${visitContext.patientSex}
 - Chief complaint: ${visitContext.chiefComplaint}
 
+Typed pre-chart/details, if any:
+- Existing transcript notes: ${String(visitContext.typedDetails.transcript || "").slice(0, 4000)}
+- Vitals: ${String(visitContext.typedDetails.vitals || "").slice(0, 1500)}
+- Exam: ${String(visitContext.typedDetails.exam || "").slice(0, 2500)}
+- Medications/allergies: ${String(visitContext.typedDetails.medsAllergies || "").slice(0, 2500)}
+- Labs/tests/imaging/screening: ${String(visitContext.typedDetails.diagnostics || "").slice(0, 2500)}
+- Provider assessment: ${String(visitContext.typedDetails.assessment || "").slice(0, 2500)}
+- Orders/plan/referrals/procedures: ${String(visitContext.typedDetails.ordersPlan || "").slice(0, 2500)}
+- Education/precautions: ${String(visitContext.typedDetails.education || "").slice(0, 2500)}
+- Follow-up: ${String(visitContext.typedDetails.followup || "").slice(0, 1500)}
+
 Transcript:
 ${transcript}
 
-Create this format:
-AMBIENT SCRIBE DRAFT - PROVIDER REVIEW REQUIRED
-
-Items to verify before signing:
-- ...
-
-Action items:
-- ...
-
-Chief Complaint:
-
-HPI:
-
-ROS:
-
-Medications / Allergies / Safety:
-
-Objective:
-- Vitals:
-- Exam:
-- Labs/tests/imaging/screening:
-
-Assessment:
-
-Plan:
-
-Patient Instructions Discussed:
-
-Follow-up:
-
-Billing/Coding Support Notes:
-- Do not assign final codes. Note what documentation elements support MDM/time review if present.
-
-Transcript used:
-${transcript}`,
+Generate only the progress note. Do not include a transcript, disclaimer, billing/coding section, verification checklist, or explanation.`,
               },
             ],
           },
         ],
-        max_output_tokens: 1800,
+        max_output_tokens: 2200,
       }),
     });
 

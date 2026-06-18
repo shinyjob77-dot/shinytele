@@ -313,10 +313,10 @@
 
         <div class="button-row">
           <button id="startAmbient" type="button">Start AI Scribe</button>
-          <button id="stopAmbient" class="secondary" type="button" disabled>Stop & Create AI Note</button>
+          <button id="stopAmbient" class="secondary" type="button" disabled>Stop & Create Progress Note</button>
           <button id="startVoice" type="button">Start Dictation</button>
           <button id="stopVoice" class="secondary" type="button" disabled>Stop</button>
-          <button id="generateNote" type="button">Create SOAP Note</button>
+          <button id="generateNote" type="button">Create Progress Note</button>
           <button id="clearAll" class="danger" type="button">Clear</button>
         </div>
         <div id="voiceStatus" class="status" role="status"></div>
@@ -337,7 +337,7 @@
 
       <section class="panel" aria-label="Generated note">
         <h2>Draft Note</h2>
-        <textarea id="output" class="output" aria-label="Generated SOAP note" placeholder="Your draft note will appear here. Review and edit before using anywhere."></textarea>
+        <textarea id="output" class="output" aria-label="Generated progress note" placeholder="Your draft progress note will appear here. Review and edit before using anywhere."></textarea>
         <div class="button-row">
           <button id="copyNote" type="button">Copy Note</button>
           <button id="downloadNote" class="secondary" type="button">Download .txt</button>
@@ -404,6 +404,17 @@
           patientAge: fields.age.value,
           patientSex: fields.sex.value,
           chiefComplaint: fields.chiefComplaint.value,
+          typedDetails: {
+            transcript: fields.transcript.value,
+            vitals: fields.vitals.value,
+            exam: fields.exam.value,
+            medsAllergies: fields.medsAllergies.value,
+            diagnostics: fields.diagnostics.value,
+            assessment: fields.assessmentInput.value,
+            ordersPlan: fields.ordersPlan.value,
+            education: fields.education.value,
+            followup: fields.followup.value,
+          },
         }),
       });
 
@@ -457,7 +468,7 @@
       ambientRecorder.start(1000);
       document.getElementById("startAmbient").disabled = true;
       document.getElementById("stopAmbient").disabled = false;
-      fields.voiceStatus.textContent = "AI scribe is recording. Speak naturally, then tap Stop & Create AI Note.";
+      fields.voiceStatus.textContent = "AI scribe is recording. Speak naturally, then tap Stop & Create Progress Note.";
     }
 
     const examples = {
