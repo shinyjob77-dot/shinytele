@@ -110,6 +110,10 @@
       resize: vertical;
     }
 
+    textarea.compact {
+      min-height: 92px;
+    }
+
     .short-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -283,6 +287,30 @@
           Phone tip: for microphone dictation, open the secure live page at https://telednpnow.org/provider-scribe.html. If browser dictation is blocked, tap inside this box and use your phone keyboard microphone.
         </div>
 
+        <label for="vitals">Vitals</label>
+        <textarea id="vitals" class="compact" placeholder="BP, HR, RR, temp, SpO2, weight, BMI, pain score, home readings if relevant."></textarea>
+
+        <label for="exam">Physical exam / objective findings</label>
+        <textarea id="exam" class="compact" placeholder="General, HEENT, heart, lungs, abdomen, skin, neuro, psych, focused exam findings, photo review, procedure findings."></textarea>
+
+        <label for="medsAllergies">Medications and allergies</label>
+        <textarea id="medsAllergies" class="compact" placeholder="Current meds, adherence, side effects, allergies/NKDA, pregnancy/lactation status when relevant."></textarea>
+
+        <label for="diagnostics">Labs, tests, imaging, screening scores</label>
+        <textarea id="diagnostics" class="compact" placeholder="A1c, LDL, UA, rapid strep/COVID/flu, PHQ-9/GAD-7, imaging, outside records, pending results."></textarea>
+
+        <label for="assessmentInput">Provider assessment / diagnoses</label>
+        <textarea id="assessmentInput" class="compact" placeholder="Working diagnoses, differential, severity, stability, risk level, ruled-out red flags."></textarea>
+
+        <label for="ordersPlan">Orders, medications, referrals, procedures</label>
+        <textarea id="ordersPlan" class="compact" placeholder="Medication changes, labs ordered, imaging, referrals, procedures, work/school note, forms, prior auth, pharmacy."></textarea>
+
+        <label for="education">Patient education and precautions</label>
+        <textarea id="education" class="compact" placeholder="Counseling given, lifestyle advice, medication instructions, warning signs, ER/urgent care precautions."></textarea>
+
+        <label for="followup">Follow-up</label>
+        <textarea id="followup" class="compact" placeholder="Follow-up timing, pending result plan, return precautions, next visit goals."></textarea>
+
         <div class="button-row">
           <button id="startVoice" type="button">Start Dictation</button>
           <button id="stopVoice" class="secondary" type="button" disabled>Stop</button>
@@ -325,6 +353,14 @@
       sex: document.getElementById("sex"),
       chiefComplaint: document.getElementById("chiefComplaint"),
       transcript: document.getElementById("transcript"),
+      vitals: document.getElementById("vitals"),
+      exam: document.getElementById("exam"),
+      medsAllergies: document.getElementById("medsAllergies"),
+      diagnostics: document.getElementById("diagnostics"),
+      assessmentInput: document.getElementById("assessmentInput"),
+      ordersPlan: document.getElementById("ordersPlan"),
+      education: document.getElementById("education"),
+      followup: document.getElementById("followup"),
       output: document.getElementById("output"),
       micHelp: document.getElementById("micHelp"),
       voiceStatus: document.getElementById("voiceStatus"),
@@ -338,7 +374,15 @@
         age: "29",
         sex: "Female",
         chiefComplaint: "Cough, congestion, sore throat",
-        transcript: "Fake practice case. Patient reports 3 days of nasal congestion, dry cough, scratchy throat, and mild fatigue. Denies chest pain, severe shortness of breath, wheezing, fever over 101, confusion, dehydration, pregnancy, or severe one-sided throat swelling. Tried fluids and acetaminophen with mild relief. No known drug allergies reported in this fake case."
+        transcript: "Fake practice case. Patient reports 3 days of nasal congestion, dry cough, scratchy throat, and mild fatigue. Denies chest pain, severe shortness of breath, wheezing, fever over 101, confusion, dehydration, pregnancy, or severe one-sided throat swelling. Tried fluids and acetaminophen with mild relief. No known drug allergies reported in this fake case.",
+        vitals: "BP 118/74, HR 82, Temp 99.1 F, RR 16, SpO2 98% RA.",
+        exam: "Alert, no acute distress. Mild nasal congestion. Throat mildly erythematous without exudate. Lungs clear, normal work of breathing.",
+        medsAllergies: "No known drug allergies reported in fake case. OTC acetaminophen as needed.",
+        diagnostics: "COVID/flu/strep testing discussed based on symptoms and exposure risk.",
+        assessmentInput: "Acute upper respiratory symptoms, likely viral URI. No respiratory distress or dehydration documented.",
+        ordersPlan: "Supportive care. Testing if clinically indicated. No antibiotic decision without exam/testing support.",
+        education: "Fluids, rest, antipyretic instructions, cough/congestion care, infection precautions. ER precautions reviewed.",
+        followup: "Follow up if worsening, persistent fever, shortness of breath, dehydration, or symptoms not improving."
       },
       refill: {
         visitSetting: "Office visit",
@@ -346,7 +390,15 @@
         age: "52",
         sex: "Male",
         chiefComplaint: "Blood pressure medication refill",
-        transcript: "Fake practice case. Patient requests refill of established blood pressure medication. Reports taking medication daily without missed doses. Home blood pressure readings usually around 128 to 136 over 78 to 84. Denies chest pain, severe headache, vision loss, weakness, shortness of breath, swelling, dizziness, or side effects. Last labs were reviewed previously in this fake scenario."
+        transcript: "Fake practice case. Patient requests refill of established blood pressure medication. Reports taking medication daily without missed doses. Home blood pressure readings usually around 128 to 136 over 78 to 84. Denies chest pain, severe headache, vision loss, weakness, shortness of breath, swelling, dizziness, or side effects. Last labs were reviewed previously in this fake scenario.",
+        vitals: "Office BP 132/82, HR 76.",
+        exam: "No acute distress. Heart regular. Lungs clear. No lower extremity edema.",
+        medsAllergies: "Established BP medication; dose to verify. No side effects reported. Allergies to verify.",
+        diagnostics: "Renal function/electrolytes monitoring status to verify.",
+        assessmentInput: "Hypertension follow-up, controlled by reported home readings. Refill appropriateness depends on medication, labs, and contraindications.",
+        ordersPlan: "Verify medication, dose, pharmacy, recent labs, and refill duration. Consider CMP/BMP if monitoring due.",
+        education: "Home BP log, low sodium diet, activity, medication adherence, warning signs.",
+        followup: "Routine follow-up in 3-6 months or sooner for uncontrolled readings/symptoms."
       },
       rash: {
         visitSetting: "Office visit",
@@ -354,7 +406,15 @@
         age: "41",
         sex: "Female",
         chiefComplaint: "Itchy rash on arms",
-        transcript: "Fake practice case. Patient reports itchy red rash on both forearms for 5 days after trying a new scented lotion. No fever, facial swelling, breathing trouble, mouth sores, eye involvement, rapidly spreading redness, drainage, severe pain, or immunocompromising condition in this fake case. Tried stopping lotion and using cool compresses with partial relief."
+        transcript: "Fake practice case. Patient reports itchy red rash on both forearms for 5 days after trying a new scented lotion. No fever, facial swelling, breathing trouble, mouth sores, eye involvement, rapidly spreading redness, drainage, severe pain, or immunocompromising condition in this fake case. Tried stopping lotion and using cool compresses with partial relief.",
+        vitals: "Afebrile. Other vitals to document.",
+        exam: "Bilateral forearm erythematous pruritic patches. No drainage, streaking, vesicles, mucosal involvement, or facial swelling documented.",
+        medsAllergies: "New scented lotion exposure. Medication allergies to verify.",
+        diagnostics: "No testing documented. Photos/exam reviewed.",
+        assessmentInput: "Rash most consistent with contact dermatitis based on exposure and appearance; monitor for infection/allergic red flags.",
+        ordersPlan: "Stop trigger. Consider topical therapy if appropriate. No systemic treatment without provider review.",
+        education: "Avoid irritant, gentle skin care, return precautions for fever, rapid spread, severe pain, drainage, eye/mouth involvement, breathing symptoms.",
+        followup: "Follow up if not improving in 1-2 weeks or sooner for worsening."
       },
       labs: {
         visitSetting: "Office visit",
@@ -362,7 +422,15 @@
         age: "46",
         sex: "Male",
         chiefComplaint: "Review routine labs",
-        transcript: "Fake practice case. Patient presents to review routine wellness labs. Reports no acute symptoms. Wants to discuss mildly elevated LDL and A1c in prediabetes range. Denies chest pain, shortness of breath, polyuria, polydipsia, unexplained weight loss, or acute concerns. Interested in lifestyle plan and follow-up timing."
+        transcript: "Fake practice case. Patient presents to review routine wellness labs. Reports no acute symptoms. Wants to discuss mildly elevated LDL and A1c in prediabetes range. Denies chest pain, shortness of breath, polyuria, polydipsia, unexplained weight loss, or acute concerns. Interested in lifestyle plan and follow-up timing.",
+        vitals: "Vitals reviewed; exact values to document.",
+        exam: "No acute distress. Focused exam as clinically indicated.",
+        medsAllergies: "Medication list and allergies reviewed.",
+        diagnostics: "A1c in prediabetes range and LDL mildly elevated per fake case; exact values/date to document.",
+        assessmentInput: "Prediabetes and dyslipidemia/lab review. Cardiometabolic risk and lifestyle plan discussed.",
+        ordersPlan: "Repeat labs timing to determine. Consider ASCVD risk calculation and preventive screening review.",
+        education: "Nutrition, activity, weight, sleep, smoking status if applicable, lab meaning explained.",
+        followup: "Follow up after repeat labs or in 3-6 months depending on risk and plan."
       },
       physical: {
         visitSetting: "Office visit",
@@ -402,6 +470,50 @@
       const clean = String(value || "").trim();
       if (!clean) return "";
       return clean.charAt(0).toUpperCase() + clean.slice(1);
+    }
+
+    function textOrPlaceholder(value, placeholder) {
+      const clean = String(value || "").trim();
+      return clean || placeholder;
+    }
+
+    function bulletList(items) {
+      const cleanItems = items.map((item) => String(item || "").trim()).filter(Boolean);
+      return cleanItems.length ? cleanItems.map((item) => `- ${item}`).join("\n") : "- None documented.";
+    }
+
+    function makeMissingChecklist(data) {
+      const missing = [];
+      if (!data.vitals) missing.push("Vitals not documented or incomplete.");
+      if (!data.exam) missing.push("Focused exam/objective findings not documented.");
+      if (!data.medsAllergies) missing.push("Medication list and allergies need verification.");
+      if (!data.assessmentInput) missing.push("Provider assessment/diagnosis not explicitly documented.");
+      if (!data.ordersPlan) missing.push("Orders/medication/referral plan not explicitly documented.");
+      if (!data.education) missing.push("Patient education and red-flag precautions not documented.");
+      if (!data.followup) missing.push("Follow-up timing and pending-result plan not documented.");
+      if (data.visitType.includes("Medication") && !/allerg|nkda|side effect|dose|pharmacy|pregnan/i.test(data.medsAllergies + data.ordersPlan)) {
+        missing.push("For refill/medication visit: verify dose, pharmacy, allergies, side effects, contraindications, and monitoring labs.");
+      }
+      if (data.visitType.includes("Mental") && !/suicid|self-harm|homicid|safety|crisis/i.test(data.transcript + data.assessmentInput + data.education)) {
+        missing.push("For mental health visit: document safety assessment, crisis plan, and protective factors.");
+      }
+      if (data.visitType.includes("Pediatric") && !/parent|guardian|weight|hydration|dose/i.test(data.transcript + data.vitals + data.education)) {
+        missing.push("For pediatric visit: document guardian, weight/hydration status, dosing safety, and pediatric red flags.");
+      }
+      if (data.visitType.includes("Annual") && !/screen|vaccine|immun|prevent|colon|mammo|pap|dental|vision/i.test(data.transcript + data.diagnostics + data.education)) {
+        missing.push("For preventive visit: document age-appropriate screening, vaccines, lifestyle risks, and counseling.");
+      }
+      return missing.length ? bulletList(missing) : "- No major missing documentation items detected from entered fields. Provider still must verify accuracy.";
+    }
+
+    function makeActionItems(data) {
+      const actions = [];
+      if (data.ordersPlan) actions.push(`Orders/medications/referrals: ${data.ordersPlan}`);
+      if (data.diagnostics) actions.push(`Diagnostics/results to review or follow: ${data.diagnostics}`);
+      if (data.followup) actions.push(`Follow-up: ${data.followup}`);
+      if (data.education) actions.push(`Patient instructions/precautions: ${data.education}`);
+      if (!actions.length) actions.push("No action items entered. Add orders, instructions, and follow-up before using clinically.");
+      return bulletList(actions);
     }
 
     function findPertinentNegatives(text) {
@@ -507,18 +619,45 @@
       const sex = fields.sex.value;
       const complaint = fields.chiefComplaint.value.trim() || "not documented";
       const transcript = fields.transcript.value.trim();
+      const vitals = fields.vitals.value.trim();
+      const exam = fields.exam.value.trim();
+      const medsAllergies = fields.medsAllergies.value.trim();
+      const diagnostics = fields.diagnostics.value.trim();
+      const assessmentInput = fields.assessmentInput.value.trim();
+      const ordersPlan = fields.ordersPlan.value.trim();
+      const education = fields.education.value.trim();
+      const followup = fields.followup.value.trim();
       const today = new Date().toLocaleDateString();
+      const noteData = {
+        visitType,
+        visitSetting,
+        transcript,
+        vitals,
+        exam,
+        medsAllergies,
+        diagnostics,
+        assessmentInput,
+        ordersPlan,
+        education,
+        followup
+      };
 
       if (!transcript && complaint === "not documented") {
         fields.voiceStatus.textContent = "Add a chief complaint or visit notes first.";
         return;
       }
 
-      const note = `LOCAL PRACTICE SCRIBE DRAFT - REVIEW REQUIRED
+      const note = `CLINICAL SCRIBE DRAFT - PROVIDER REVIEW REQUIRED
 Date: ${today}
 Visit Type: ${visitType}
 Visit Setting: ${visitSetting}
 Patient: ${age} year old, ${sex}
+
+DOCUMENTATION GAPS TO VERIFY BEFORE SIGNING
+${makeMissingChecklist(noteData)}
+
+ACTION ITEMS
+${makeActionItems(noteData)}
 
 CHIEF COMPLAINT
 ${sentenceCase(complaint) || "Not documented"}
@@ -526,29 +665,39 @@ ${sentenceCase(complaint) || "Not documented"}
 SUBJECTIVE / HPI
 ${transcript || "Not documented. Add visit narrative before using this draft."}
 
+MEDICATIONS / ALLERGIES / SAFETY
+${textOrPlaceholder(medsAllergies, "Not documented. Verify current medications, allergies, contraindications, pregnancy/lactation status when relevant, adherence, and side effects.")}
+
 PERTINENT NEGATIVES
 ${findPertinentNegatives(transcript)}
 
 OBJECTIVE
-${visitSetting}.
-Vitals, general appearance, focused physical exam, diagnostic results, lab values, imaging, screening scores, procedure details, and relevant clinical observations should be documented here if reviewed/performed.
+Setting: ${visitSetting}
+Vitals: ${textOrPlaceholder(vitals, "Not documented.")}
+Exam / objective findings: ${textOrPlaceholder(exam, "Not documented. Add focused exam, general appearance, and relevant system findings.")}
+Labs/tests/imaging/screening: ${textOrPlaceholder(diagnostics, "Not documented. Add reviewed results, ordered tests, pending results, and screening scores.")}
 
 ASSESSMENT
-${createAssessment(visitType, complaint)}
+${textOrPlaceholder(assessmentInput, createAssessment(visitType, complaint))}
 
 PLAN
 ${createPlan(visitType, visitSetting)}
 
+ORDERS / MEDICATIONS / REFERRALS / PROCEDURES
+${textOrPlaceholder(ordersPlan, "Not documented. Add medication decisions, labs, imaging, referrals, procedures, forms, pharmacy, and pending tasks.")}
+
 PATIENT INSTRUCTIONS
-- Use the final provider-approved instructions, not this draft alone.
-- Seek urgent or emergency care for red-flag symptoms discussed during the visit.
-- Use secure patient portal or approved office workflow for private medical messages and documents.
+${textOrPlaceholder(education, "Not documented. Add final provider-approved instructions, medication directions, lifestyle counseling, and red-flag precautions.")}
 
 FOLLOW-UP
-Follow-up interval and escalation plan to be finalized by provider.
+${textOrPlaceholder(followup, "Not documented. Add follow-up interval, pending result plan, return precautions, and escalation instructions.")}
+
+BILLING / CODING SUPPORT NOTES
+- Coding must be selected by provider/biller based on documented medical decision making, time, exam, risk, orders, and payer rules.
+- This draft does not assign final ICD-10, CPT, E/M level, or billing codes.
 
 SCRIBE DISCLAIMER
-This is a browser-generated practice draft. It may be incomplete or incorrect. Provider must verify, edit, and approve all content before placing anything in the medical record.`;
+This is a browser-generated draft from the information entered. It may be incomplete, inaccurate, or clinically inappropriate. Provider must verify, edit, and approve all content before placing anything in the medical record or using it for care decisions.`;
 
       fields.output.value = note;
       fields.voiceStatus.textContent = "Draft created. Please review and edit before use.";
@@ -608,6 +757,14 @@ This is a browser-generated practice draft. It may be incomplete or incorrect. P
       fields.sex.value = "Not specified";
       fields.chiefComplaint.value = "";
       fields.transcript.value = "";
+      fields.vitals.value = "";
+      fields.exam.value = "";
+      fields.medsAllergies.value = "";
+      fields.diagnostics.value = "";
+      fields.assessmentInput.value = "";
+      fields.ordersPlan.value = "";
+      fields.education.value = "";
+      fields.followup.value = "";
       fields.output.value = "";
       fields.voiceStatus.textContent = "Cleared.";
       fields.copyStatus.textContent = "";
@@ -662,6 +819,14 @@ This is a browser-generated practice draft. It may be incomplete or incorrect. P
         fields.sex.value = sample.sex;
         fields.chiefComplaint.value = sample.chiefComplaint;
         fields.transcript.value = sample.transcript;
+        fields.vitals.value = sample.vitals || "";
+        fields.exam.value = sample.exam || "";
+        fields.medsAllergies.value = sample.medsAllergies || "";
+        fields.diagnostics.value = sample.diagnostics || "";
+        fields.assessmentInput.value = sample.assessmentInput || "";
+        fields.ordersPlan.value = sample.ordersPlan || "";
+        fields.education.value = sample.education || "";
+        fields.followup.value = sample.followup || "";
         fields.voiceStatus.textContent = "Practice case loaded.";
       });
     });
