@@ -312,6 +312,8 @@
         <textarea id="followup" class="compact" placeholder="Follow-up timing, pending result plan, return precautions, next visit goals."></textarea>
 
         <div class="button-row">
+          <button id="startAmbient" type="button">Start AI Scribe</button>
+          <button id="stopAmbient" class="secondary" type="button" disabled>Stop & Create AI Note</button>
           <button id="startVoice" type="button">Start Dictation</button>
           <button id="stopVoice" class="secondary" type="button" disabled>Stop</button>
           <button id="generateNote" type="button">Create SOAP Note</button>
@@ -366,6 +368,97 @@
       voiceStatus: document.getElementById("voiceStatus"),
       copyStatus: document.getElementById("copyStatus")
     };
+
+    let ambientRecorder;
+    let ambientChunks = [];
+    let ambientStartedAt = 0;
+
+    function getAudioMimeType() {
+      if (window.MediaRecorder?.isTypeSupported("audio/webm;codecs=opus")) {
+        return "audio/webm;codecs=opus";
+      }
+      if (window.MediaRecorder?.isTypeSupported("audio/mp4")) {
+        return "audio/mp4";
+      }
+      return "";
+    }
+
+    function blobToDataUrl(blob) {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onloadend = () => resolve(reader.result);
+        reader.onerror = reject;
+        reader.readAsDataURL(blob);
+      });
+    }
+
+    async function createAmbientNote(audioBlob) {
+      const audioDataUrl = await blobToDataUrl(audioBlob);
+      const response = await fetch("/.netlify/functions/ambient-scribe", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          audioDataUrl,
+          visitSetting: fields.visitSetting.value,
+          visitType: fields.visitType.value,
+          patientAge: fields.age.value,
+          patientSex: fields.sex.value,
+          chiefComplaint: fields.chiefComplaint.value,
+        }),
+      });
+
+      const data = await response.json();
+      if (!response.ok) {
+        throw new Error(data?.detail || data?.error || "Ambient scribe failed.");
+      }
+
+      fields.transcript.value = data.transcript || fields.transcript.value;
+      fields.output.value = data.note || "";
+      return data;
+    }
+
+    async function startAmbientScribe() {
+      if (!window.isSecureContext) {
+        fields.voiceStatus.textContent = "Open the HTTPS live page to use AI scribe recording on your phone.";
+        return;
+      }
+
+      if (!navigator.mediaDevices?.getUserMedia || !window.MediaRecorder) {
+        fields.voiceStatus.textContent = "This browser does not support visit recording. Try current Chrome, Edge, or Safari.";
+        return;
+      }
+
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      ambientChunks = [];
+      ambientStartedAt = Date.now();
+      const mimeType = getAudioMimeType();
+      ambientRecorder = new MediaRecorder(stream, mimeType ? { mimeType } : undefined);
+
+      ambientRecorder.ondataavailable = (event) => {
+        if (event.data?.size) ambientChunks.push(event.data);
+      };
+
+      ambientRecorder.onstop = async () => {
+        stream.getTracks().forEach((track) => track.stop());
+        document.getElementById("startAmbient").disabled = false;
+        document.getElementById("stopAmbient").disabled = true;
+
+        try {
+          const elapsedSeconds = Math.round((Date.now() - ambientStartedAt) / 1000);
+          const audioBlob = new Blob(ambientChunks, { type: ambientRecorder.mimeType || "audio/webm" });
+          fields.voiceStatus.textContent = `Creating AI note from ${elapsedSeconds}s recording. Please wait...`;
+          await createAmbientNote(audioBlob);
+          fields.voiceStatus.textContent = "AI scribe note created. Review carefully before EHR use.";
+        } catch (error) {
+          fields.voiceStatus.textContent = `AI scribe could not create the note: ${error.message}`;
+        }
+      };
+
+      ambientRecorder.start(1000);
+      document.getElementById("startAmbient").disabled = true;
+      document.getElementById("stopAmbient").disabled = false;
+      fields.voiceStatus.textContent = "AI scribe is recording. Speak naturally, then tap Stop & Create AI Note.";
+    }
 
     const examples = {
       uri: {
@@ -751,6 +844,23 @@ This is a browser-generated draft from the information entered. It may be incomp
 
     document.getElementById("generateNote").addEventListener("click", generateNote);
 
+    document.getElementById("startAmbient").addEventListener("click", async () => {
+      try {
+        await startAmbientScribe();
+      } catch (error) {
+        fields.voiceStatus.textContent = `Microphone could not start: ${error.message}`;
+        document.getElementById("startAmbient").disabled = false;
+        document.getElementById("stopAmbient").disabled = true;
+      }
+    });
+
+    document.getElementById("stopAmbient").addEventListener("click", () => {
+      if (ambientRecorder && ambientRecorder.state !== "inactive") {
+        fields.voiceStatus.textContent = "Stopping recording and preparing audio...";
+        ambientRecorder.stop();
+      }
+    });
+
     document.getElementById("clearAll").addEventListener("click", () => {
       fields.age.value = "";
       fields.visitSetting.value = "Office visit";
@@ -832,6 +942,7 @@ This is a browser-generated draft from the information entered. It may be incomp
     });
 
     if (!window.isSecureContext) {
+      document.getElementById("startAmbient").disabled = true;
       document.getElementById("startVoice").disabled = true;
       fields.voiceStatus.textContent = "Open the live HTTPS page on your phone to use microphone dictation: https://telednpnow.org/provider-scribe.html";
     }
